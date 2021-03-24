@@ -6,4 +6,6 @@ import java.util.ArrayList;
 
 public interface IOrganizacionVinculadaDAO {
     ArrayList<OrganizacionVinculada> obtenerOrganizaciones();
+
+    void registrarOrganizacion(OrganizacionVinculada org);
 }

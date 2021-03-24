@@ -4,13 +4,16 @@ import Dominio.OrganizacionVinculada;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import utils.SceneSwitcher;
 import data.DAO.OrganizacionVinculadaDAO;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -27,6 +30,8 @@ public class TablaOrganizacionesController implements Initializable {
     private TableColumn<OrganizacionVinculada, String> colDireccion;
     @FXML
     private TableColumn<OrganizacionVinculada, String> colCorreo;
+    @FXML
+    Button agregarOrg;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -38,17 +43,13 @@ public class TablaOrganizacionesController implements Initializable {
         tablaOrgs.getItems().setAll(organizaciones);
     }
 
-    @FXML
-    void irAgregarOrg(ActionEvent event) {
-
+    public void modalAgregarOrg(ActionEvent actionEvent) {
+        SceneSwitcher switcher = new SceneSwitcher();
+        Stage stageActual = (Stage) agregarOrg.getScene().getWindow();
+        try {
+            switcher.createDialog(stageActual, "/coord/ModalRegistrarOrg.fxml");
+        } catch (IOException ioException) {
+           ioException.printStackTrace();
+        }
     }
-
-    public void popularTabla(){
-
-    }
-
-    public void irTablaProyectos(MouseEvent mouseEvent) {
-    }
-
-
 }

@@ -5,10 +5,7 @@ import data.Interfaces.IOrganizacionVinculadaDAO;
 import data.Conexion;
 import javafx.scene.control.Alert;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class OrganizacionVinculadaDAO implements IOrganizacionVinculadaDAO {
@@ -42,5 +39,20 @@ public class OrganizacionVinculadaDAO implements IOrganizacionVinculadaDAO {
         }
 
         return organizaciones;
+    }
+
+    @Override
+    public void registrarOrganizacion(OrganizacionVinculada org) {
+        String query = "INSERT INTO organizacion_vinculada (nombre, direccion, correo) VALUES (?,?,?)";
+
+        try{
+            PreparedStatement preparedStatement = conexion.prepareStatement(query);
+            preparedStatement.setString(1,org.getNombre());
+            preparedStatement.setString(2,org.getDireccion());
+            preparedStatement.setString(3,org.getCorreo());
+            preparedStatement.execute();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 }

@@ -29,7 +29,7 @@
                 <Font name="Century Gothic Bold" size="17.0" />
             </font>
         </Label>
-        <Label layoutX="40.0" layoutY="172.0" onMouseClicked="#irTablaProyectos" text="Proyectos" textFill="WHITE">
+        <Label layoutX="40.0" layoutY="172.0"  text="Proyectos" textFill="WHITE">
             <font>
                 <Font name="Century Gothic Bold" size="17.0" />
             </font>
@@ -49,7 +49,7 @@
             <Font name="Century Gothic Bold" size="20.0" />
          </font>
       </Label>
-      <Button layoutX="230.0" layoutY="108.0" mnemonicParsing="false" onAction="#irAgregarOrg" text="+ Agregar" />
+      <Button layoutX="230.0" layoutY="108.0" mnemonicParsing="false" onAction="#modalAgregarOrg" text="+ Agregar" fx:id="agregarOrg" />
       <TableView fx:id="tablaOrgs" layoutX="231.0" layoutY="166.0" prefHeight="444.0" prefWidth="818.0">
         <columns>
           <TableColumn prefWidth="171.0" text="Nombre" fx:id="colNombre" />
