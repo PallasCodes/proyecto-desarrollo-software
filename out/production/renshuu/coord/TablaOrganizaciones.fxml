@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="675.0" minWidth="1080.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/15.0.1" fx:controller="coord.CoordInicioController">
+<AnchorPane minHeight="675.0" minWidth="1080.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coord.TablaOrganizacionesController">
     <children>
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="675.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="42.0" layoutX="200.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="880.0" />
@@ -26,20 +29,33 @@
                 <Font name="Century Gothic Bold" size="17.0" />
             </font>
         </Label>
-        <Label layoutX="40.0" layoutY="172.0" text="Proyectos" textFill="WHITE" onMouseClicked="#irTablaOrganizaciones">
+        <Label layoutX="40.0" layoutY="172.0" onMouseClicked="#irTablaProyectos" text="Proyectos" textFill="WHITE">
             <font>
                 <Font name="Century Gothic Bold" size="17.0" />
             </font>
         </Label>
-        <Label layoutX="40.0" layoutY="208.0" onMouseClicked="#irTablaOrganizaciones" text="Organizaciones" textFill="WHITE">
+        <Label layoutX="40.0" layoutY="208.0" text="Organizaciones" textFill="WHITE">
             <font>
                 <Font name="Century Gothic Bold" size="17.0" />
             </font>
         </Label>
-      <Label layoutX="40.0" layoutY="244.0" text="Solicitudes" textFill="WHITE">
+        <Label layoutX="40.0" layoutY="244.0" text="Solicitudes" textFill="WHITE">
+            <font>
+                <Font name="Century Gothic Bold" size="17.0" />
+            </font>
+        </Label>
+      <Label layoutX="230.0" layoutY="63.0" text="Organizaciones Vinculadas" textFill="#444444">
          <font>
-            <Font name="Century Gothic Bold" size="17.0" />
+            <Font name="Century Gothic Bold" size="20.0" />
          </font>
       </Label>
+      <Button layoutX="230.0" layoutY="108.0" mnemonicParsing="false" onAction="#irAgregarOrg" text="+ Agregar" />
+      <TableView fx:id="tablaOrgs" layoutX="231.0" layoutY="166.0" prefHeight="444.0" prefWidth="818.0">
+        <columns>
+          <TableColumn prefWidth="171.0" text="Nombre" fx:id="colNombre" />
+          <TableColumn minWidth="0.0" prefWidth="323.0" text="Dirección" fx:id="colDireccion" />
+            <TableColumn prefWidth="323.0" text="Correo" fx:id="colCorreo" />
+        </columns>
+      </TableView>
     </children>
 </AnchorPane>

@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="675.0" minWidth="1080.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/15.0.1" fx:controller="coord.CoordInicioController">
+<AnchorPane minHeight="675.0" minWidth="1080.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/15.0.1" fx:controller="coord.TablaProyectosController">
     <children>
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="675.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="42.0" layoutX="200.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="880.0" />
@@ -26,20 +28,26 @@
                 <Font name="Century Gothic Bold" size="17.0" />
             </font>
         </Label>
-        <Label layoutX="40.0" layoutY="172.0" text="Proyectos" textFill="WHITE" onMouseClicked="#irTablaOrganizaciones">
+        <Label layoutX="40.0" layoutY="172.0" text="Proyectos" textFill="WHITE">
             <font>
                 <Font name="Century Gothic Bold" size="17.0" />
             </font>
         </Label>
-        <Label layoutX="40.0" layoutY="208.0" onMouseClicked="#irTablaOrganizaciones" text="Organizaciones" textFill="WHITE">
+        <Label layoutX="40.0" layoutY="208.0" text="Organizaciones" textFill="WHITE">
             <font>
                 <Font name="Century Gothic Bold" size="17.0" />
             </font>
         </Label>
-      <Label layoutX="40.0" layoutY="244.0" text="Solicitudes" textFill="WHITE">
-         <font>
-            <Font name="Century Gothic Bold" size="17.0" />
-         </font>
-      </Label>
+        <Label layoutX="40.0" layoutY="244.0" text="Solicitudes" textFill="WHITE">
+            <font>
+                <Font name="Century Gothic Bold" size="17.0" />
+            </font>
+        </Label>
+      <TableView layoutX="244.0" layoutY="108.0" prefHeight="439.0" prefWidth="796.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="C1" />
+          <TableColumn prefWidth="75.0" text="C2" />
+        </columns>
+      </TableView>
     </children>
 </AnchorPane>
