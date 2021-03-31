@@ -23,7 +23,7 @@ public class OrganizacionVinculadaDAO implements IOrganizacionVinculadaDAO {
 
             while(rs.next()){
                 OrganizacionVinculada org = new OrganizacionVinculada();
-                org.setOrganizacionId(rs.getInt("organizacion_id"));
+                org.setOrganizacionId(Integer.toString(rs.getInt("organizacion_id")));
                 org.setNombre(rs.getString("nombre"));
                 org.setCorreo(rs.getString("correo"));
                 org.setDireccion(rs.getString("direccion"));
@@ -50,6 +50,19 @@ public class OrganizacionVinculadaDAO implements IOrganizacionVinculadaDAO {
             preparedStatement.setString(1,org.getNombre());
             preparedStatement.setString(2,org.getDireccion());
             preparedStatement.setString(3,org.getCorreo());
+            preparedStatement.execute();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    @Override
+    public void eliminarOrganizacion(int organizacionId) {
+        String query = "DELETE FROM organizacion_vinculada WHERE organizacion_id=?";
+
+        try{
+            PreparedStatement preparedStatement = conexion.prepareStatement(query);
+            preparedStatement.setInt(1,organizacionId);
             preparedStatement.execute();
         } catch (SQLException throwables) {
             throwables.printStackTrace();

@@ -41,6 +41,7 @@ public class ModalRegistrarOrgController {
         org.setDireccion(tfDireccion.getText());
         orgDao.registrarOrganizacion(org);
 
+        TablaOrganizacionesController.getInstance().popularTabla();
         Stage stage = (Stage) registrarOrg.getScene().getWindow();
         stage.close();
     }

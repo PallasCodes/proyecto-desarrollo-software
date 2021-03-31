@@ -21,6 +21,7 @@ import java.util.ResourceBundle;
 public class TablaOrganizacionesController implements Initializable {
     SceneSwitcher sw = new SceneSwitcher();
     OrganizacionVinculadaDAO orgDao = new OrganizacionVinculadaDAO();
+    ArrayList<OrganizacionVinculada> organizaciones;
 
     @FXML
     private TableView<OrganizacionVinculada> tablaOrgs;
@@ -31,16 +32,31 @@ public class TablaOrganizacionesController implements Initializable {
     @FXML
     private TableColumn<OrganizacionVinculada, String> colCorreo;
     @FXML
-    Button agregarOrg;
+    private TableColumn<OrganizacionVinculada, String> colId;
+
+    @FXML
+    private Button agregarOrg;
+    @FXML
+    private Button btnEliminar;
+    
+    private static TablaOrganizacionesController instance;
+
+    public TablaOrganizacionesController(){
+        instance = this;
+    }
+
+    public static TablaOrganizacionesController getInstance(){
+        return instance;
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         colNombre.setCellValueFactory(new PropertyValueFactory<OrganizacionVinculada, String>("nombre"));
         colDireccion.setCellValueFactory(new PropertyValueFactory<OrganizacionVinculada, String>("direccion"));
         colCorreo.setCellValueFactory(new PropertyValueFactory<OrganizacionVinculada, String>("correo"));
+        colId.setCellValueFactory(new PropertyValueFactory<OrganizacionVinculada, String>("organizacion_id"));
 
-        ArrayList<OrganizacionVinculada> organizaciones = orgDao.obtenerOrganizaciones();
-        tablaOrgs.getItems().setAll(organizaciones);
+        popularTabla();
     }
 
     public void modalAgregarOrg(ActionEvent actionEvent) {
@@ -51,5 +67,21 @@ public class TablaOrganizacionesController implements Initializable {
         } catch (IOException ioException) {
            ioException.printStackTrace();
         }
+    }
+
+    public void popularTabla() {
+        organizaciones = orgDao.obtenerOrganizaciones();
+        tablaOrgs.getItems().setAll(organizaciones);
+    }
+
+    public OrganizacionVinculada obtenerOrgSeleccionada(){
+        return tablaOrgs.getSelectionModel().getSelectedItem();
+    }
+
+    public void eliminarOrg(){
+        OrganizacionVinculada org = obtenerOrgSeleccionada();
+        int organizacionId = Integer.parseInt(org.getOrganizacionId());
+        orgDao.eliminarOrganizacion(organizacionId);
+        popularTabla();
     }
 }
