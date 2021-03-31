@@ -1,10 +1,9 @@
-package data;
+package DataAccess;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import data.Conexion;
 
 public class UsuarioData {
     public static Connection conexion = Conexion.conectar();

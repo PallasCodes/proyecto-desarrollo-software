@@ -8,10 +8,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import utils.AlertBuilder;
 import utils.SceneSwitcher;
-import data.DAO.OrganizacionVinculadaDAO;
+import DataAccess.DAO.OrganizacionVinculadaDAO;
 
 import java.io.IOException;
 import java.net.URL;
@@ -22,6 +22,7 @@ public class TablaOrganizacionesController implements Initializable {
     SceneSwitcher sw = new SceneSwitcher();
     OrganizacionVinculadaDAO orgDao = new OrganizacionVinculadaDAO();
     ArrayList<OrganizacionVinculada> organizaciones;
+    AlertBuilder alert = new AlertBuilder();
 
     @FXML
     private TableView<OrganizacionVinculada> tablaOrgs;
@@ -80,8 +81,12 @@ public class TablaOrganizacionesController implements Initializable {
 
     public void eliminarOrg(){
         OrganizacionVinculada org = obtenerOrgSeleccionada();
-        int organizacionId = Integer.parseInt(org.getOrganizacionId());
-        orgDao.eliminarOrganizacion(organizacionId);
-        popularTabla();
+        if(org == null){
+         alert.errorAlert("Error. Seleccione una organización");
+        }else if(alert.confirmationAlert("¿Desea eliminar la organización?")){
+            int organizacionId = Integer.parseInt(org.getOrganizacionId());
+            orgDao.eliminarOrganizacion(organizacionId);
+            popularTabla();
+        }
     }
 }

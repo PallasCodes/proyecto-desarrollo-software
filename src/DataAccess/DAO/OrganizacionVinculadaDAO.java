@@ -1,19 +1,20 @@
-package data.DAO;
+package DataAccess.DAO;
 
 import Dominio.OrganizacionVinculada;
-import data.Interfaces.IOrganizacionVinculadaDAO;
-import data.Conexion;
+import DataAccess.Interfaces.IOrganizacionVinculadaDAO;
+import DataAccess.Conexion;
 import javafx.scene.control.Alert;
+import utils.AlertBuilder;
 
 import java.sql.*;
 import java.util.ArrayList;
 
 public class OrganizacionVinculadaDAO implements IOrganizacionVinculadaDAO {
-    static Connection conexion = Conexion.conectar();
 
     // obtiene todas las ORGANIZACIONES VINCULADAS de la BD y las retorna en un ArrayList
     @Override
     public ArrayList<OrganizacionVinculada> obtenerOrganizaciones() {
+        Connection conexion = Conexion.conectar();
         ArrayList<OrganizacionVinculada> organizaciones = new ArrayList<>();
 
         String query = "SELECT * FROM organizacion_vinculada";
@@ -30,11 +31,10 @@ public class OrganizacionVinculadaDAO implements IOrganizacionVinculadaDAO {
 
                 organizaciones.add(org);
             }
+            conexion.close();
         } catch (SQLException throwables) {
-            Alert error = new Alert(Alert.AlertType.ERROR);
-            error.setTitle("Error de conexión");
-            error.setContentText("No pudo conectarse con la base de datos. Intentelo más tarde.");
-
+            AlertBuilder alert = new AlertBuilder();
+            alert.errorAlert("Error de conexión con la BD. Inténtelo más tarde.");
             throwables.printStackTrace();
         }
 
@@ -43,6 +43,7 @@ public class OrganizacionVinculadaDAO implements IOrganizacionVinculadaDAO {
 
     @Override
     public void registrarOrganizacion(OrganizacionVinculada org) {
+        Connection conexion = Conexion.conectar();
         String query = "INSERT INTO organizacion_vinculada (nombre, direccion, correo) VALUES (?,?,?)";
 
         try{
@@ -51,20 +52,27 @@ public class OrganizacionVinculadaDAO implements IOrganizacionVinculadaDAO {
             preparedStatement.setString(2,org.getDireccion());
             preparedStatement.setString(3,org.getCorreo());
             preparedStatement.execute();
+            conexion.close();
         } catch (SQLException throwables) {
+            AlertBuilder alert = new AlertBuilder();
+            alert.errorAlert("Error al registrar la organización. Inténtelo más tarde.");
             throwables.printStackTrace();
         }
     }
 
     @Override
     public void eliminarOrganizacion(int organizacionId) {
+        Connection conexion = Conexion.conectar();
         String query = "DELETE FROM organizacion_vinculada WHERE organizacion_id=?";
 
         try{
             PreparedStatement preparedStatement = conexion.prepareStatement(query);
             preparedStatement.setInt(1,organizacionId);
             preparedStatement.execute();
+            conexion.close();
         } catch (SQLException throwables) {
+            AlertBuilder alert = new AlertBuilder();
+            alert.errorAlert("Error al eliminar la organización. Inténtelo más tarde.");
             throwables.printStackTrace();
         }
     }

@@ -6,7 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import data.DAO.OrganizacionVinculadaDAO;
+import DataAccess.DAO.OrganizacionVinculadaDAO;
 import javafx.stage.Stage;
 
 public class ModalRegistrarOrgController {
@@ -39,10 +39,18 @@ public class ModalRegistrarOrgController {
         org.setNombre(tfNombre.getText());
         org.setCorreo(tfCorreo.getText());
         org.setDireccion(tfDireccion.getText());
-        orgDao.registrarOrganizacion(org);
 
-        TablaOrganizacionesController.getInstance().popularTabla();
-        Stage stage = (Stage) registrarOrg.getScene().getWindow();
-        stage.close();
+        if(formularioValido()){
+            orgDao.registrarOrganizacion(org);
+            TablaOrganizacionesController.getInstance().popularTabla();
+            Stage stage = (Stage) registrarOrg.getScene().getWindow();
+            stage.close();
+        } else{
+            labelError.setText("*Llene todos los campos del formulario");
+        }
+    }
+
+    public boolean formularioValido(){
+        return !tfNombre.getText().equals("") && !tfCorreo.getText().equals("") && !tfDireccion.getText().equals("");
     }
 }

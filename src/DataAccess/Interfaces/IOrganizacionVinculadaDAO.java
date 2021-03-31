@@ -1,4 +1,4 @@
-package data.Interfaces;
+package DataAccess.Interfaces;
 
 import Dominio.OrganizacionVinculada;
 
