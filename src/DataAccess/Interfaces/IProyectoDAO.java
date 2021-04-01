@@ -9,4 +9,8 @@ public interface IProyectoDAO {
     void registrarProyecto(Proyecto proyecto);
 
     void eliminarProyecto(int proyectoId);
+
+    void actualizarProyecto(Proyecto proyecto);
+
+    Proyecto obtenerProyecto(int proyectoId);
 }

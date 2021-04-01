@@ -2,31 +2,32 @@ package coord;
 
 import DataAccess.DAO.OrganizacionVinculadaDAO;
 import DataAccess.DAO.ProyectoDAO;
-import Dominio.OrgComboBox;
 import Dominio.OrganizacionVinculada;
 import Dominio.Proyecto;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import java.util.regex.Matcher;
+
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ModalRegistrarProController implements Initializable {
-    OrganizacionVinculadaDAO orgDao = new OrganizacionVinculadaDAO();
+public class ModalActualizarProController implements Initializable {
     ProyectoDAO proDao = new ProyectoDAO();
 
     @FXML
     private TextField tfNombre;
 
     @FXML
-    private Button btnRegistrarPro;
+    private Button btnActualizarPro;
 
     @FXML
     private Label labelError;
@@ -43,25 +44,16 @@ public class ModalRegistrarProController implements Initializable {
     @FXML
     private TextField tfCupo;
 
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        ArrayList<OrganizacionVinculada> organizaciones = orgDao.obtenerOrganizaciones();
-        organizaciones.forEach(org -> {
-            cbOrg.getItems().add(org.getNombre()+" ("+org.getOrganizacionId()+")");
-        });
-    }
-
-    public void cancelarRegistro(ActionEvent actionEvent) {
-        Stage stage = (Stage) btnRegistrarPro.getScene().getWindow();
+    @FXML
+    void cancelarRegistro(ActionEvent event) {
+        Stage stage = (Stage) btnActualizarPro.getScene().getWindow();
         stage.close();
     }
 
-    public void registrarPro(ActionEvent actionEvent) {
+    @FXML
+    void actualizarPro(ActionEvent event) {
         if(formularioValido()){
-            Proyecto proyecto = new Proyecto();
-            proyecto.setNombre(tfNombre.getText());
-
+            Proyecto proyecto = Proyecto.proyectoSeleccionado;
             // expresión regular para obtener el id de la organización seleccionada
             String regex = "^.*?\\([^\\d]*(\\d+)[^\\d]*\\).*$";
             Pattern p = Pattern.compile(regex);
@@ -75,16 +67,30 @@ public class ModalRegistrarProController implements Initializable {
             proyecto.setDescripcion(taDescripcion.getText());
             proyecto.setActividades(taActividades.getText());
 
-            //TODO: update proyecto
-            //TODO: quitar javafxapi y config min height y weight
-
-            proDao.registrarProyecto(proyecto);
+            proDao.actualizarProyecto(proyecto);
             TablaProyectosController.getInstance().popularTabla();
-            Stage stage = (Stage) btnRegistrarPro.getScene().getWindow();
+            Stage stage = (Stage) btnActualizarPro.getScene().getWindow();
             stage.close();
         } else {
             labelError.setText("Llena todos los campos del formulario");
         }
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        int id = Integer.parseInt(Proyecto.proyectoSeleccionado.getProyectoId());
+        Proyecto proyecto = proDao.obtenerProyecto(id);
+
+        tfNombre.setText(proyecto.getNombre());
+        taActividades.setText(proyecto.getActividades());
+        taDescripcion.setText(proyecto.getDescripcion());
+        tfCupo.setText(proyecto.getCupo());
+
+        OrganizacionVinculadaDAO orgDao = new OrganizacionVinculadaDAO();
+        ArrayList<OrganizacionVinculada> organizaciones = orgDao.obtenerOrganizaciones();
+        organizaciones.forEach(org -> {
+            cbOrg.getItems().add(org.getNombre()+" ("+org.getOrganizacionId()+")");
+        });
     }
 
     public boolean formularioValido() {

@@ -10,6 +10,8 @@ public class Proyecto {
     private String descripcion;
     private String actividades;
 
+    public static Proyecto proyectoSeleccionado = null;
+
     // constructores
     public Proyecto() {
     }

@@ -78,18 +78,35 @@ public class TablaProyectosController implements Initializable {
         tablaProyectos.getItems().setAll(proyectos);
     }
 
-    public Proyecto obtenerOrgSeleccionada(){
-        return tablaProyectos.getSelectionModel().getSelectedItem();
+    public Proyecto obtenerProSeleccionado(){
+        Proyecto.proyectoSeleccionado = tablaProyectos.getSelectionModel().getSelectedItem();
+        return Proyecto.proyectoSeleccionado;
     }
 
-    public void eliminarOrg(){
-        Proyecto proyecto = obtenerOrgSeleccionada();
+    public void eliminarPro(){
+        Proyecto proyecto = obtenerProSeleccionado();
         if(proyecto == null){
             alert.errorAlert("Error. Seleccione un proyecto");
         }else if(alert.confirmationAlert("¿Desea eliminar el proyecto?")){
-            int proyectoId = Integer.parseInt(proyecto.getProyectoId());
+            int proyectoId = Integer.parseInt(Proyecto.proyectoSeleccionado.getProyectoId());
             proyectoDAO.eliminarProyecto(proyectoId);
+            Proyecto.proyectoSeleccionado = null;
             popularTabla();
+        }
+    }
+
+    public void actualizarPro(ActionEvent actionEvent) {
+        Proyecto proyecto = obtenerProSeleccionado();
+        if(proyecto == null){
+            alert.errorAlert("Error. Seleccione un proyecto");
+        }else {
+            SceneSwitcher switcher = new SceneSwitcher();
+            Stage stageActual = (Stage) agregarProyecto.getScene().getWindow();
+            try {
+                switcher.createDialog(stageActual, "/coord/ModalActualizarPro.fxml");
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
         }
     }
 }

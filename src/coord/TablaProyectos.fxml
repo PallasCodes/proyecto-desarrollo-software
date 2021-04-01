@@ -59,6 +59,7 @@
                 <TableColumn fx:id="colCupo" prefWidth="150.0" text="Cupo" />
             </columns>
         </TableView>
-        <Button fx:id="btnEliminar" layoutX="315.0" layoutY="108.0" mnemonicParsing="false" onAction="#eliminarOrg" text="Eliminar" />
+        <Button fx:id="btnEliminar" layoutX="315.0" layoutY="108.0" mnemonicParsing="false" onAction="#eliminarPro" text="Eliminar" />
+      <Button fx:id="btnActualizar" layoutX="388.0" layoutY="108.0" mnemonicParsing="false" onAction="#actualizarPro" text="Actualizar" />
     </children>
 </AnchorPane>

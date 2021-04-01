@@ -51,7 +51,8 @@ public class ProyectoDAO implements IProyectoDAO {
                 "VALUES (?,?,?,?,?,?,?)";
         try{
             PreparedStatement preparedStatement = conexion.prepareStatement(query);
-            preparedStatement.setInt(1,1);
+            //System.out.println(proyecto.getOrganizacion());
+            preparedStatement.setInt(1,Integer.parseInt(proyecto.getOrganizacion()));
             preparedStatement.setString(2, proyecto.getNombre());
             preparedStatement.setString(3,proyecto.getDescripcion());
             preparedStatement.setString(4,proyecto.getActividades());
@@ -60,10 +61,10 @@ public class ProyectoDAO implements IProyectoDAO {
             preparedStatement.setString(7,"Disponible");
             preparedStatement.execute();
             conexion.close();
-        } catch (SQLException throwables) {
+        } catch (Exception ex) {
             AlertBuilder alert = new AlertBuilder();
             alert.errorAlert("Error al registrar el proyecto. Inténtelo más tarde.");
-            throwables.printStackTrace();
+            ex.printStackTrace();
         }
     }
 
@@ -82,5 +83,58 @@ public class ProyectoDAO implements IProyectoDAO {
             alert.errorAlert("Error al eliminar el proyecto. Inténtelo más tarde.");
             throwables.printStackTrace();
         }
+    }
+
+    @Override
+    public void actualizarProyecto(Proyecto proyecto) {
+        Connection conexion = Conexion.conectar();
+        String query = "UPDATE proyecto SET organizacion_id=?, nombre=?, descripcion=?, actividades=?, cupo=?, " +
+                "estado=? WHERE proyecto_id="+proyecto.getProyectoId();
+        try{
+            PreparedStatement preparedStatement = conexion.prepareStatement(query);
+            //System.out.println(proyecto.getOrganizacion());
+            preparedStatement.setInt(1,1);
+            preparedStatement.setString(2, proyecto.getNombre());
+            System.out.println(proyecto.getNombre());
+            preparedStatement.setString(3,proyecto.getDescripcion());
+            preparedStatement.setString(4,proyecto.getActividades());
+            preparedStatement.setInt(5, Integer.parseInt(proyecto.getCupo()));
+            preparedStatement.setString(6,"Disponible");
+
+            preparedStatement.execute();
+            conexion.close();
+        } catch (SQLException ex) {
+            AlertBuilder alert = new AlertBuilder();
+            alert.errorAlert("Error al actualizar el proyecto. Inténtelo más tarde.");
+            ex.printStackTrace();
+        }
+    }
+
+    @Override
+    public Proyecto obtenerProyecto(int proyectoId) {
+        Connection conexion = Conexion.conectar();
+        Proyecto proyecto = new Proyecto();
+
+        String query = "SELECT * FROM proyecto WHERE proyecto_id="+proyectoId;
+        try {
+            Statement st = conexion.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            while(rs.next()){
+                proyecto.setProyectoId(Integer.toString(rs.getInt("proyecto_id")));
+                proyecto.setNombre(rs.getString("nombre"));
+                proyecto.setCupo(Integer.toString(rs.getInt("cupo")));
+                proyecto.setEstado(rs.getString("estado"));
+                proyecto.setOrganizacion(rs.getString("organizacion_id"));
+                proyecto.setActividades(rs.getString("actividades"));
+                proyecto.setDescripcion(rs.getString("descripcion"));
+            }
+            conexion.close();
+        } catch (SQLException throwables) {
+            AlertBuilder alert = new AlertBuilder();
+            alert.errorAlert("Error de conexión con la BD. Inténtelo más tarde.");
+            throwables.printStackTrace();
+        }
+        return proyecto;
     }
 }
