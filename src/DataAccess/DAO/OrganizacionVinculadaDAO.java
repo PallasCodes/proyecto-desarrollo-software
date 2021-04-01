@@ -3,7 +3,6 @@ package DataAccess.DAO;
 import Dominio.OrganizacionVinculada;
 import DataAccess.Interfaces.IOrganizacionVinculadaDAO;
 import DataAccess.Conexion;
-import javafx.scene.control.Alert;
 import utils.AlertBuilder;
 
 import java.sql.*;
