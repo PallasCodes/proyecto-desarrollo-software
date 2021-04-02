@@ -6,11 +6,11 @@ import java.util.ArrayList;
 public interface IProyectoDAO {
     ArrayList<Proyecto> obtenerProyectos();
 
-    void registrarProyecto(Proyecto proyecto);
+    boolean registrarProyecto(Proyecto proyecto);
 
-    void eliminarProyecto(int proyectoId);
+    boolean eliminarProyecto(int proyectoId);
 
-    void actualizarProyecto(Proyecto proyecto);
+    boolean actualizarProyecto(Proyecto proyecto);
 
     Proyecto obtenerProyecto(int proyectoId);
 }

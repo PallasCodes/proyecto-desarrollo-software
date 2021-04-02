@@ -21,11 +21,14 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class TablaOrganizacionesController implements Initializable {
+    // instancias de clases usadas
     SceneSwitcher sw = new SceneSwitcher();
     OrganizacionVinculadaDAO orgDao = new OrganizacionVinculadaDAO();
     ArrayList<OrganizacionVinculada> organizaciones;
     AlertBuilder alert = new AlertBuilder();
 
+
+    // componentes de la UI
     @FXML
     private TableView<OrganizacionVinculada> tablaOrgs;
     @FXML
@@ -36,25 +39,13 @@ public class TablaOrganizacionesController implements Initializable {
     private TableColumn<OrganizacionVinculada, String> colCorreo;
     @FXML
     private TableColumn<OrganizacionVinculada, String> colId;
-
     @FXML
     private Button agregarOrg;
-    @FXML
-    private Button btnEliminar;
-
     Stage stage;
     Scene scene;
-    
-    private static TablaOrganizacionesController instance;
 
-    public TablaOrganizacionesController(){
-        instance = this;
-    }
 
-    public static TablaOrganizacionesController getInstance(){
-        return instance;
-    }
-
+    // inicializar vista
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         colNombre.setCellValueFactory(new PropertyValueFactory<OrganizacionVinculada, String>("nombre"));
@@ -65,6 +56,31 @@ public class TablaOrganizacionesController implements Initializable {
         popularTabla();
     }
 
+
+    // instancia del controlador usada para acceder a sus métodos desde otros controladores
+    private static TablaOrganizacionesController instance;
+
+    public TablaOrganizacionesController(){
+        instance = this;
+    }
+
+    public static TablaOrganizacionesController getInstance(){
+        return instance;
+    }
+
+
+    // métodos de la UI
+    @FXML
+    public void irTablaProyectos(MouseEvent event) throws IOException {
+        sw.switchSceneMouse(event, stage, scene, "../coord/TablaProyectos.fxml");
+    }
+
+    @FXML
+    public void irInicio(MouseEvent event) throws IOException {
+        sw.switchSceneMouse(event, stage, scene, "../coord/CoordInicio.fxml");
+    }
+
+    @FXML
     public void modalAgregarOrg(ActionEvent actionEvent) {
         SceneSwitcher switcher = new SceneSwitcher();
         Stage stageActual = (Stage) agregarOrg.getScene().getWindow();
@@ -75,19 +91,11 @@ public class TablaOrganizacionesController implements Initializable {
         }
     }
 
-    public void popularTabla() {
-        organizaciones = orgDao.obtenerOrganizaciones();
-        tablaOrgs.getItems().setAll(organizaciones);
-    }
-
-    public OrganizacionVinculada obtenerOrgSeleccionada(){
-        return tablaOrgs.getSelectionModel().getSelectedItem();
-    }
-
+    @FXML
     public void eliminarOrg(){
         OrganizacionVinculada org = obtenerOrgSeleccionada();
         if(org == null){
-         alert.errorAlert("Error. Seleccione una organización");
+            alert.errorAlert("Error. Seleccione una organización");
         }else if(alert.confirmationAlert("¿Desea eliminar la organización?")){
             int organizacionId = Integer.parseInt(org.getOrganizacionId());
             orgDao.eliminarOrganizacion(organizacionId);
@@ -95,11 +103,13 @@ public class TablaOrganizacionesController implements Initializable {
         }
     }
 
-    public void irTablaProyectos(MouseEvent event) throws IOException {
-        sw.switchSceneMouse(event, stage, scene, "../coord/TablaProyectos.fxml");
+    // métodos
+    public void popularTabla() {
+        organizaciones = orgDao.obtenerOrganizaciones();
+        tablaOrgs.getItems().setAll(organizaciones);
     }
 
-    public void irInicio(MouseEvent event) throws IOException {
-        sw.switchSceneMouse(event, stage, scene, "../coord/CoordInicio.fxml");
+    public OrganizacionVinculada obtenerOrgSeleccionada(){
+        return tablaOrgs.getSelectionModel().getSelectedItem();
     }
 }

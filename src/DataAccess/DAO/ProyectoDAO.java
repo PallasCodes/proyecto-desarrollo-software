@@ -37,15 +37,14 @@ public class ProyectoDAO implements IProyectoDAO {
             conexion.close();
         } catch (SQLException throwables) {
             AlertBuilder alert = new AlertBuilder();
-            alert.errorAlert("Error de conexión con la BD. Inténtelo más tarde.");
+            alert.exceptionAlert("Error de conexión con la BD. Inténtelo más tarde.");
             throwables.printStackTrace();
         }
-
         return proyectos;
     }
 
     @Override
-    public void registrarProyecto(Proyecto proyecto) {
+    public boolean registrarProyecto(Proyecto proyecto) {
         Connection conexion = Conexion.conectar();
         String query = "INSERT INTO proyecto (organizacion_id, nombre, descripcion, actividades, cupo, disponibilidad, estado) " +
                 "VALUES (?,?,?,?,?,?,?)";
@@ -63,13 +62,15 @@ public class ProyectoDAO implements IProyectoDAO {
             conexion.close();
         } catch (Exception ex) {
             AlertBuilder alert = new AlertBuilder();
-            alert.errorAlert("Error al registrar el proyecto. Inténtelo más tarde.");
+            alert.exceptionAlert("Error al registrar el proyecto. Inténtelo más tarde.");
             ex.printStackTrace();
+            return false;
         }
+        return true;
     }
 
     @Override
-    public void eliminarProyecto(int proyectoId) {
+    public boolean eliminarProyecto(int proyectoId) {
         Connection conexion = Conexion.conectar();
         String query = "DELETE FROM proyecto WHERE proyecto_id=?";
 
@@ -80,13 +81,15 @@ public class ProyectoDAO implements IProyectoDAO {
             conexion.close();
         } catch (SQLException throwables) {
             AlertBuilder alert = new AlertBuilder();
-            alert.errorAlert("Error al eliminar el proyecto. Inténtelo más tarde.");
+            alert.exceptionAlert("Error al eliminar el proyecto. Inténtelo más tarde.");
             throwables.printStackTrace();
+            return false;
         }
+        return true;
     }
 
     @Override
-    public void actualizarProyecto(Proyecto proyecto) {
+    public boolean actualizarProyecto(Proyecto proyecto) {
         Connection conexion = Conexion.conectar();
         String query = "UPDATE proyecto SET organizacion_id=?, nombre=?, descripcion=?, actividades=?, cupo=?, " +
                 "estado=? WHERE proyecto_id="+proyecto.getProyectoId();
@@ -99,15 +102,17 @@ public class ProyectoDAO implements IProyectoDAO {
             preparedStatement.setString(3,proyecto.getDescripcion());
             preparedStatement.setString(4,proyecto.getActividades());
             preparedStatement.setInt(5, Integer.parseInt(proyecto.getCupo()));
-            preparedStatement.setString(6,"Disponible");
+            preparedStatement.setString(6,proyecto.getEstado());
 
             preparedStatement.execute();
             conexion.close();
         } catch (SQLException ex) {
             AlertBuilder alert = new AlertBuilder();
-            alert.errorAlert("Error al actualizar el proyecto. Inténtelo más tarde.");
+            alert.exceptionAlert("Error al actualizar el proyecto. Inténtelo más tarde.");
             ex.printStackTrace();
+            return false;
         }
+        return true;
     }
 
     @Override
@@ -132,7 +137,7 @@ public class ProyectoDAO implements IProyectoDAO {
             conexion.close();
         } catch (SQLException throwables) {
             AlertBuilder alert = new AlertBuilder();
-            alert.errorAlert("Error de conexión con la BD. Inténtelo más tarde.");
+            alert.exceptionAlert("Error de conexión con la BD. Inténtelo más tarde.");
             throwables.printStackTrace();
         }
         return proyecto;

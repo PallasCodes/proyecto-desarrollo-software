@@ -3,30 +3,29 @@ package coord;
 import Dominio.OrganizacionVinculada;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import DataAccess.DAO.OrganizacionVinculadaDAO;
 import javafx.stage.Stage;
 
 public class ModalRegistrarOrgController {
+    // instancias de clases usadas
     OrganizacionVinculadaDAO orgDao = new OrganizacionVinculadaDAO();
 
+
+    // componentes de la UI
     @FXML
     private TextField tfNombre;
-
     @FXML
     private TextField tfDireccion;
-
     @FXML
     private TextField tfCorreo;
-
     @FXML
     private Button registrarOrg;
-
     @FXML
     private Label labelError;
 
+
+    // métodos de la UI
     @FXML
     public void cancelarRegistro(ActionEvent actionEvent) {
         Stage stage = (Stage) registrarOrg.getScene().getWindow();
@@ -50,6 +49,8 @@ public class ModalRegistrarOrgController {
         }
     }
 
+
+    // métodos
     public boolean formularioValido(){
         return !tfNombre.getText().equals("") && !tfCorreo.getText().equals("") && !tfDireccion.getText().equals("");
     }
