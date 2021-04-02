@@ -7,13 +7,8 @@ import Dominio.Proyecto;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
-
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -25,24 +20,20 @@ public class ModalActualizarProController implements Initializable {
 
     @FXML
     private TextField tfNombre;
-
     @FXML
     private Button btnActualizarPro;
-
     @FXML
     private Label labelError;
-
     @FXML
     private ComboBox<String> cbOrg;
-
     @FXML
     private TextArea taDescripcion;
-
     @FXML
     private TextArea taActividades;
-
     @FXML
     private TextField tfCupo;
+    @FXML
+    private ComboBox<String> cbEstado;
 
     @FXML
     void cancelarRegistro(ActionEvent event) {
@@ -78,6 +69,7 @@ public class ModalActualizarProController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        // obtener proyecto de la BD y llenar el formulario con los datos del proyecto
         int id = Integer.parseInt(Proyecto.proyectoSeleccionado.getProyectoId());
         Proyecto proyecto = proDao.obtenerProyecto(id);
 
@@ -86,16 +78,20 @@ public class ModalActualizarProController implements Initializable {
         taDescripcion.setText(proyecto.getDescripcion());
         tfCupo.setText(proyecto.getCupo());
 
+        // inicializar ComboBox de organizaciones
         OrganizacionVinculadaDAO orgDao = new OrganizacionVinculadaDAO();
         ArrayList<OrganizacionVinculada> organizaciones = orgDao.obtenerOrganizaciones();
         organizaciones.forEach(org -> {
             cbOrg.getItems().add(org.getNombre()+" ("+org.getOrganizacionId()+")");
         });
+
+        // inicializar ComboBox de estado del proyecto
+        cbEstado.getItems().setAll("Disponible", "No disponible");
     }
 
     public boolean formularioValido() {
-        return !tfNombre.getText().equals("") && !cbOrg.getValue().equals("")
-                && !taDescripcion.getText().equals("") && !taDescripcion.getText().equals("")
-                && !tfCupo.getText().equals("");
+        return !tfNombre.getText().equals("") && !taDescripcion.getText().equals("") &&
+                !taActividades.getText().equals("") && !tfCupo.getText().equals("") &&
+                !cbOrg.getSelectionModel().isEmpty() && !cbEstado.getSelectionModel().isEmpty();
     }
 }

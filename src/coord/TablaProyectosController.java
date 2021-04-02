@@ -5,10 +5,12 @@ import Dominio.Proyecto;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import utils.AlertBuilder;
 import utils.SceneSwitcher;
@@ -36,11 +38,13 @@ public class TablaProyectosController implements Initializable {
     private TableColumn<Proyecto, String> colEstado;
     @FXML
     private TableColumn<Proyecto, String> colId;
-
     @FXML
     private Button agregarProyecto;
     @FXML
     private Button btnEliminar;
+
+    Stage stage;
+    Scene scene;
 
     private static TablaProyectosController instance;
 
@@ -108,5 +112,13 @@ public class TablaProyectosController implements Initializable {
                 ioException.printStackTrace();
             }
         }
+    }
+
+    public void irTablaOrganizaciones(MouseEvent event) throws IOException {
+        sw.switchSceneMouse(event, stage, scene, "../coord/TablaOrganizaciones.fxml");
+    }
+
+    public void irInicio(MouseEvent event) throws IOException {
+        sw.switchSceneMouse(event, stage, scene, "../coord/CoordInicio.fxml");
     }
 }

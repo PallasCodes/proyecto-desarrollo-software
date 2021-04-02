@@ -75,7 +75,6 @@ public class ModalRegistrarProController implements Initializable {
             proyecto.setDescripcion(taDescripcion.getText());
             proyecto.setActividades(taActividades.getText());
 
-            //TODO: update proyecto
             //TODO: quitar javafxapi y config min height y weight
 
             proDao.registrarProyecto(proyecto);
@@ -88,8 +87,8 @@ public class ModalRegistrarProController implements Initializable {
     }
 
     public boolean formularioValido() {
-        return !tfNombre.getText().equals("") && !cbOrg.getValue().equals("")
-                && !taDescripcion.getText().equals("") && !taDescripcion.getText().equals("")
+        return !tfNombre.getText().equals("") && !cbOrg.getSelectionModel().isEmpty()
+                && !taDescripcion.getText().equals("") && !taActividades.getText().equals("")
                 && !tfCupo.getText().equals("");
     }
 }

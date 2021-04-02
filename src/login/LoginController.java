@@ -8,6 +8,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import DataAccess.UsuarioData;
 import utils.SceneSwitcher;
@@ -68,4 +70,5 @@ public class LoginController {
         }
         return true;
     }
+
 }

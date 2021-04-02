@@ -98,4 +98,8 @@ public class TablaOrganizacionesController implements Initializable {
     public void irTablaProyectos(MouseEvent event) throws IOException {
         sw.switchSceneMouse(event, stage, scene, "../coord/TablaProyectos.fxml");
     }
+
+    public void irInicio(MouseEvent event) throws IOException {
+        sw.switchSceneMouse(event, stage, scene, "../coord/CoordInicio.fxml");
+    }
 }
