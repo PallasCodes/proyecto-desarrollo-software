@@ -10,7 +10,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import utils.AlertBuilder;
-
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;

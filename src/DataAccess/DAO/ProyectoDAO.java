@@ -1,15 +1,11 @@
 package DataAccess.DAO;
-import DataAccess.Conexion;
-import Dominio.OrganizacionVinculada;
-import utils.AlertBuilder;
 
+import DataAccess.Conexion;
+import utils.AlertBuilder;
 import java.sql.*;
 import java.util.ArrayList;
-
 import DataAccess.Interfaces.IProyectoDAO;
 import Dominio.Proyecto;
-
-import java.util.ArrayList;
 
 public class ProyectoDAO implements IProyectoDAO {
     @Override

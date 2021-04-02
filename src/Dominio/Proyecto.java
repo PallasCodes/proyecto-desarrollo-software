@@ -12,6 +12,7 @@ public class Proyecto {
 
     public static Proyecto proyectoSeleccionado = null;
 
+
     // constructores
     public Proyecto() {
     }
@@ -23,6 +24,7 @@ public class Proyecto {
         this.cupo = cupo;
         this.estado = estado;
     }
+
 
     // geters y seters
     public String getProyectoId() {
@@ -64,7 +66,6 @@ public class Proyecto {
     public void setEstado(String estado) {
         this.estado = estado;
     }
-
 
     public String getDescripcion() {
         return descripcion;

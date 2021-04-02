@@ -7,6 +7,7 @@ public class OrganizacionVinculada {
     private String direccion;
     private String correo;
 
+
     // GETS Y SETS
     public String getOrganizacionId() {
         return organizacionId;
@@ -39,6 +40,7 @@ public class OrganizacionVinculada {
     public void setCorreo(String correo) {
         this.correo = correo;
     }
+
 
     // CONSTRUCTORES
     public OrganizacionVinculada() {

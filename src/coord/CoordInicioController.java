@@ -4,7 +4,6 @@ import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import utils.SceneSwitcher;
-
 import java.io.IOException;
 
 public class CoordInicioController {
@@ -18,5 +17,9 @@ public class CoordInicioController {
 
     public void irTablaOrganizaciones(MouseEvent event) throws IOException {
         sw.switchSceneMouse(event, stage, scene, "../coord/TablaOrganizaciones.fxml");
+    }
+
+    public void irTablaPracticantes(MouseEvent event) throws IOException {
+        sw.switchSceneMouse(event, stage, scene, "../coord/TablaPracticantes.fxml");
     }
 }

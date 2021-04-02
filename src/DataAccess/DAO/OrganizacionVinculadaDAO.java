@@ -4,12 +4,10 @@ import Dominio.OrganizacionVinculada;
 import DataAccess.Interfaces.IOrganizacionVinculadaDAO;
 import DataAccess.Conexion;
 import utils.AlertBuilder;
-
 import java.sql.*;
 import java.util.ArrayList;
 
 public class OrganizacionVinculadaDAO implements IOrganizacionVinculadaDAO {
-
     // obtiene todas las ORGANIZACIONES VINCULADAS de la BD y las retorna en un ArrayList
     @Override
     public ArrayList<OrganizacionVinculada> obtenerOrganizaciones() {

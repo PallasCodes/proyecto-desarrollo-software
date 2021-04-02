@@ -5,16 +5,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import utils.AlertBuilder;
 import utils.SceneSwitcher;
 import DataAccess.DAO.OrganizacionVinculadaDAO;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
