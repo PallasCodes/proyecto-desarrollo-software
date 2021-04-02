@@ -2,10 +2,11 @@ package DataAccess.DAO;
 
 import DataAccess.Conexion;
 import DataAccess.Interfaces.IUsuario;
+import Dominio.Proyecto;
 import Dominio.Usuario;
 import utils.AlertBuilder;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
+
+import java.sql.*;
 
 public class UsuarioDAO implements IUsuario {
     @Override
@@ -32,5 +33,27 @@ public class UsuarioDAO implements IUsuario {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public int obtenerIdUsuario(String correo) {
+        Connection conexion = Conexion.conectar();
+        Proyecto proyecto = new Proyecto();
+
+        String query = "SELECT usuario_id FROM usuario WHERE correo='"+correo+"'";
+        try {
+            Statement st = conexion.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            if(rs.next()){
+                return rs.getInt("usuario_id");
+            }
+            conexion.close();
+        } catch (SQLException throwables) {
+            AlertBuilder alert = new AlertBuilder();
+            alert.exceptionAlert("Error de conexión con la BD. Inténtelo más tarde.");
+            throwables.printStackTrace();
+        }
+        return -1;
     }
 }

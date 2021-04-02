@@ -1,6 +1,8 @@
 package coord;
 
+import DataAccess.DAO.PracticanteDAO;
 import DataAccess.DAO.UsuarioDAO;
+import Dominio.Practicante;
 import Dominio.Usuario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,6 +12,7 @@ import javafx.stage.Stage;
 public class ModalRegistrarPracController {
     // instancias de clases usadas
     UsuarioDAO usuarioDAO = new UsuarioDAO();
+    PracticanteDAO practicanteDao = new PracticanteDAO();
 
 
     // componentes de UI
@@ -49,8 +52,11 @@ public class ModalRegistrarPracController {
             if(datosValidos()){
                 Usuario usuario = generarUsuario();
                 if(usuarioDAO.registrarUsuario(usuario)) {
-                    Stage stage = (Stage) registrarPrac.getScene().getWindow();
-                    stage.close();
+                    Practicante practicante = generarPracticante();
+                    if(practicanteDao.registrarPracticante(practicante)){
+                        Stage stage = (Stage) registrarPrac.getScene().getWindow();
+                        stage.close();
+                    }
                 }
             } else {
                 labelError.setText("*Ingrese datos validos");
@@ -59,6 +65,7 @@ public class ModalRegistrarPracController {
             labelError.setText("*Llene todos los campos del formulario");
         }
     }
+
 
     // métodos
     public boolean camposCompletos(){
@@ -83,5 +90,15 @@ public class ModalRegistrarPracController {
         usuario.setFacultad(tfFacultad.getText());
 
         return usuario;
+    }
+
+    public Practicante generarPracticante() {
+        Practicante practicante = new Practicante();
+        practicante.setMatricula(tfMatricula.getText());
+        practicante.setEstado("Sin asignar");
+        practicante.setUsuarioId(usuarioDAO.obtenerIdUsuario(tfCorreo.getText()));
+        practicante.setPeriodo(Integer.parseInt(tfPeriodo.getText()));
+
+        return practicante;
     }
 }

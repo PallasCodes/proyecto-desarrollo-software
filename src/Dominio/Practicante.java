@@ -11,6 +11,8 @@ public class Practicante {
     private String correo;
     private String matricula;
     private int periodo;
+    private String estado;
+    private int usuarioId;
 
 
     // constructores
@@ -18,7 +20,7 @@ public class Practicante {
     }
 
     public Practicante(String nombre, String primerApellido, String segundoApellido, String contraseña, String telefono,
-                       String facultad, String correo, String matricula, int periodo) {
+                       String facultad, String correo, String matricula, int periodo, String estado) {
         this.nombre = nombre;
         this.primerApellido = primerApellido;
         this.segundoApellido = segundoApellido;
@@ -28,6 +30,7 @@ public class Practicante {
         this.correo = correo;
         this.matricula = matricula;
         this.periodo = periodo;
+        this.estado = estado;
     }
 
 
@@ -103,4 +106,12 @@ public class Practicante {
     public void setPeriodo(int periodo) {
         this.periodo = periodo;
     }
+
+    public String getEstado() { return estado; }
+
+    public void setEstado(String estado) { this.estado = estado; }
+
+    public int getUsuarioId(){ return usuarioId; }
+
+    public void setUsuarioId(int usuarioId){ this.usuarioId = usuarioId; }
 }

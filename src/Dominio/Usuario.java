@@ -10,6 +10,7 @@ public class Usuario {
     private String telefono;
     private String correo;
     private String facultad;
+    private int usuarioId;
 
 
     // constructores
@@ -17,7 +18,7 @@ public class Usuario {
     }
 
     public Usuario(String contraseña, String rol, String nombre, String primerApe, String segundoApe, String telefono,
-                   String correo, String facultad) {
+                   String correo, String facultad, int usuarioId) {
         this.contraseña = contraseña;
         this.rol = rol;
         this.nombre = nombre;
@@ -26,6 +27,7 @@ public class Usuario {
         this.telefono = telefono;
         this.correo = correo;
         this.facultad = facultad;
+        this.usuarioId = usuarioId;
     }
 
 
@@ -93,4 +95,8 @@ public class Usuario {
     public void setFacultad(String facultad) {
         this.facultad = facultad;
     }
+
+    public int getUsuarioId() { return usuarioId; }
+
+    public void setUsuarioId(int usuarioId) { this.usuarioId = usuarioId; }
 }
