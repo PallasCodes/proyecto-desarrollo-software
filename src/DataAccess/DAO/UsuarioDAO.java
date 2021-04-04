@@ -51,7 +51,7 @@ public class UsuarioDAO implements IUsuario {
             conexion.close();
         } catch (SQLException throwables) {
             AlertBuilder alert = new AlertBuilder();
-            alert.exceptionAlert("Error de conexión con la BD. Inténtelo más tarde.");
+            alert.exceptionAlert("Error al conectarse con la BD. Inténtelo más tarde.");
             throwables.printStackTrace();
         }
         return -1;

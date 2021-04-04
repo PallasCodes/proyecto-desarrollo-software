@@ -50,7 +50,7 @@
             </font>
         </Label>
         <Button fx:id="agregarPracticante" layoutX="230.0" layoutY="108.0" mnemonicParsing="false" onAction="#modalAgregarPracticante" text="+ Agregar" />
-        <TableView fx:id="tablaProyectos" layoutX="231.0" layoutY="166.0" prefHeight="444.0" prefWidth="818.0">
+        <TableView fx:id="tablaPracticantes" layoutX="231.0" layoutY="166.0" prefHeight="444.0" prefWidth="818.0">
             <columns>
                 <TableColumn fx:id="colNombre" prefWidth="190.0" text="Nombre (s)" />
                 <TableColumn fx:id="colPrimerApe" minWidth="0.0" prefWidth="190.0" text="Primer Apellido" />

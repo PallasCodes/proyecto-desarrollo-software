@@ -31,7 +31,7 @@ public class OrganizacionVinculadaDAO implements IOrganizacionVinculadaDAO {
             conexion.close();
         } catch (SQLException throwables) {
             AlertBuilder alert = new AlertBuilder();
-            alert.errorAlert("Error de conexión con la BD. Inténtelo más tarde.");
+            alert.errorAlert("Error al conectarse con la BD. Inténtelo más tarde");
             throwables.printStackTrace();
         }
 

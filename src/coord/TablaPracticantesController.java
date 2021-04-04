@@ -1,37 +1,46 @@
 package coord;
 
+import DataAccess.DAO.PracticanteDAO;
+import Dominio.Practicante;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import utils.SceneSwitcher;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
 
-public class TablaPracticantesController {
+public class TablaPracticantesController implements Initializable {
     // instancias de clases usadas
     SceneSwitcher sw = new SceneSwitcher();
+    ArrayList<Practicante> practicantes;
+    PracticanteDAO pracDao = new PracticanteDAO();
 
 
     // componentes de la UI
     @FXML
     private Button agregarPracticante;
     @FXML
-    private TableView<?> tablaProyectos;
+    private TableView<Practicante> tablaPracticantes;
     @FXML
-    private TableColumn<?, ?> colNombre;
+    private TableColumn<Practicante, String> colNombre;
     @FXML
-    private TableColumn<?, ?> colPrimerApe;
+    private TableColumn<Practicante, String> colPrimerApe;
     @FXML
-    private TableColumn<?, ?> colSegundoApe;
+    private TableColumn<Practicante, String> colSegundoApe;
     @FXML
-    private TableColumn<?, ?> colId;
+    private TableColumn<Practicante, String> colId;
     @FXML
-    private TableColumn<?, ?> colProyecto;
+    private TableColumn<Practicante, String> colProyecto;
     @FXML
-    private TableColumn<?, ?> colPeriodo;
+    private TableColumn<Practicante, String> colPeriodo;
     Stage stage;
     Scene scene;
 
@@ -45,6 +54,19 @@ public class TablaPracticantesController {
 
     public static TablaPracticantesController getInstance(){
         return instance;
+    }
+
+
+    // inicialización de la vista
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        colNombre.setCellValueFactory(new PropertyValueFactory<Practicante, String>("nombre"));
+        colPrimerApe.setCellValueFactory(new PropertyValueFactory<Practicante, String>("PrimerApellido"));
+        colSegundoApe.setCellValueFactory(new PropertyValueFactory<Practicante, String>("SegundoApellido"));
+        colProyecto.setCellValueFactory(new PropertyValueFactory<Practicante, String>("proyecto"));
+        colPeriodo.setCellValueFactory(new PropertyValueFactory<Practicante, String>("periodo"));
+
+        popularTabla();
     }
 
 
@@ -72,5 +94,12 @@ public class TablaPracticantesController {
         } catch (IOException ioException) {
             ioException.printStackTrace();
         }
+    }
+
+
+    // métodos
+    public void popularTabla(){
+        practicantes = pracDao.obtenerPracticantes();
+        tablaPracticantes.getItems().setAll(practicantes);
     }
 }

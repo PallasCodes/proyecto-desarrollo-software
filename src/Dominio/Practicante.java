@@ -10,9 +10,10 @@ public class Practicante {
     private String facultad;
     private String correo;
     private String matricula;
-    private int periodo;
+    private String periodo;
     private String estado;
     private int usuarioId;
+    private String proyecto;
 
 
     // constructores
@@ -20,7 +21,7 @@ public class Practicante {
     }
 
     public Practicante(String nombre, String primerApellido, String segundoApellido, String contraseña, String telefono,
-                       String facultad, String correo, String matricula, int periodo, String estado) {
+                       String facultad, String correo, String matricula, String periodo, String estado) {
         this.nombre = nombre;
         this.primerApellido = primerApellido;
         this.segundoApellido = segundoApellido;
@@ -99,11 +100,11 @@ public class Practicante {
         this.matricula = matricula;
     }
 
-    public int getPeriodo() {
+    public String getPeriodo() {
         return periodo;
     }
 
-    public void setPeriodo(int periodo) {
+    public void setPeriodo(String periodo) {
         this.periodo = periodo;
     }
 
@@ -114,4 +115,12 @@ public class Practicante {
     public int getUsuarioId(){ return usuarioId; }
 
     public void setUsuarioId(int usuarioId){ this.usuarioId = usuarioId; }
+
+    public String getProyecto() {
+        return proyecto;
+    }
+
+    public void setProyecto(String proyecto) {
+        this.proyecto = proyecto;
+    }
 }

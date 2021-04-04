@@ -54,9 +54,10 @@ public class ModalRegistrarPracController {
                 if(usuarioDAO.registrarUsuario(usuario)) {
                     Practicante practicante = generarPracticante();
                     if(practicanteDao.registrarPracticante(practicante)){
-                        Stage stage = (Stage) registrarPrac.getScene().getWindow();
-                        stage.close();
+                        TablaPracticantesController.getInstance().popularTabla();
                     }
+                    Stage stage = (Stage) registrarPrac.getScene().getWindow();
+                    stage.close();
                 }
             } else {
                 labelError.setText("*Ingrese datos validos");
@@ -97,7 +98,7 @@ public class ModalRegistrarPracController {
         practicante.setMatricula(tfMatricula.getText());
         practicante.setEstado("Sin asignar");
         practicante.setUsuarioId(usuarioDAO.obtenerIdUsuario(tfCorreo.getText()));
-        practicante.setPeriodo(Integer.parseInt(tfPeriodo.getText()));
+        practicante.setPeriodo(tfPeriodo.getText());
 
         return practicante;
     }
