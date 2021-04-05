@@ -96,6 +96,16 @@ public class TablaPracticantesController implements Initializable {
         }
     }
 
+    @FXML
+    public void cerrarSesion(MouseEvent event) throws IOException {
+        sw.switchSceneMouse(event, stage, scene, "../login/login.fxml");
+    }
+
+    @FXML
+    public void irOpciones(MouseEvent event) throws IOException {
+        sw.switchSceneMouse(event, stage, scene, "../login/login.fxml");
+    }
+
 
     // métodos
     public void popularTabla(){

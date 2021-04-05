@@ -1,5 +1,6 @@
 package DataAccess;
 
+import utils.AlertBuilder;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,7 +19,9 @@ public class UsuarioData {
             if(rs.next()){
               return rs.getString("rol");
             }
-        } catch (SQLException throwables) {
+        } catch (Exception throwables) {
+            AlertBuilder alert = new AlertBuilder();
+            alert.exceptionAlert("Error al conectarse con la BD. Inténtelo más tarde.");
             throwables.printStackTrace();
         }
         return "";

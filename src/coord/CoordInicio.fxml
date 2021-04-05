@@ -7,7 +7,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="675.0" minWidth="1080.0" maxHeight="675.0" maxWidth="1080.0" xmlns:fx="http://javafx.com/fxml/1"  fx:controller="coord.CoordInicioController">
+<AnchorPane maxHeight="675.0" maxWidth="1080.0" minHeight="675.0" minWidth="1080.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coord.CoordInicioController">
     <children>
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="675.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="42.0" layoutX="200.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="880.0" />
@@ -21,12 +21,12 @@
                 <Font name="Century Gothic Bold" size="17.0" />
             </font>
         </Label>
-        <Label layoutX="40.0" layoutY="136.0" text="Practicantes" textFill="WHITE" onMouseClicked="#irTablaPracticantes">
+        <Label layoutX="40.0" layoutY="136.0" onMouseClicked="#irTablaPracticantes" text="Practicantes" textFill="WHITE">
             <font>
                 <Font name="Century Gothic Bold" size="17.0" />
             </font>
         </Label>
-        <Label layoutX="40.0" layoutY="172.0" text="Proyectos" textFill="WHITE" onMouseClicked="#irTablaProyectos">
+        <Label layoutX="40.0" layoutY="172.0" onMouseClicked="#irTablaProyectos" text="Proyectos" textFill="WHITE">
             <font>
                 <Font name="Century Gothic Bold" size="17.0" />
             </font>
@@ -41,5 +41,15 @@
             <Font name="Century Gothic Bold" size="17.0" />
          </font>
       </Label>
+      <ImageView fitHeight="22.0" fitWidth="23.0" layoutX="1031.0" layoutY="12.0" onMouseClicked="#cerrarSesion" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/icons/logout.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="20.0" fitWidth="21.0" layoutX="998.0" layoutY="10.0" onMouseClicked="#irOpciones" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/icons/settings.png" />
+         </image>
+      </ImageView>
     </children>
 </AnchorPane>
