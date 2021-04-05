@@ -2,15 +2,16 @@ package login;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-import data.UsuarioData;
+import DataAccess.UsuarioData;
 import utils.SceneSwitcher;
 
 import java.io.IOException;
@@ -25,7 +26,7 @@ public class LoginController {
     private TextField tfUsuario;
 
     @FXML
-    private TextField tfContraseña;
+    private PasswordField tfContraseña;
 
     @FXML
     private Button btnEntrar;
@@ -52,6 +53,7 @@ public class LoginController {
                         switcher.switchScene(event, stage, scene, "../practicante/PracticanteInicio.fxml");
                         break;
                     default:
+                        labelErrores.setText("*Usuario y/o contraseña \n incorrectos");
                         System.out.println("error");
                         break;
                 }
@@ -68,4 +70,5 @@ public class LoginController {
         }
         return true;
     }
+
 }
