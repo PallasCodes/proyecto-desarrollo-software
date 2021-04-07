@@ -56,4 +56,32 @@ public class UsuarioDAO implements IUsuario {
         }
         return -1;
     }
+
+    @Override
+    public Usuario obtenerUsuario(int usuarioId) {
+        Connection conexion = Conexion.conectar();
+        Usuario usuario = new Usuario();
+
+        String query = "SELECT * FROM usuario WHERE usuario_id='"+usuarioId+"'";
+        try {
+            Statement st = conexion.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            if(rs.next()){
+                usuario.setFacultad(rs.getString("facultad"));
+                usuario.setNombre(rs.getString("nombre"));
+                usuario.setPrimerApe(rs.getString("primer_apellido"));
+                usuario.setSegundoApe(rs.getString("segundo_apellido"));
+                usuario.setFacultad(rs.getString("facultad"));
+                usuario.setTelefono(rs.getString("telefono"));
+                usuario.setCorreo(rs.getString("correo"));
+            }
+            conexion.close();
+        } catch (SQLException throwables) {
+            AlertBuilder alert = new AlertBuilder();
+            alert.exceptionAlert("Error al conectarse con la BD. Inténtelo más tarde.");
+            throwables.printStackTrace();
+        }
+        return usuario;
+    }
 }

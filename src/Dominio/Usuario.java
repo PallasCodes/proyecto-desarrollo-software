@@ -12,6 +12,8 @@ public class Usuario {
     private String facultad;
     private int usuarioId;
 
+    public static Usuario coordinadorSeleccionado;
+
 
     // constructores
     public Usuario() {
