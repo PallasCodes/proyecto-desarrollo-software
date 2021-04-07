@@ -3,17 +3,11 @@ package login;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import DataAccess.UsuarioData;
 import utils.SceneSwitcher;
-
 import java.io.IOException;
 
 public class LoginController {
@@ -24,13 +18,10 @@ public class LoginController {
 
     @FXML
     private TextField tfUsuario;
-
     @FXML
     private PasswordField tfContraseña;
-
     @FXML
     private Button btnEntrar;
-
     @FXML
     private Label labelErrores;
 
