@@ -44,11 +44,6 @@
         <Button layoutX="96.0" layoutY="437.0" minWidth="120.0" mnemonicParsing="false" onAction="#cancelarRegistro" prefHeight="32.0" prefWidth="115.0" style="-fx-background-color: #888888;" text="Cancelar" />
         <Button fx:id="registrarPrac" layoutX="220.0" layoutY="437.0" mnemonicParsing="false" onAction="#actualizarCoord" prefHeight="32.0" prefWidth="115.0" text="Actualizar" />
         <Label fx:id="labelError" layoutX="371.0" layoutY="445.0" textFill="RED" />
-        <Label layoutX="94.0" layoutY="304.0" text="Contraseña">
-            <font>
-                <Font name="Arial" size="14.0" />
-            </font>
-        </Label>
         <Label layoutX="96.0" layoutY="365.0" text="Teléfono">
             <font>
                 <Font name="Arial" size="14.0" />

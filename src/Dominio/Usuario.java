@@ -13,6 +13,7 @@ public class Usuario {
     private int usuarioId;
 
     public static Usuario coordinadorSeleccionado;
+    public static int usuarioActual;
 
 
     // constructores

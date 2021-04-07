@@ -16,7 +16,7 @@
                 <Image url="@../assets/img/logo.png" />
             </image>
         </ImageView>
-        <Label layoutX="40.0" layoutY="100.0" text="Inicio" textFill="WHITE">
+        <Label fx:id="inicio" layoutX="40.0" layoutY="100.0" text="Perfil" textFill="WHITE">
             <font>
                 <Font name="Century Gothic Bold" size="17.0" />
             </font>
@@ -51,5 +51,10 @@
                 <Image url="@../assets/icons/settings.png" />
             </image>
         </ImageView>
+        <Label layoutX="906.0" layoutY="13.0" text="Coordinador" textFill="#666666">
+            <font>
+                <Font name="Arial" size="14.0" />
+            </font>
+        </Label>
     </children>
 </AnchorPane>

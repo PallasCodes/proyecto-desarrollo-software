@@ -78,13 +78,23 @@ public class TablaOrganizacionesController implements Initializable {
     }
 
     @FXML
+    public void irTablaPracticantes(MouseEvent event) throws IOException {
+        sw.switchSceneMouse(event, stage, scene, "../coord/TablaPracticantes.fxml");
+    }
+
+    @FXML
     public void cerrarSesion(MouseEvent event) throws IOException {
         sw.switchSceneMouse(event, stage, scene, "../login/login.fxml");
     }
 
     @FXML
     public void irOpciones(MouseEvent event) throws IOException {
-        sw.switchSceneMouse(event, stage, scene, "../login/login.fxml");
+        Stage stageActual = (Stage) tablaOrgs.getScene().getWindow();
+        try {
+            sw.createDialog(stageActual, "/login/ModalCambiarContraseña.fxml");
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
     }
 
     @FXML
@@ -119,6 +129,4 @@ public class TablaOrganizacionesController implements Initializable {
     public OrganizacionVinculada obtenerOrgSeleccionada(){
         return tablaOrgs.getSelectionModel().getSelectedItem();
     }
-
-
 }

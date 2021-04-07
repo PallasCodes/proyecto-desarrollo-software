@@ -62,7 +62,7 @@ public class UsuarioDAO implements IUsuario {
         Connection conexion = Conexion.conectar();
         Usuario usuario = new Usuario();
 
-        String query = "SELECT * FROM usuario WHERE usuario_id='"+usuarioId+"'";
+        String query = "SELECT * FROM usuario WHERE usuario_id="+usuarioId;
         try {
             Statement st = conexion.createStatement();
             ResultSet rs = st.executeQuery(query);
@@ -72,9 +72,9 @@ public class UsuarioDAO implements IUsuario {
                 usuario.setNombre(rs.getString("nombre"));
                 usuario.setPrimerApe(rs.getString("primer_apellido"));
                 usuario.setSegundoApe(rs.getString("segundo_apellido"));
-                usuario.setFacultad(rs.getString("facultad"));
                 usuario.setTelefono(rs.getString("telefono"));
                 usuario.setCorreo(rs.getString("correo"));
+                usuario.setRol(rs.getString("rol"));
             }
             conexion.close();
         } catch (SQLException throwables) {
@@ -83,5 +83,46 @@ public class UsuarioDAO implements IUsuario {
             throwables.printStackTrace();
         }
         return usuario;
+    }
+
+    @Override
+    public boolean cambiarContraseña(int usuarioId, String contraseña) {
+        Connection conexion = Conexion.conectar();
+        String query = "UPDATE usuario SET contraseña=? WHERE usuario_id="+usuarioId;
+        try{
+            PreparedStatement preparedStatement = conexion.prepareStatement(query);
+            preparedStatement.setString(1,contraseña);
+
+            preparedStatement.execute();
+            conexion.close();
+        } catch (SQLException ex) {
+            AlertBuilder alert = new AlertBuilder();
+            alert.exceptionAlert("Error al actualizar contraseña. Inténtelo más tarde.");
+            ex.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String obtenerContraseña(int usuarioId) {
+        Connection conexion = Conexion.conectar();
+        String contraseñaBd = "";
+
+        String query = "SELECT contraseña FROM usuario WHERE usuario_id="+usuarioId;
+        try {
+            Statement st = conexion.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            if(rs.next()){
+                contraseñaBd = rs.getString("contraseña");
+            }
+            conexion.close();
+        } catch (SQLException throwables) {
+            AlertBuilder alert = new AlertBuilder();
+            alert.exceptionAlert("Error al conectarse con la BD. Inténtelo más tarde.");
+            throwables.printStackTrace();
+        }
+        return contraseñaBd;
     }
 }
