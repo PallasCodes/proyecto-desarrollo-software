@@ -1,7 +1,9 @@
 package coord;
 
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import utils.SceneSwitcher;
@@ -10,10 +12,14 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class CoordConfigController implements Initializable {
+    @FXML
+    private Label inicio;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
     }
+
 
     private Stage stage;
     private Scene scene;
@@ -36,6 +42,11 @@ public class CoordConfigController implements Initializable {
     }
 
     public void irOpciones(MouseEvent event) throws IOException {
-        sw.switchSceneMouse(event, stage, scene, "../login/login.fxml");
+        Stage stageActual = (Stage) inicio.getScene().getWindow();
+        try {
+            sw.createDialog(stageActual, "/login/ModalCambiarContraseña.fxml");
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
     }
 }

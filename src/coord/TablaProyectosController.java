@@ -125,6 +125,11 @@ public class TablaProyectosController implements Initializable {
     }
 
     @FXML
+    public void irTablaPracticantes(MouseEvent event) throws IOException {
+        sw.switchSceneMouse(event, stage, scene, "../coord/TablaPracticantes.fxml");
+    }
+
+    @FXML
     public void cerrarSesion(MouseEvent event) throws IOException {
         sw.switchSceneMouse(event, stage, scene, "../login/login.fxml");
     }

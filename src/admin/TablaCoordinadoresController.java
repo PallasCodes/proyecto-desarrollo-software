@@ -75,19 +75,10 @@ public class TablaCoordinadoresController implements Initializable {
 
     // métodos de la UI
     @FXML
-    public void irTablaOrganizaciones(MouseEvent event) throws IOException {
-        sw.switchSceneMouse(event, stage, scene, "../coord/TablaOrganizaciones.fxml");
-    }
-
-    @FXML
     public void irInicio(MouseEvent event) throws IOException {
-        sw.switchSceneMouse(event, stage, scene, "../coord/CoordInicio.fxml");
+        sw.switchSceneMouse(event, stage, scene, "../admin/AdminInicio.fxml");
     }
 
-    @FXML
-    public void irTablaProyectos(MouseEvent event) throws IOException {
-        sw.switchSceneMouse(event, stage, scene, "../coord/TablaProyectos.fxml");
-    }
 
     @FXML
     void modalAgregarCoordinador(ActionEvent event) {
@@ -106,7 +97,12 @@ public class TablaCoordinadoresController implements Initializable {
 
     @FXML
     public void irOpciones(MouseEvent event) throws IOException {
-        sw.switchSceneMouse(event, stage, scene, "../login/login.fxml");
+        Stage stageActual = (Stage) agregarCoordinador.getScene().getWindow();
+        try {
+            sw.createDialog(stageActual, "/login/ModalCambiarContraseña.fxml");
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
     }
 
 

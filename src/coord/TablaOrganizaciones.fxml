@@ -24,7 +24,7 @@
                 <Font name="Century Gothic Bold" size="17.0" />
             </font>
         </Label>
-        <Label layoutX="40.0" layoutY="136.0" text="Practicantes" textFill="WHITE">
+        <Label layoutX="40.0" layoutY="136.0" text="Practicantes" textFill="WHITE" onMouseClicked="#irTablaPracticantes">
             <font>
                 <Font name="Century Gothic Bold" size="17.0" />
             </font>
