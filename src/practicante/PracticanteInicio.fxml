@@ -47,5 +47,56 @@
                 <Image url="@../assets/icons/settings.png" />
             </image>
         </ImageView>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="592.0" layoutX="221.0" layoutY="62.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="839.0" />
+        <Label layoutX="251.0" layoutY="82.0" text="Perfil" textFill="#666666">
+            <font>
+                <Font name="Century Gothic Bold" size="36.0" />
+            </font>
+        </Label>
+        <Label fx:id="lbNombre" layoutX="251.0" layoutY="146.0">
+            <font>
+                <Font name="Arial Bold" size="16.0" />
+            </font>
+        </Label>
+        <Label fx:id="lbRol" layoutX="251.0" layoutY="172.0">
+            <font>
+                <Font name="Arial" size="16.0" />
+            </font>
+        </Label>
+        <Label layoutX="906.0" layoutY="13.0" text="Practicante" textFill="#666666">
+            <font>
+                <Font name="Arial" size="14.0" />
+            </font>
+        </Label>
+        <Label layoutX="251.0" layoutY="212.0" text="Facultad:">
+            <font>
+                <Font name="Arial Bold" size="16.0" />
+            </font>
+        </Label>
+        <Label layoutX="251.0" layoutY="240.0" text="Teléfono:">
+            <font>
+                <Font name="Arial Bold" size="16.0" />
+            </font>
+        </Label>
+        <Label layoutX="251.0" layoutY="266.0" text="Correo:">
+            <font>
+                <Font name="Arial Bold" size="16.0" />
+            </font>
+        </Label>
+        <Label fx:id="lbFacultad" layoutX="327.0" layoutY="212.0">
+            <font>
+                <Font name="Arial" size="16.0" />
+            </font>
+        </Label>
+        <Label fx:id="lbTelefono" layoutX="327.0" layoutY="240.0">
+            <font>
+                <Font name="Arial" size="16.0" />
+            </font>
+        </Label>
+        <Label fx:id="lbCorreo" layoutX="314.0" layoutY="266.0">
+            <font>
+                <Font name="Arial" size="16.0" />
+            </font>
+        </Label>
     </children>
 </AnchorPane>

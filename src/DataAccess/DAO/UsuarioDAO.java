@@ -62,7 +62,7 @@ public class UsuarioDAO implements IUsuario {
         Connection conexion = Conexion.conectar();
         Usuario usuario = new Usuario();
 
-        String query = "SELECT * FROM usuario WHERE usuario_id='"+usuarioId+"'";
+        String query = "SELECT * FROM usuario WHERE usuario_id="+usuarioId;
         try {
             Statement st = conexion.createStatement();
             ResultSet rs = st.executeQuery(query);
@@ -72,9 +72,9 @@ public class UsuarioDAO implements IUsuario {
                 usuario.setNombre(rs.getString("nombre"));
                 usuario.setPrimerApe(rs.getString("primer_apellido"));
                 usuario.setSegundoApe(rs.getString("segundo_apellido"));
-                usuario.setFacultad(rs.getString("facultad"));
                 usuario.setTelefono(rs.getString("telefono"));
                 usuario.setCorreo(rs.getString("correo"));
+                usuario.setRol(rs.getString("rol"));
             }
             conexion.close();
         } catch (SQLException throwables) {

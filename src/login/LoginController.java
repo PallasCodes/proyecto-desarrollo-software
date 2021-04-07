@@ -32,8 +32,10 @@ public class LoginController {
     void entrar(ActionEvent event) {
         if(camposValidos()){
             String usuario = UsuarioData.iniciarSesion(tfUsuario.getText(),tfContraseña.getText());
-            if(usuario != "")
+            if(usuario != "") {
                 Usuario.usuarioActual = usuarioDao.obtenerIdUsuario(tfUsuario.getText());
+                System.out.println(Usuario.usuarioActual);
+            }
 
             try{
                 switch(usuario){
