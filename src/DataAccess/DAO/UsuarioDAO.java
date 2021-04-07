@@ -84,4 +84,45 @@ public class UsuarioDAO implements IUsuario {
         }
         return usuario;
     }
+
+    @Override
+    public boolean cambiarContraseña(int usuarioId, String contraseña) {
+        Connection conexion = Conexion.conectar();
+        String query = "UPDATE usuario SET contraseña=? WHERE usuario_id="+usuarioId;
+        try{
+            PreparedStatement preparedStatement = conexion.prepareStatement(query);
+            preparedStatement.setString(1,contraseña);
+
+            preparedStatement.execute();
+            conexion.close();
+        } catch (SQLException ex) {
+            AlertBuilder alert = new AlertBuilder();
+            alert.exceptionAlert("Error al actualizar contraseña. Inténtelo más tarde.");
+            ex.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String obtenerContraseña(int usuarioId) {
+        Connection conexion = Conexion.conectar();
+        String contraseñaBd = "";
+
+        String query = "SELECT contraseña FROM usuario WHERE usuario_id="+usuarioId;
+        try {
+            Statement st = conexion.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            if(rs.next()){
+                contraseñaBd = rs.getString("contraseña");
+            }
+            conexion.close();
+        } catch (SQLException throwables) {
+            AlertBuilder alert = new AlertBuilder();
+            alert.exceptionAlert("Error al conectarse con la BD. Inténtelo más tarde.");
+            throwables.printStackTrace();
+        }
+        return contraseñaBd;
+    }
 }

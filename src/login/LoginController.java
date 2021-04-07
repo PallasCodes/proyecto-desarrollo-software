@@ -1,5 +1,7 @@
 package login;
 
+import DataAccess.DAO.UsuarioDAO;
+import Dominio.Usuario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -15,6 +17,7 @@ public class LoginController {
     private Scene scene;
     private Parent root;
     SceneSwitcher switcher = new SceneSwitcher();
+    UsuarioDAO usuarioDao = new UsuarioDAO();
 
     @FXML
     private TextField tfUsuario;
@@ -29,6 +32,9 @@ public class LoginController {
     void entrar(ActionEvent event) {
         if(camposValidos()){
             String usuario = UsuarioData.iniciarSesion(tfUsuario.getText(),tfContraseña.getText());
+            if(usuario != "")
+                Usuario.usuarioActual = usuarioDao.obtenerIdUsuario(tfUsuario.getText());
+
             try{
                 switch(usuario){
                     case "admin":

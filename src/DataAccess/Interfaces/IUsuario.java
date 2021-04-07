@@ -8,4 +8,8 @@ public interface IUsuario {
     int obtenerIdUsuario(String correo);
 
     Usuario obtenerUsuario(int usuarioId);
+
+    boolean cambiarContraseña(int usuarioId, String contraseña);
+
+    String obtenerContraseña(int usuarioId);
 }

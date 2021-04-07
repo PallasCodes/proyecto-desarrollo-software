@@ -131,7 +131,12 @@ public class TablaProyectosController implements Initializable {
 
     @FXML
     public void irOpciones(MouseEvent event) throws IOException {
-        sw.switchSceneMouse(event, stage, scene, "../login/login.fxml");
+        Stage stageActual = (Stage) agregarProyecto.getScene().getWindow();
+        try {
+            sw.createDialog(stageActual, "/login/ModalCambiarContraseña.fxml");
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
     }
 
 
