@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -9,9 +10,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
-<?import java.net.URL?>
 
-<AnchorPane minHeight="675.0" minWidth="1080.0" maxHeight="675.0" maxWidth="1080.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coord.TablaProyectosController">
+<AnchorPane maxHeight="675.0" maxWidth="1080.0" minHeight="675.0" minWidth="1080.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/15.0.1" fx:controller="coord.TablaProyectosController">
     <stylesheets>
         <URL value="@../login/style.css" />
     </stylesheets>
@@ -23,27 +23,27 @@
                 <Image url="@../assets/img/logo.png" />
             </image>
         </ImageView>
-        <Label styleClass="handCursor" layoutX="40.0" layoutY="100.0" text="Perfil" textFill="WHITE" onMouseClicked="#irInicio">
+        <Label layoutX="40.0" layoutY="100.0" onMouseClicked="#irInicio" styleClass="handCursor" text="Perfil" textFill="WHITE">
             <font>
                 <Font name="Century Gothic Bold" size="17.0" />
             </font>
         </Label>
-        <Label styleClass="handCursor" layoutX="40.0" layoutY="136.0" text="Practicantes" textFill="WHITE" onMouseClicked="#irTablaPracticantes">
+        <Label layoutX="40.0" layoutY="136.0" onMouseClicked="#irTablaPracticantes" styleClass="handCursor" text="Practicantes" textFill="WHITE">
             <font>
                 <Font name="Century Gothic Bold" size="17.0" />
             </font>
         </Label>
-        <Label styleClass="handCursor, activeNavItem" layoutX="40.0" layoutY="172.0" text="Proyectos" textFill="WHITE">
+        <Label layoutX="40.0" layoutY="172.0" styleClass="handCursor, activeNavItem" text="Proyectos" textFill="WHITE">
             <font>
                 <Font name="Century Gothic Bold" size="17.0" />
             </font>
         </Label>
-        <Label styleClass="handCursor" layoutX="40.0" layoutY="208.0" text="Organizaciones" textFill="WHITE" onMouseClicked="#irTablaOrganizaciones">
+        <Label layoutX="40.0" layoutY="208.0" onMouseClicked="#irTablaOrganizaciones" styleClass="handCursor" text="Organizaciones" textFill="WHITE">
             <font>
                 <Font name="Century Gothic Bold" size="17.0" />
             </font>
         </Label>
-        <Label styleClass="handCursor" layoutX="40.0" layoutY="244.0" text="Solicitudes" textFill="WHITE">
+        <Label layoutX="40.0" layoutY="244.0" styleClass="handCursor" text="Solicitudes" textFill="WHITE">
             <font>
                 <Font name="Century Gothic Bold" size="17.0" />
             </font>
@@ -53,7 +53,9 @@
                 <Font name="Century Gothic Bold" size="20.0" />
             </font>
         </Label>
-        <Button fx:id="agregarProyecto" layoutX="230.0" layoutY="108.0" mnemonicParsing="false" onAction="#modalAgregarProyecto" text="+ Agregar" />
+        <Button styleClass="primary" fx:id="agregarProyecto" layoutX="230.0" layoutY="108.0" mnemonicParsing="false" onAction="#modalAgregarProyecto" text="+ Agregar" />
+        <Button styleClass="danger" fx:id="btnEliminar" layoutX="3330.0" layoutY="108.0" mnemonicParsing="false" onAction="#eliminarPro" text="Eliminar" />
+        <Button styleClass="success" fx:id="btnActualizar" layoutX="418.0" layoutY="108.0" mnemonicParsing="false" onAction="#actualizarPro" text="Actualizar" />
         <TableView fx:id="tablaProyectos" layoutX="231.0" layoutY="166.0" prefHeight="444.0" prefWidth="818.0">
             <columns>
                 <TableColumn fx:id="colNombre" prefWidth="258.0" text="Nombre" />
@@ -63,24 +65,17 @@
                 <TableColumn fx:id="colCupo" prefWidth="150.0" text="Cupo" />
             </columns>
         </TableView>
-        <Button fx:id="btnEliminar" layoutX="315.0" layoutY="108.0" mnemonicParsing="false" onAction="#eliminarPro" text="Eliminar" />
-      <Button fx:id="btnActualizar" layoutX="388.0" layoutY="108.0" mnemonicParsing="false" onAction="#actualizarPro" text="Actualizar" />
-        <ImageView styleClass="handCursor" fitHeight="22.0" fitWidth="23.0" layoutX="1031.0" layoutY="12.0" onMouseClicked="#cerrarSesion" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="22.0" fitWidth="23.0" layoutX="1031.0" layoutY="12.0" onMouseClicked="#cerrarSesion" pickOnBounds="true" preserveRatio="true" styleClass="handCursor">
             <image>
                 <Image url="@../assets/icons/logout.png" />
             </image>
         </ImageView>
-        <ImageView styleClass="handCursor" fitHeight="20.0" fitWidth="21.0" layoutX="998.0" layoutY="10.0" onMouseClicked="#irOpciones" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="20.0" fitWidth="21.0" layoutX="998.0" layoutY="10.0" onMouseClicked="#irOpciones" pickOnBounds="true" preserveRatio="true" styleClass="handCursor">
             <image>
                 <Image url="@../assets/icons/settings.png" />
             </image>
         </ImageView>
         <Label layoutX="906.0" layoutY="13.0" text="Coordinador" textFill="#666666">
-            <font>
-                <Font name="Arial" size="14.0" />
-            </font>
-        </Label>
-        <Label layoutX="892.0" layoutY="13.0" text="Practicante" textFill="#666666">
             <font>
                 <Font name="Arial" size="14.0" />
             </font>
