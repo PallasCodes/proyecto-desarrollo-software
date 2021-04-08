@@ -10,8 +10,12 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
+<?import java.net.URL?>
 
-<AnchorPane minHeight="670.0" minWidth="410.0" maxHeight="670.0" maxWidth="410.0"  xmlns:fx="http://javafx.com/fxml/1" fx:controller="coord.ModalActualizarProController">
+<AnchorPane minHeight="670.0" minWidth="410.0" maxHeight="670.0" maxWidth="410.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coord.ModalActualizarProController">
+    <stylesheets>
+        <URL value="@../login/style.css" />
+    </stylesheets>
     <children>
         <TextArea fx:id="taActividades" layoutX="92.0" layoutY="368.0" prefHeight="60.0" prefWidth="240.0" />
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" layoutY="-2.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="424.0" />
@@ -42,7 +46,7 @@
             </font>
         </Label>
         <Button layoutX="95.0" layoutY="574.0" minWidth="120.0" mnemonicParsing="false" onAction="#cancelarRegistro" prefHeight="32.0" prefWidth="115.0" style="-fx-background-color: #888888;" text="Cancelar" />
-        <Button fx:id="btnActualizarPro" layoutX="219.0" layoutY="574.0" mnemonicParsing="false" onAction="#actualizarPro" prefHeight="32.0" prefWidth="115.0" text="Actualizar" />
+        <Button styleClass="primary" fx:id="btnActualizarPro" layoutX="219.0" layoutY="574.0" mnemonicParsing="false" onAction="#actualizarPro" prefHeight="32.0" prefWidth="115.0" text="Actualizar" />
         <Label fx:id="labelError" layoutX="97.0" layoutY="626.0" textFill="RED" />
         <ComboBox fx:id="cbOrg" layoutX="93.0" layoutY="202.0" prefWidth="240.0" />
         <TextArea fx:id="taDescripcion" layoutX="92.0" layoutY="270.0" prefHeight="60.0" prefWidth="240.0" />

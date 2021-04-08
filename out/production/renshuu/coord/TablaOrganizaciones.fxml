@@ -53,9 +53,9 @@
             <Font name="Century Gothic Bold" size="20.0" />
          </font>
       </Label>
-      <Button fx:id="agregarOrg" layoutX="230.0" layoutY="108.0" mnemonicParsing="false" onAction="#modalAgregarOrg" text="+ Agregar" />
-        <Button fx:id="btnEliminar" layoutX="315.0" layoutY="108.0" mnemonicParsing="false" text="Eliminar" onAction="#eliminarOrg" />
-        <Button fx:id="btnActualizar" layoutX="388.0" layoutY="108.0" mnemonicParsing="false" onAction="#actualizarOrg" text="Actualizar" />
+      <Button styleClass="primary" fx:id="agregarOrg" layoutX="230.0" layoutY="108.0" mnemonicParsing="false" onAction="#modalAgregarOrg" text="+ Agregar" />
+        <Button styleClass="danger" fx:id="btnEliminar" layoutX="330.0" layoutY="108.0" mnemonicParsing="false" text="Eliminar" onAction="#eliminarOrg" />
+        <Button styleClass="success" fx:id="btnActualizar" layoutX="418.0" layoutY="108.0" mnemonicParsing="false" onAction="#actualizarOrg" text="Actualizar" />
       <TableView fx:id="tablaOrgs" layoutX="231.0" layoutY="166.0" prefHeight="444.0" prefWidth="818.0">
         <columns>
           <TableColumn fx:id="colNombre" prefWidth="171.0" text="Nombre" />
