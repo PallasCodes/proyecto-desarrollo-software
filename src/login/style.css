@@ -1,1 +1,10 @@
+.handCursor, .button {
+    -fx-cursor: hand;
+}
 
+.activeNavItem {
+    -fx-background-color: #1556ba;
+    -fx-pref-width: 160px;
+    -fx-background-radius: 12px 0 0 12px;
+    -fx-label-padding: 5px 8px;
+}

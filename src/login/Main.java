@@ -12,7 +12,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
         Scene scene = new Scene(root);
-        //scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
         String css = this.getClass().getResource("style.css").toExternalForm();
         scene.getStylesheets().add(css);
         primaryStage.setTitle("Renshu");

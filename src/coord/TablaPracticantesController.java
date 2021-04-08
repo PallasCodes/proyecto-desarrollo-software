@@ -117,4 +117,10 @@ public class TablaPracticantesController implements Initializable {
         practicantes = pracDao.obtenerPracticantes();
         tablaPracticantes.getItems().setAll(practicantes);
     }
+
+    public void eliminarPracticante(ActionEvent actionEvent) {
+    }
+
+    public void actualizarPracticante(ActionEvent actionEvent) {
+    }
 }

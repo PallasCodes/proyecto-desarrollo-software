@@ -129,4 +129,7 @@ public class TablaOrganizacionesController implements Initializable {
     public OrganizacionVinculada obtenerOrgSeleccionada(){
         return tablaOrgs.getSelectionModel().getSelectedItem();
     }
+
+    public void actualizarOrg(ActionEvent actionEvent) {
+    }
 }
