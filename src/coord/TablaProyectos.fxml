@@ -9,8 +9,12 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
+<?import java.net.URL?>
 
 <AnchorPane minHeight="675.0" minWidth="1080.0" maxHeight="675.0" maxWidth="1080.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coord.TablaProyectosController">
+    <stylesheets>
+        <URL value="@../login/style.css" />
+    </stylesheets>
     <children>
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="675.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="42.0" layoutX="200.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="880.0" />
@@ -19,27 +23,27 @@
                 <Image url="@../assets/img/logo.png" />
             </image>
         </ImageView>
-        <Label layoutX="40.0" layoutY="100.0" text="Perfil" textFill="WHITE" onMouseClicked="#irInicio">
+        <Label styleClass="handCursor" layoutX="40.0" layoutY="100.0" text="Perfil" textFill="WHITE" onMouseClicked="#irInicio">
             <font>
                 <Font name="Century Gothic Bold" size="17.0" />
             </font>
         </Label>
-        <Label layoutX="40.0" layoutY="136.0" text="Practicantes" textFill="WHITE" onMouseClicked="#irTablaPracticantes">
+        <Label styleClass="handCursor" layoutX="40.0" layoutY="136.0" text="Practicantes" textFill="WHITE" onMouseClicked="#irTablaPracticantes">
             <font>
                 <Font name="Century Gothic Bold" size="17.0" />
             </font>
         </Label>
-        <Label layoutX="40.0" layoutY="172.0" text="Proyectos" textFill="WHITE">
+        <Label styleClass="handCursor, activeNavItem" layoutX="40.0" layoutY="172.0" text="Proyectos" textFill="WHITE">
             <font>
                 <Font name="Century Gothic Bold" size="17.0" />
             </font>
         </Label>
-        <Label layoutX="40.0" layoutY="208.0" text="Organizaciones" textFill="WHITE" onMouseClicked="#irTablaOrganizaciones">
+        <Label styleClass="handCursor" layoutX="40.0" layoutY="208.0" text="Organizaciones" textFill="WHITE" onMouseClicked="#irTablaOrganizaciones">
             <font>
                 <Font name="Century Gothic Bold" size="17.0" />
             </font>
         </Label>
-        <Label layoutX="40.0" layoutY="244.0" text="Solicitudes" textFill="WHITE">
+        <Label styleClass="handCursor" layoutX="40.0" layoutY="244.0" text="Solicitudes" textFill="WHITE">
             <font>
                 <Font name="Century Gothic Bold" size="17.0" />
             </font>
@@ -61,12 +65,12 @@
         </TableView>
         <Button fx:id="btnEliminar" layoutX="315.0" layoutY="108.0" mnemonicParsing="false" onAction="#eliminarPro" text="Eliminar" />
       <Button fx:id="btnActualizar" layoutX="388.0" layoutY="108.0" mnemonicParsing="false" onAction="#actualizarPro" text="Actualizar" />
-        <ImageView fitHeight="22.0" fitWidth="23.0" layoutX="1031.0" layoutY="12.0" onMouseClicked="#cerrarSesion" pickOnBounds="true" preserveRatio="true">
+        <ImageView styleClass="handCursor" fitHeight="22.0" fitWidth="23.0" layoutX="1031.0" layoutY="12.0" onMouseClicked="#cerrarSesion" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../assets/icons/logout.png" />
             </image>
         </ImageView>
-        <ImageView fitHeight="20.0" fitWidth="21.0" layoutX="998.0" layoutY="10.0" onMouseClicked="#irOpciones" pickOnBounds="true" preserveRatio="true">
+        <ImageView styleClass="handCursor" fitHeight="20.0" fitWidth="21.0" layoutX="998.0" layoutY="10.0" onMouseClicked="#irOpciones" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../assets/icons/settings.png" />
             </image>
