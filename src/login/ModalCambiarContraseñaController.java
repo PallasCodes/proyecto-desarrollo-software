@@ -31,11 +31,12 @@ public class ModalCambiarContraseñaController {
     public void cambiarContraseña(ActionEvent actionEvent) {
         if(camposLlenos()){
             if(formularioValido()){
-                String contraseña = usuarioDao.obtenerContraseña(Usuario.usuarioActual);
+                String contraseña = Usuario.usuarioActual.getContraseña();
+                String matricula = Usuario.usuarioActual.getMatricula();
                 if(contraseña == ""){
                     labelError.setText("La contraseña actual no coincide");
                 } else {
-                    if(usuarioDao.cambiarContraseña(Usuario.usuarioActual,contraNueva.getText())){
+                    if(usuarioDao.cambiarContraseña(matricula,contraNueva.getText())){
                         alert.successAlert("Contraseña cambiada con éxito");
                         Stage stage = (Stage) btnCambiar.getScene().getWindow();
                         stage.close();

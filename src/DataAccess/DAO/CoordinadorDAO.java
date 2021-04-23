@@ -23,10 +23,10 @@ public class CoordinadorDAO implements ICoordinador {
             while(rs.next()){
                 Usuario coordinador = new Usuario();
                 coordinador.setNombre(rs.getString("nombre"));
-                coordinador.setPrimerApe(rs.getString("primer_apellido"));
-                coordinador.setSegundoApe(rs.getString("segundo_apellido"));
+                coordinador.setPrimerApellido(rs.getString("primer_apellido"));
+                coordinador.setSegundoApellido(rs.getString("segundo_apellido"));
                 coordinador.setFacultad(rs.getString("facultad"));
-                coordinador.setUsuarioId(rs.getInt("usuario_id"));
+                coordinador.setMatricula(rs.getString("matricula"));
 
                 coordinadores.add(coordinador);
             }
@@ -40,13 +40,13 @@ public class CoordinadorDAO implements ICoordinador {
     }
 
     @Override
-    public boolean eliminarCoordinador(int coordId) {
+    public boolean eliminarCoordinador(String matricula) {
         Connection conexion = Conexion.conectar();
-        String query = "DELETE FROM usuario WHERE usuario_id=?";
+        String query = "DELETE FROM usuario WHERE matricula=?";
 
         try{
             PreparedStatement preparedStatement = conexion.prepareStatement(query);
-            preparedStatement.setInt(1,coordId);
+            preparedStatement.setString(1,matricula);
             preparedStatement.execute();
             conexion.close();
         } catch (SQLException throwables) {
@@ -62,12 +62,12 @@ public class CoordinadorDAO implements ICoordinador {
     public boolean actualizarCoord(Usuario coordinador) {
         Connection conexion = Conexion.conectar();
         String query = "UPDATE usuario SET nombre=?, primer_apellido=?, segundo_apellido=?, facultad=?, telefono=?, " +
-                "correo=? WHERE usuario_id="+coordinador.getUsuarioId();
+                "correo=? WHERE matricula="+coordinador.getMatricula();
         try{
             PreparedStatement preparedStatement = conexion.prepareStatement(query);
             preparedStatement.setString(1,coordinador.getNombre());
-            preparedStatement.setString(2, coordinador.getPrimerApe());
-            preparedStatement.setString(3,coordinador.getSegundoApe());
+            preparedStatement.setString(2, coordinador.getPrimerApellido());
+            preparedStatement.setString(3,coordinador.getSegundoApellido());
             preparedStatement.setString(4,coordinador.getFacultad());
             preparedStatement.setString(5, coordinador.getTelefono());
             preparedStatement.setString(6,coordinador.getCorreo());

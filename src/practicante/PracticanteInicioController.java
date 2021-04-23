@@ -38,9 +38,9 @@ public class PracticanteInicioController implements Initializable {
     // inicialización de la vista
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Usuario usuario = usuarioDao.obtenerUsuario(Usuario.usuarioActual);
+        Usuario usuario = Usuario.usuarioActual;
 
-        lbNombre.setText(usuario.getNombre()+ " " + usuario.getPrimerApe() + " " + usuario.getSegundoApe());
+        lbNombre.setText(usuario.getNombre()+ " " + usuario.getPrimerApellido() + " " + usuario.getSegundoApellido());
         lbRol.setText(usuario.getRol());
         lbFacultad.setText(usuario.getFacultad());
         lbCorreo.setText(usuario.getCorreo());

@@ -132,8 +132,8 @@ public class TablaCoordinadoresController implements Initializable {
         if(coordinador == null){
             alert.errorAlert("Error. Seleccione un coordinador");
         }else if(alert.confirmationAlert("¿Desea eliminar el coordinador?")){
-            int coordId = Usuario.coordinadorSeleccionado.getUsuarioId();
-            if(coordDao.eliminarCoordinador(coordId)) {
+            String matricula = Usuario.coordinadorSeleccionado.getMatricula();
+            if(coordDao.eliminarCoordinador(matricula)) {
                 Proyecto.proyectoSeleccionado = null;
                 popularTabla();
                 // si sucede una excepción, no se actualiza la tabla

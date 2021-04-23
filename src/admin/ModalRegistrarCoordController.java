@@ -75,8 +75,8 @@ public class ModalRegistrarCoordController {
     public Usuario generarUsuario(){
         Usuario usuario = new Usuario();
         usuario.setNombre(tfNombre.getText());
-        usuario.setPrimerApe(tfPrimerApe.getText());
-        usuario.setSegundoApe(tfSegundoApe.getText());
+        usuario.setPrimerApellido(tfPrimerApe.getText());
+        usuario.setSegundoApellido(tfSegundoApe.getText());
         usuario.setContraseña(tfContraseña.getText());
         usuario.setRol("coord");
         usuario.setTelefono(tfTelefono.getText());

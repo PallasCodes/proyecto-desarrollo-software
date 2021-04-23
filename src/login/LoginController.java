@@ -30,34 +30,37 @@ public class LoginController {
 
     @FXML
     void entrar(ActionEvent event) {
-        if(camposValidos()){
-            String usuario = UsuarioData.iniciarSesion(tfUsuario.getText(),tfContraseña.getText());
-            if(usuario != "") {
-                Usuario.usuarioActual = usuarioDao.obtenerIdUsuario(tfUsuario.getText());
-                System.out.println(Usuario.usuarioActual);
-            }
-
-            try{
-                switch(usuario){
-                    case "admin":
-                        switcher.switchScene(event, stage, scene, "../admin/AdminInicio.fxml");
-                        break;
-                    case "coord":
-                        switcher.switchScene(event, stage, scene, "../coord/CoordInicio.fxml");
-                        break;
-                    case "profesor":
-                        switcher.switchScene(event, stage, scene, "../profesor/ProfesorInicio.fxml");
-                        break;
-                    case "practicante":
-                        switcher.switchScene(event, stage, scene, "../practicante/PracticanteInicio.fxml");
-                        break;
-                    default:
-                        labelErrores.setText("*Usuario y/o contraseña \n incorrectos");
-                        System.out.println("error");
-                        break;
+        if (camposValidos()) {
+            Usuario usuario = usuarioDao.obtenerUsuarioPorMat(tfUsuario.getText());
+            System.out.println("usuario: "+usuario.getContraseña());
+            System.out.println("input: "+tfContraseña.getText());
+            if (usuario.getContraseña().equals(tfContraseña.getText())) {
+                Usuario.usuarioActual = usuario;
+                try {
+                    String rol = usuario.getRol();
+                    System.out.println(rol);
+                    switch (usuario.getRol()) {
+                        case "admin":
+                            switcher.switchScene(event, stage, scene, "../admin/AdminInicio.fxml");
+                            break;
+                        case "coord":
+                            switcher.switchScene(event, stage, scene, "../coord/CoordInicio.fxml");
+                            break;
+                        case "profesor":
+                            switcher.switchScene(event, stage, scene, "../profesor/ProfesorInicio.fxml");
+                            break;
+                        case "practicante":
+                            System.out.println("entró");
+                            switcher.switchScene(event, stage, scene, "../practicante/PracticanteInicio.fxml");
+                            break;
+                        default:
+                            break;
+                    }
+                } catch (IOException ex) {
+                    ex.printStackTrace();
                 }
-            }catch(IOException ex){
-                ex.printStackTrace();
+            } else {
+                labelErrores.setText("*Usuario y/o contraseña \n incorrectos");
             }
         }
     }

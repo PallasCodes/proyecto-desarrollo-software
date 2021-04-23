@@ -19,8 +19,8 @@ public class UsuarioDAO implements IUsuario {
             preparedStatement.setString(1,usuario.getContraseña());
             preparedStatement.setString(2, usuario.getRol());
             preparedStatement.setString(3,usuario.getNombre());
-            preparedStatement.setString(4,usuario.getPrimerApe());
-            preparedStatement.setString(5,usuario.getSegundoApe());
+            //preparedStatement.setString(4,usuario.getPrimerApe());
+            //preparedStatement.setString(5,usuario.getSegundoApe());
             preparedStatement.setString(6,usuario.getTelefono());
             preparedStatement.setString(7,usuario.getCorreo());
             preparedStatement.setString(8,usuario.getFacultad());
@@ -58,23 +58,25 @@ public class UsuarioDAO implements IUsuario {
     }
 
     @Override
-    public Usuario obtenerUsuario(int usuarioId) {
+    public Usuario obtenerUsuarioPorMat(String matricula) {
         Connection conexion = Conexion.conectar();
         Usuario usuario = new Usuario();
 
-        String query = "SELECT * FROM usuario WHERE usuario_id="+usuarioId;
+        String query = "SELECT * FROM usuario WHERE matricula = ?";
         try {
-            Statement st = conexion.createStatement();
-            ResultSet rs = st.executeQuery(query);
-
+            PreparedStatement preparedStatement = conexion.prepareStatement(query);
+            preparedStatement.setString(1, matricula);
+            ResultSet rs = preparedStatement.executeQuery();
             if(rs.next()){
-                usuario.setFacultad(rs.getString("facultad"));
+                usuario.setMatricula(matricula);
                 usuario.setNombre(rs.getString("nombre"));
-                usuario.setPrimerApe(rs.getString("primer_apellido"));
-                usuario.setSegundoApe(rs.getString("segundo_apellido"));
-                usuario.setTelefono(rs.getString("telefono"));
-                usuario.setCorreo(rs.getString("correo"));
                 usuario.setRol(rs.getString("rol"));
+                usuario.setPrimerApellido(rs.getString("primer_apellido"));
+                usuario.setSegundoApellido(rs.getString("segundo_apellido"));
+                usuario.setTelefono(rs.getString("telefono"));
+                usuario.setFacultad(rs.getString("facultad"));
+                usuario.setCorreo(rs.getString("correo"));
+                usuario.setContraseña(rs.getString("contraseña"));
             }
             conexion.close();
         } catch (SQLException throwables) {
@@ -86,9 +88,9 @@ public class UsuarioDAO implements IUsuario {
     }
 
     @Override
-    public boolean cambiarContraseña(int usuarioId, String contraseña) {
+    public boolean cambiarContraseña(String matricula, String contraseña) {
         Connection conexion = Conexion.conectar();
-        String query = "UPDATE usuario SET contraseña=? WHERE usuario_id="+usuarioId;
+        String query = "UPDATE usuario SET contraseña=? WHERE matricula="+matricula;
         try{
             PreparedStatement preparedStatement = conexion.prepareStatement(query);
             preparedStatement.setString(1,contraseña);
