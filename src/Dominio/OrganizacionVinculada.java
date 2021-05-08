@@ -2,21 +2,12 @@ package Dominio;
 
 public class OrganizacionVinculada {
     // ATRIBUTOS
-    private String organizacionId;
     private String nombre;
     private String direccion;
     private String correo;
 
 
     // GETS Y SETS
-    public String getOrganizacionId() {
-        return organizacionId;
-    }
-
-    public void setOrganizacionId(String organizacionId) {
-        this.organizacionId = organizacionId;
-    }
-
     public String getNombre() {
         return nombre;
     }
@@ -46,8 +37,7 @@ public class OrganizacionVinculada {
     public OrganizacionVinculada() {
     }
 
-    public OrganizacionVinculada(String organizacionId, String nombre, String direccion, String correo) {
-        this.organizacionId = organizacionId;
+    public OrganizacionVinculada(String nombre, String direccion, String correo) {
         this.nombre = nombre;
         this.direccion = direccion;
         this.correo = correo;

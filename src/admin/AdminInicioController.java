@@ -57,7 +57,8 @@ public class AdminInicioController implements Initializable {
 
     @FXML
     public void cerrarSesion(MouseEvent event) throws IOException {
-        sw.switchSceneMouse(event, stage, scene, "../login/login.fxml");
+        sw.switchSceneMouse(event, stage, scene, "/login/Login.fxml");
+        Usuario.usuarioActual = null;
     }
 
     @FXML

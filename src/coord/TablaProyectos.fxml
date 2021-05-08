@@ -59,7 +59,7 @@
         <TableView fx:id="tablaProyectos" layoutX="231.0" layoutY="166.0" prefHeight="444.0" prefWidth="818.0">
             <columns>
                 <TableColumn fx:id="colNombre" prefWidth="258.0" text="Nombre" />
-                <TableColumn fx:id="colOrganizacion" minWidth="0.0" prefWidth="258.0" text="Organizacion" />
+                <TableColumn fx:id="colOrganizacion" minWidth="0.0" prefWidth="258.0" text="Organización" />
                 <TableColumn fx:id="colEstado" minWidth="0.0" prefWidth="150.0" text="Estado" />
                 <TableColumn fx:id="colId" prefWidth="75.0" text="id" visible="false" />
                 <TableColumn fx:id="colCupo" prefWidth="150.0" text="Cupo" />

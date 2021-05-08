@@ -7,4 +7,6 @@ public interface IPracticante {
     boolean registrarPracticante(Practicante practicante);
 
     ArrayList<Practicante> obtenerPracticantes();
+
+    boolean eliminarPracticante(String matricula);
 }

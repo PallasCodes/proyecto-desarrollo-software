@@ -32,8 +32,6 @@ public class LoginController {
     void entrar(ActionEvent event) {
         if (camposValidos()) {
             Usuario usuario = usuarioDao.obtenerUsuarioPorMat(tfUsuario.getText());
-            System.out.println("usuario: "+usuario.getContraseña());
-            System.out.println("input: "+tfContraseña.getText());
             if (usuario.getContraseña().equals(tfContraseña.getText())) {
                 Usuario.usuarioActual = usuario;
                 try {
@@ -50,7 +48,6 @@ public class LoginController {
                             switcher.switchScene(event, stage, scene, "../profesor/ProfesorInicio.fxml");
                             break;
                         case "practicante":
-                            System.out.println("entró");
                             switcher.switchScene(event, stage, scene, "../practicante/PracticanteInicio.fxml");
                             break;
                         default:

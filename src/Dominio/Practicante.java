@@ -15,6 +15,8 @@ public class Practicante {
     private int usuarioId;
     private String proyecto;
 
+    public static Practicante practicanteSeleccionado;
+
 
     // constructores
     public Practicante() {

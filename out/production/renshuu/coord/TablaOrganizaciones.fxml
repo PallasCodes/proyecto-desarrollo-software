@@ -48,15 +48,14 @@
                 <Font name="Century Gothic Bold" size="17.0" />
             </font>
         </Label>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="592.0" layoutX="221.0" layoutY="62.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="839.0" />
       <Label layoutX="230.0" layoutY="63.0" text="Organizaciones Vinculadas" textFill="#444444">
          <font>
             <Font name="Century Gothic Bold" size="20.0" />
          </font>
       </Label>
       <Button styleClass="primary" fx:id="agregarOrg" layoutX="230.0" layoutY="108.0" mnemonicParsing="false" onAction="#modalAgregarOrg" text="+ Agregar" />
-        <Button styleClass="danger" fx:id="btnEliminar" layoutX="330.0" layoutY="108.0" mnemonicParsing="false" text="Eliminar" onAction="#eliminarOrg" />
-        <Button styleClass="success" fx:id="btnActualizar" layoutX="418.0" layoutY="108.0" mnemonicParsing="false" onAction="#actualizarOrg" text="Actualizar" />
-      <TableView fx:id="tablaOrgs" layoutX="231.0" layoutY="166.0" prefHeight="444.0" prefWidth="818.0">
+      <TableView onMouseClicked="#abrirModal" fx:id="tablaOrgs" layoutX="231.0" layoutY="166.0" prefHeight="444.0" prefWidth="818.0">
         <columns>
           <TableColumn fx:id="colNombre" prefWidth="171.0" text="Nombre" />
           <TableColumn fx:id="colDireccion" minWidth="0.0" prefWidth="323.0" text="Dirección" />

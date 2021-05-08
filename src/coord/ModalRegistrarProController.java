@@ -43,7 +43,7 @@ public class ModalRegistrarProController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         ArrayList<OrganizacionVinculada> organizaciones = orgDao.obtenerOrganizaciones();
         organizaciones.forEach(org -> {
-            cbOrg.getItems().add(org.getNombre()+" ("+org.getOrganizacionId()+")");
+           // cbOrg.getItems().add(org.getNombre()+" ("+org.getOrganizacionId()+")");
         });
     }
 

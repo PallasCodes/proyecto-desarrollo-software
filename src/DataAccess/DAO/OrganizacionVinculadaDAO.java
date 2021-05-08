@@ -21,7 +21,6 @@ public class OrganizacionVinculadaDAO implements IOrganizacionVinculadaDAO {
 
             while(rs.next()){
                 OrganizacionVinculada org = new OrganizacionVinculada();
-                org.setOrganizacionId(Integer.toString(rs.getInt("organizacion_id")));
                 org.setNombre(rs.getString("nombre"));
                 org.setCorreo(rs.getString("correo"));
                 org.setDireccion(rs.getString("direccion"));

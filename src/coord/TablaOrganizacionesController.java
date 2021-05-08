@@ -114,9 +114,21 @@ public class TablaOrganizacionesController implements Initializable {
         if(org == null){
             alert.errorAlert("Error. Seleccione una organización");
         }else if(alert.confirmationAlert("¿Desea eliminar la organización?")){
-            int organizacionId = Integer.parseInt(org.getOrganizacionId());
-            orgDao.eliminarOrganizacion(organizacionId);
+            //int organizacionId = Integer.parseInt(org.getOrganizacionId());
+            //orgDao.eliminarOrganizacion(organizacionId);
             popularTabla();
+        }
+    }
+
+    @FXML
+    public void abrirModal(MouseEvent event) {
+        if(event.getClickCount() >= 2){
+            Stage stageActual = (Stage) agregarOrg.getScene().getWindow();
+            try {
+                sw.createDialog(stageActual, "/coord/ModalRegistrarOrg.fxml");
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
         }
     }
 

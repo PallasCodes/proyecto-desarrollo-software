@@ -2,6 +2,7 @@ package coord;
 
 import DataAccess.DAO.PracticanteDAO;
 import Dominio.Practicante;
+import Dominio.Proyecto;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -10,6 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import utils.AlertBuilder;
 import utils.SceneSwitcher;
 
 import java.io.IOException;
@@ -22,6 +24,7 @@ public class TablaPracticantesController implements Initializable {
     SceneSwitcher sw = new SceneSwitcher();
     ArrayList<Practicante> practicantes;
     PracticanteDAO pracDao = new PracticanteDAO();
+    AlertBuilder alert = new AlertBuilder();
 
 
     // componentes de la UI
@@ -119,8 +122,24 @@ public class TablaPracticantesController implements Initializable {
     }
 
     public void eliminarPracticante(ActionEvent actionEvent) {
+        Practicante practicante = obtenerPracSeleccionado();
+        if(practicante == null){
+            alert.errorAlert("Error. Seleccione un proyecto");
+        }else if(alert.confirmationAlert("¿Desea eliminar al practicante "+practicante.getNombre()+"?")){
+            String matricula = Practicante.practicanteSeleccionado.getMatricula();
+            if(pracDao.eliminarPracticante(matricula)) {
+                Practicante.practicanteSeleccionado = null;
+                popularTabla();
+                // si sucede una excepción, no se actualiza la tabla
+            }
+        }
     }
 
     public void actualizarPracticante(ActionEvent actionEvent) {
+    }
+
+    public Practicante obtenerPracSeleccionado(){
+        Practicante.practicanteSeleccionado = tablaPracticantes.getSelectionModel().getSelectedItem();
+        return Practicante.practicanteSeleccionado;
     }
 }

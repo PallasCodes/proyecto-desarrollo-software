@@ -57,7 +57,7 @@ public class ModalActualizarProController implements Initializable {
         OrganizacionVinculadaDAO orgDao = new OrganizacionVinculadaDAO();
         ArrayList<OrganizacionVinculada> organizaciones = orgDao.obtenerOrganizaciones();
         organizaciones.forEach(org -> {
-            cbOrg.getItems().add(org.getNombre()+" ("+org.getOrganizacionId()+")");
+            //cbOrg.getItems().add(org.getNombre()+" ("+org.getOrganizacionId()+")");
         });
 
         // inicializar ComboBox de estado del proyecto

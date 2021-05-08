@@ -51,7 +51,7 @@ public class PracticanteInicioController implements Initializable {
     // métodos de la UI
     @FXML
     public void cerrarSesion(MouseEvent event) throws IOException {
-        sw.switchSceneMouse(event, stage, scene, "../login/login.fxml");
+        sw.switchSceneMouse(event, stage, scene, "/login/Login.fxml");
     }
 
     @FXML

@@ -15,7 +15,7 @@ public class ProyectoDAO implements IProyectoDAO {
 
         String query = "SELECT `proyecto`.*, `organizacion_vinculada`.nombre AS org_nombre " +
                 "FROM `proyecto` " +
-                "LEFT JOIN `organizacion_vinculada` ON `proyecto`.`organizacion_id` = `organizacion_vinculada`.`organizacion_id`;";
+                "LEFT JOIN `organizacion_vinculada` ON `proyecto`.`organizacion` = `organizacion_vinculada`.`nombre`;";
         try {
             Statement st = conexion.createStatement();
             ResultSet rs = st.executeQuery(query);

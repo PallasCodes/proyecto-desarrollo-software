@@ -36,7 +36,7 @@ public class PracticanteDAO implements IPracticante {
         ArrayList<Practicante> practicantes = new ArrayList<>();
 
         String query = "SELECT pra.*, u.*, pro.nombre AS nombre_proyecto FROM practicante pra LEFT JOIN usuario u ON "
-                + "u.usuario_id = pra.usuario_id LEFT JOIN proyecto pro ON pro.proyecto_id = pra.proyecto_id;";
+                + "u.matricula = pra.matricula LEFT JOIN proyecto pro ON pro.proyecto_id = pra.proyecto_id WHERE pra.eliminado=0;";
         try {
             Statement st = conexion.createStatement();
             ResultSet rs = st.executeQuery(query);
@@ -49,6 +49,7 @@ public class PracticanteDAO implements IPracticante {
                 practicante.setSegundoApellido(rs.getString("segundo_apellido"));
                 practicante.setProyecto(rs.getString("nombre_proyecto"));
                 practicante.setPeriodo(rs.getString("periodo"));
+                practicante.setMatricula(rs.getString("matricula"));
 
                 practicantes.add(practicante);
             }
@@ -59,5 +60,23 @@ public class PracticanteDAO implements IPracticante {
             throwables.printStackTrace();
         }
         return practicantes;
+    }
+
+    @Override
+    public boolean eliminarPracticante(String matricula) {
+        Connection conexion = Conexion.conectar();
+        String query = "UPDATE practicante SET eliminado='1' WHERE matricula=?";
+        try{
+            PreparedStatement preparedStatement = conexion.prepareStatement(query);
+            preparedStatement.setString(1,matricula);
+            preparedStatement.execute();
+            conexion.close();
+        } catch (Exception ex) {
+            AlertBuilder alert = new AlertBuilder();
+            alert.exceptionAlert("Error al eliminar el practicante. Inténtelo más tarde.");
+            ex.printStackTrace();
+            return false;
+        }
+        return true;
     }
 }
