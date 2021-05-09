@@ -9,4 +9,6 @@ public interface IPracticante {
     ArrayList<Practicante> obtenerPracticantes();
 
     boolean eliminarPracticante(String matricula);
+
+    ArrayList<Practicante> obtenerPracticantesConSolicitud();
 }

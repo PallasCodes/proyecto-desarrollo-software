@@ -79,4 +79,32 @@ public class PracticanteDAO implements IPracticante {
         }
         return true;
     }
+
+    @Override
+    public ArrayList<Practicante> obtenerPracticantesConSolicitud() {
+        Connection conexion = Conexion.conectar();
+        ArrayList<Practicante> practicantes = new ArrayList<>();
+
+        String query = "SELECT p.*, u.* FROM practicante p INNER JOIN usuario u ON "
+                + "p.matricula = u.matricula WHERE p.estado='solicitado'";
+        try {
+            Statement st = conexion.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            while(rs.next()){
+                Practicante practicante = new Practicante();
+                practicante.setMatricula(rs.getString("matricula"));
+                practicante.setNombre(rs.getString("nombre"));
+                practicante.setPrimerApellido(rs.getString("primer_apellido"));
+                practicante.setSegundoApellido(rs.getString("segundo_apellido"));
+                practicantes.add(practicante);
+            }
+            conexion.close();
+        } catch (SQLException throwables) {
+            AlertBuilder alert = new AlertBuilder();
+            alert.exceptionAlert("Error al conectarse con la BD. Inténtelo más tarde.");
+            throwables.printStackTrace();
+        }
+        return practicantes;
+    }
 }

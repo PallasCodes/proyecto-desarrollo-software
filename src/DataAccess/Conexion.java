@@ -19,9 +19,6 @@ public class Conexion {
             throwables.printStackTrace();
             System.out.println("Error de conexion de Bd");
         }
-        if (conexion != null) {
-            System.out.println("Conexión a " + db + " satisfacoria");
-        }
         return conexion;
     }
 }
