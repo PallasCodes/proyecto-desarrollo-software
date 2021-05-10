@@ -1,22 +1,22 @@
 package profesor;
 
-import DataAccess.DAO.ReporteMensualDAO;
-import Dominio.ReporteMensual;
+import DataAccess.DAO.ReporteParcialDAO;
+import Dominio.ReporteParcial;
 import javafx.event.ActionEvent;
-import javafx.fxml.Initializable;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class ModalReporteMensualController implements Initializable {
+public class ModalReporteParcialController implements Initializable {
     // instancias de clases usadas
-    ReporteMensual reporte = ReporteMensual.reporteSeleccionado;
-    ReporteMensualDAO reporteDao = new ReporteMensualDAO();
+    ReporteParcial reporte = ReporteParcial.reporteSeleccionado;
+    ReporteParcialDAO reporteDao = new ReporteParcialDAO();
 
 
     // componentes de la UI
@@ -49,11 +49,9 @@ public class ModalReporteMensualController implements Initializable {
         proyecto.setText("uwu");
         practicante.setText("owo");
         fecha.setText(reporte.getFecha());
-        horas.setText(Integer.toString(reporte.getHoras()));
         actividades.setText(reporte.getActividades());
         cbEvaluacion.getItems().setAll("Aceptado","Rechazado");
     }
-
 
     // métodos de la UI
     @FXML
@@ -66,9 +64,9 @@ public class ModalReporteMensualController implements Initializable {
         if(cbEvaluacion.getSelectionModel().isEmpty()){
             labelError.setText("Seleccione una evaluación");
         } else {
-            if(reporteDao.evaluarReporteMensual(cbEvaluacion.getValue(),reporte.getId())) {
-                TablaReportesMensualesController.getInstance().popularTabla();
-                ReporteMensual.reporteSeleccionado = null;
+            if(reporteDao.evaluarReporteParcial(cbEvaluacion.getValue(),reporte.getId())) {
+                TablaReportesParcialesController.getInstance().popularTabla();
+                ReporteParcial.reporteSeleccionado = null;
             }
             Stage stage = (Stage) btnEvaluar.getScene().getWindow();
             stage.close();

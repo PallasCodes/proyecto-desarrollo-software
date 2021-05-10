@@ -7,10 +7,10 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import java.net.URL?>
+
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-
-<AnchorPane minHeight="675.0" minWidth="1080.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="profesor.TablaReportesMensualesController">
+<AnchorPane minHeight="675.0" minWidth="1080.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="profesor.TablaReportesParcialesController">
     <stylesheets>
         <URL value="@../login/style.css" />
     </stylesheets>
@@ -32,12 +32,12 @@
                 <Font name="Century Gothic Bold" size="17.0" />
             </font>
         </Label>
-        <Label styleClass="activeNavItem, handCursor" layoutX="40.0" layoutY="172.0" text="Reportes Mensuales" textFill="WHITE">
+        <Label styleClass="handCursor" layoutX="40.0" layoutY="172.0" text="Reportes Mensuales" textFill="WHITE">
             <font>
                 <Font name="Century Gothic Bold" size="17.0" />
             </font>
         </Label>
-        <Label styleClass="handCursor" layoutX="40.0" layoutY="208.0" text="Reportes Parciales" textFill="WHITE">
+        <Label styleClass="activeNavItem, handCursor" layoutX="40.0" layoutY="208.0" text="Reportes Parciales" textFill="WHITE">
             <font>
                 <Font name="Century Gothic Bold" size="17.0" />
             </font>
@@ -52,17 +52,16 @@
                 <Image url="@../assets/icons/settings.png" />
             </image>
         </ImageView>
-        <Label layoutX="251.0" layoutY="82.0" text="Reportes Mensuales" textFill="#666666">
+        <Label layoutX="251.0" layoutY="82.0" text="Reportes Parciales" textFill="#666666">
             <font>
                 <Font name="Century Gothic Bold" size="36.0" />
             </font>
         </Label>
-        <TableView onMouseClicked="#modalReporte" fx:id="tablaReportesMensuales" layoutX="231.0" layoutY="166.0" prefHeight="444.0" prefWidth="750.0">
+        <TableView onMouseClicked="#modalReporte" fx:id="tablaReportesParciales" layoutX="231.0" layoutY="166.0" prefHeight="444.0" prefWidth="750.0">
             <columns>
                 <TableColumn fx:id="colMatricula" prefWidth="150.0" text="Matricula" />
                 <TableColumn fx:id="colFecha" prefWidth="150.0" text="Fecha entrega" />
                 <TableColumn fx:id="colEstado" prefWidth="150.0" text="Estado" />
-                <TableColumn fx:id="colHoras" prefWidth="150.0" text="Horas Completadas" />
                 <TableColumn fx:id="colEvaluacion" prefWidth="150.0" text="Evaluacion" />
             </columns>
         </TableView>

@@ -1,9 +1,7 @@
 package profesor;
 
 import DataAccess.DAO.ReporteMensualDAO;
-import Dominio.Practicante;
 import Dominio.ReporteMensual;
-import coord.TablaProyectosController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;

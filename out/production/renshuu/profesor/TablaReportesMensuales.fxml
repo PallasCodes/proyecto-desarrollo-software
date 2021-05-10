@@ -7,9 +7,9 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import java.net.URL?>
-
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+
 <AnchorPane minHeight="675.0" minWidth="1080.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="profesor.TablaReportesMensualesController">
     <stylesheets>
         <URL value="@../login/style.css" />
@@ -33,6 +33,11 @@
             </font>
         </Label>
         <Label styleClass="activeNavItem, handCursor" layoutX="40.0" layoutY="172.0" text="Reportes Mensuales" textFill="WHITE">
+            <font>
+                <Font name="Century Gothic Bold" size="17.0" />
+            </font>
+        </Label>
+        <Label styleClass="handCursor" layoutX="40.0" layoutY="208.0" text="Reportes Parciales" textFill="WHITE">
             <font>
                 <Font name="Century Gothic Bold" size="17.0" />
             </font>

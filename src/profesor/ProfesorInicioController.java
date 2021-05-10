@@ -69,4 +69,7 @@ public class ProfesorInicioController implements Initializable {
         sw.switchSceneMouse(event, stage, scene, "../profesor/TablaReportesMensuales.fxml");
     }
 
+    public void irTablaReportesParciales(MouseEvent event) throws IOException{
+        sw.switchSceneMouse(event, stage, scene, "../profesor/TablaReportesParciales.fxml");
+    }
 }
