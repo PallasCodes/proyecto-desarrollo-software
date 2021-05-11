@@ -1,13 +1,17 @@
 package coord;
 
 import DataAccess.DAO.PracticanteDAO;
+import DataAccess.DAO.ProyectoDAO;
 import DataAccess.DAO.SolicitudesDAO;
 import Dominio.Practicante;
+import Dominio.Proyecto;
 import Dominio.Solicitud;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import utils.AlertBuilder;
@@ -22,6 +26,9 @@ public class ModalSolicitudController implements Initializable {
     ArrayList<Solicitud> solicitudes;
     Practicante practicante = Practicante.practicanteSeleccionado;
     AlertBuilder alert = new AlertBuilder();
+    ArrayList<Proyecto> proyectos;
+    ProyectoDAO proyectoDao = new ProyectoDAO();
+    boolean asignarOtro = false;
 
 
     // componentes de la UI
@@ -47,6 +54,16 @@ public class ModalSolicitudController implements Initializable {
     private Button btnAsignarOtro;
     @FXML
     private Button btnCancelar;
+    @FXML
+    private TableView<Proyecto> tablaProyectos;
+    @FXML
+    private TableColumn<Proyecto, String> colNombre;
+    @FXML
+    private TableColumn<Proyecto, String> colOrganizacion;
+    @FXML
+    private TableColumn<Proyecto, Integer> colDisponibilidad;
+    @FXML
+    private Accordion opciones;
 
 
     // inicialización de la vista
@@ -78,6 +95,12 @@ public class ModalSolicitudController implements Initializable {
 
             btnAsignar3.setDisable(false);
         }
+
+        colNombre.setCellValueFactory(new PropertyValueFactory<Proyecto, String>("nombre"));
+        colOrganizacion.setCellValueFactory(new PropertyValueFactory<Proyecto, String>("organizacion"));
+        colDisponibilidad.setCellValueFactory(new PropertyValueFactory<Proyecto, Integer>("disponibilidad"));
+
+        popularTabla();
     }
 
 
@@ -99,7 +122,21 @@ public class ModalSolicitudController implements Initializable {
 
     @FXML
     void asignarOtro(ActionEvent event) {
-
+        if(!asignarOtro){
+            asignarOtro = true;
+            tablaProyectos.setDisable(false);
+            tablaProyectos.setVisible(true);
+            opciones.setDisable(true);
+            opciones.setVisible(false);
+            btnAsignarOtro.setText("Asignar");
+        } else {
+            Proyecto proyecto = obtenerProSeleccionado();
+            if (proyecto != null) {
+                asignarProyecto(proyecto.getId());
+            } else {
+                alert.errorAlert("Selecciona un proyecto");
+            }
+        }
     }
 
     @FXML
@@ -117,5 +154,16 @@ public class ModalSolicitudController implements Initializable {
         Stage stage = (Stage) btnAsignar1.getScene().getWindow();
         stage.close();
         Practicante.practicanteSeleccionado = null;
+    }
+
+    public void popularTabla() {
+        proyectos = proyectoDao.obtenerProyectos();
+        tablaProyectos.getItems().setAll(proyectos);
+    }
+
+
+    public Proyecto obtenerProSeleccionado(){
+        Proyecto.proyectoSeleccionado = tablaProyectos.getSelectionModel().getSelectedItem();
+        return Proyecto.proyectoSeleccionado;
     }
 }
