@@ -45,7 +45,7 @@ public class ModalActualizarProController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // obtener proyecto de la BD y llenar el formulario con los datos del proyecto
-        int id = Integer.parseInt(Proyecto.proyectoSeleccionado.getProyectoId());
+        int id = Proyecto.proyectoSeleccionado.getId();
         Proyecto proyecto = proDao.obtenerProyecto(id);
 
         tfNombre.setText(proyecto.getNombre());

@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
-<?import java.net.URL?>
 
-<AnchorPane minHeight="675.0" minWidth="1080.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="practicante.PracticanteInicioController">
+<AnchorPane minHeight="675.0" minWidth="1080.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16" fx:controller="practicante.PracticanteInicioController">
     <stylesheets>
         <URL value="@../login/style.css" />
     </stylesheets>
@@ -20,32 +21,32 @@
                 <Image url="@../assets/img/logo.png" />
             </image>
         </ImageView>
-        <Label styleClass="handCursor, activeNavItem" fx:id="inicio" layoutX="40.0" layoutY="100.0" text="Perfil" textFill="WHITE">
+        <Label fx:id="inicio" layoutX="40.0" layoutY="100.0" styleClass="handCursor, activeNavItem" text="Perfil" textFill="WHITE">
             <font>
                 <Font name="Century Gothic Bold" size="17.0" />
             </font>
         </Label>
-        <Label styleClass="handCursor" layoutX="40.0" layoutY="136.0" text="Proyecto" textFill="WHITE">
+        <Label layoutX="40.0" layoutY="136.0" styleClass="handCursor" text="Proyecto" textFill="WHITE">
             <font>
                 <Font name="Century Gothic Bold" size="17.0" />
             </font>
         </Label>
-        <Label styleClass="handCursor" layoutX="40.0" layoutY="172.0" text="Archivos" textFill="WHITE">
+        <Label layoutX="40.0" layoutY="172.0" styleClass="handCursor" text="Archivos" textFill="WHITE">
             <font>
                 <Font name="Century Gothic Bold" size="17.0" />
             </font>
         </Label>
-        <Label styleClass="handCursor" layoutX="40.0" layoutY="208.0" text="Reportes" textFill="WHITE">
+        <Label layoutX="40.0" layoutY="208.0" styleClass="handCursor" text="Reportes" textFill="WHITE">
             <font>
                 <Font name="Century Gothic Bold" size="17.0" />
             </font>
         </Label>
-        <ImageView styleClass="handCursor" fitHeight="22.0" fitWidth="23.0" layoutX="1031.0" layoutY="12.0" onMouseClicked="#cerrarSesion" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="22.0" fitWidth="23.0" layoutX="1031.0" layoutY="12.0" onMouseClicked="#cerrarSesion" pickOnBounds="true" preserveRatio="true" styleClass="handCursor">
             <image>
                 <Image url="@../assets/icons/logout.png" />
             </image>
         </ImageView>
-        <ImageView styleClass="handCursor" fitHeight="20.0" fitWidth="21.0" layoutX="998.0" layoutY="10.0" onMouseClicked="#irOpciones" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="20.0" fitWidth="21.0" layoutX="998.0" layoutY="10.0" onMouseClicked="#irOpciones" pickOnBounds="true" preserveRatio="true" styleClass="handCursor">
             <image>
                 <Image url="@../assets/icons/settings.png" />
             </image>
@@ -101,5 +102,6 @@
                 <Font name="Arial" size="16.0" />
             </font>
         </Label>
+      <Button fx:id="btnSolicitarProyecto" layoutX="879.0" layoutY="92.0" mnemonicParsing="false" onMouseClicked="#irSolicitarProyecto" styleClass="primary" text="Solicitar Proyecto" />
     </children>
 </AnchorPane>

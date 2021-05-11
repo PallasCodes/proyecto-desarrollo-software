@@ -3,13 +3,16 @@
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane minHeight="675.0" minWidth="1080.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16" fx:controller="practicante.PracticanteInicioController">
+<AnchorPane minHeight="675.0" minWidth="1080.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="practicante.SolicitarProyectoController">
     <stylesheets>
         <URL value="@../login/style.css" />
     </stylesheets>
@@ -51,57 +54,42 @@
                 <Image url="@../assets/icons/settings.png" />
             </image>
         </ImageView>
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="592.0" layoutX="221.0" layoutY="62.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="839.0" />
-        <Label layoutX="251.0" layoutY="82.0" text="Perfil" textFill="#666666">
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="592.0" layoutX="221.0" layoutY="62.0" stroke="BLACK" strokeLineJoin="ROUND" strokeType="INSIDE" strokeWidth="0.0" width="839.0" />
+        <Label layoutX="251.0" layoutY="82.0" text="Solicitar Proyecto" textFill="#666666">
             <font>
                 <Font name="Century Gothic Bold" size="36.0" />
             </font>
         </Label>
-        <Label fx:id="lbNombre" layoutX="251.0" layoutY="146.0">
-            <font>
-                <Font name="Arial Bold" size="16.0" />
-            </font>
-        </Label>
-        <Label fx:id="lbRol" layoutX="251.0" layoutY="172.0">
-            <font>
-                <Font name="Arial" size="16.0" />
-            </font>
-        </Label>
-        <Label layoutX="906.0" layoutY="13.0" text="Practicante" textFill="#666666">
-            <font>
-                <Font name="Arial" size="14.0" />
-            </font>
-        </Label>
-        <Label layoutX="251.0" layoutY="212.0" text="Facultad:">
-            <font>
-                <Font name="Arial Bold" size="16.0" />
-            </font>
-        </Label>
-        <Label layoutX="251.0" layoutY="240.0" text="Teléfono:">
-            <font>
-                <Font name="Arial Bold" size="16.0" />
-            </font>
-        </Label>
-        <Label layoutX="251.0" layoutY="266.0" text="Correo:">
-            <font>
-                <Font name="Arial Bold" size="16.0" />
-            </font>
-        </Label>
-        <Label fx:id="lbFacultad" layoutX="327.0" layoutY="212.0">
-            <font>
-                <Font name="Arial" size="16.0" />
-            </font>
-        </Label>
-        <Label fx:id="lbTelefono" layoutX="327.0" layoutY="240.0">
-            <font>
-                <Font name="Arial" size="16.0" />
-            </font>
-        </Label>
-        <Label fx:id="lbCorreo" layoutX="314.0" layoutY="266.0">
-            <font>
-                <Font name="Arial" size="16.0" />
-            </font>
-        </Label>
-      <Button fx:id="btnSolicitarProyecto" layoutX="879.0" layoutY="92.0" mnemonicParsing="false" onMouseClicked="#irSolicitarProyecto" styleClass="primary" text="Solicitar Proyecto" />
+      <TableView fx:id="tablaProyectos" layoutX="251.0" layoutY="170.0" onMouseClicked="#seleccionarProyecto" prefHeight="200.0" prefWidth="752.0">
+        <columns>
+            <TableColumn fx:id="colNombre" prefWidth="250.0" text="Nombre" />
+            <TableColumn fx:id="colOrganizacion" minWidth="0.0" prefWidth="250.0" text="Organización" />
+            <TableColumn fx:id="colDisponibilidad" prefWidth="250.0" text="Disponibilidad" />
+        </columns>
+      </TableView>
+      <Text fill="#333333" layoutX="251.0" layoutY="163.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Doble click para seleccionarlo">
+         <font>
+            <Font name="System Italic" size="13.0" />
+         </font>
+      </Text>
+      <Button fx:id="btnCancelar" layoutX="251.0" layoutY="602.0" mnemonicParsing="false" onAction="#cancelar" text="Cancelar" />
+      <Button fx:id="btnSolicitar" layoutX="341.0" layoutY="602.0" mnemonicParsing="false" onAction="#solicitarProyecto" styleClass="primary" text="Solicitar" />
+      <Label layoutX="251.0" layoutY="397.0" text="Proyectos Seleccionados" textFill="#666666">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Text fill="#333333" layoutX="251.0" layoutY="454.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Doble click para deseleccionar">
+         <font>
+            <Font name="System Italic" size="13.0" />
+         </font>
+      </Text>
+      <Label fx:id="lbError" layoutX="459.0" layoutY="609.0" textFill="RED" />
+      <TableView fx:id="tablaProyectosSeleccionados" layoutX="251.0" layoutY="462.0" onMouseClicked="#deseleccionarProyecto" prefHeight="120.0" prefWidth="506.0">
+         <columns>
+            <TableColumn fx:id="colNombre1" prefWidth="250.0" text="Nombre" />
+            <TableColumn fx:id="colOrganizacion1" minWidth="0.0" prefWidth="250.0" text="Organización" />
+         </columns>
+      </TableView>
     </children>
 </AnchorPane>

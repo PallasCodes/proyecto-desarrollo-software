@@ -13,4 +13,6 @@ public interface IProyectoDAO {
     boolean actualizarProyecto(Proyecto proyecto);
 
     Proyecto obtenerProyecto(int proyectoId);
+
+    boolean solicitarProyecto(ArrayList<Proyecto> proyectos, String matricula);
 }

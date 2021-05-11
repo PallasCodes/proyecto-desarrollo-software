@@ -89,7 +89,7 @@ public class TablaProyectosController implements Initializable {
         if(proyecto == null){
             alert.errorAlert("Error. Seleccione un proyecto");
         }else if(alert.confirmationAlert("¿Desea eliminar el proyecto?")){
-            int proyectoId = Integer.parseInt(Proyecto.proyectoSeleccionado.getProyectoId());
+            int proyectoId = Proyecto.proyectoSeleccionado.getId();
             if(proyectoDAO.eliminarProyecto(proyectoId)) {
                 Proyecto.proyectoSeleccionado = null;
                 popularTabla();

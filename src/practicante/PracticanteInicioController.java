@@ -1,7 +1,9 @@
 package practicante;
 
 import DataAccess.DAO.UsuarioDAO;
+import Dominio.Practicante;
 import Dominio.Usuario;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
@@ -62,5 +64,9 @@ public class PracticanteInicioController implements Initializable {
         } catch (IOException ioException) {
             ioException.printStackTrace();
         }
+    }
+
+    public void irSolicitarProyecto(MouseEvent event) throws IOException{
+        sw.switchSceneMouse(event, stage, scene, "/practicante/SolicitarProyecto.fxml");
     }
 }

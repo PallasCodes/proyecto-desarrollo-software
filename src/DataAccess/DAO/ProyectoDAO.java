@@ -4,6 +4,8 @@ import DataAccess.Conexion;
 import utils.AlertBuilder;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicInteger;
+
 import DataAccess.Interfaces.IProyectoDAO;
 import Dominio.Proyecto;
 
@@ -13,20 +15,19 @@ public class ProyectoDAO implements IProyectoDAO {
         Connection conexion = Conexion.conectar();
         ArrayList<Proyecto> proyectos = new ArrayList<>();
 
-        String query = "SELECT `proyecto`.*, `organizacion_vinculada`.nombre AS org_nombre " +
-                "FROM `proyecto` " +
-                "LEFT JOIN `organizacion_vinculada` ON `proyecto`.`organizacion` = `organizacion_vinculada`.`nombre`;";
+        String query = "SELECT * FROM proyecto WHERE estado='disponible' AND eliminado=0";
         try {
             Statement st = conexion.createStatement();
             ResultSet rs = st.executeQuery(query);
 
             while(rs.next()){
                 Proyecto proyecto = new Proyecto();
-                proyecto.setProyectoId(Integer.toString(rs.getInt("proyecto_id")));
+                proyecto.setId(rs.getInt("proyecto_id"));
                 proyecto.setNombre(rs.getString("nombre"));
                 proyecto.setCupo(Integer.toString(rs.getInt("cupo")));
                 proyecto.setEstado(rs.getString("estado"));
-                proyecto.setOrganizacion(rs.getString("org_nombre"));
+                proyecto.setOrganizacion(rs.getString("organizacion"));
+                proyecto.setDisponibilidad(rs.getInt("disponibilidad"));
 
                 proyectos.add(proyecto);
             }
@@ -88,10 +89,9 @@ public class ProyectoDAO implements IProyectoDAO {
     public boolean actualizarProyecto(Proyecto proyecto) {
         Connection conexion = Conexion.conectar();
         String query = "UPDATE proyecto SET organizacion_id=?, nombre=?, descripcion=?, actividades=?, cupo=?, " +
-                "estado=? WHERE proyecto_id="+proyecto.getProyectoId();
+                "estado=? WHERE proyecto_id="+proyecto.getId();
         try{
             PreparedStatement preparedStatement = conexion.prepareStatement(query);
-            //System.out.println(proyecto.getOrganizacion());
             preparedStatement.setInt(1,1);
             preparedStatement.setString(2, proyecto.getNombre());
             System.out.println(proyecto.getNombre());
@@ -122,7 +122,7 @@ public class ProyectoDAO implements IProyectoDAO {
             ResultSet rs = st.executeQuery(query);
 
             while(rs.next()){
-                proyecto.setProyectoId(Integer.toString(rs.getInt("proyecto_id")));
+                proyecto.setId(rs.getInt("proyecto_id"));
                 proyecto.setNombre(rs.getString("nombre"));
                 proyecto.setCupo(Integer.toString(rs.getInt("cupo")));
                 proyecto.setEstado(rs.getString("estado"));
@@ -137,5 +137,34 @@ public class ProyectoDAO implements IProyectoDAO {
             throwables.printStackTrace();
         }
         return proyecto;
+    }
+
+    @Override
+    public boolean solicitarProyecto(ArrayList<Proyecto> proyectos, String matricula) {
+        Connection conexion = Conexion.conectar();
+        AtomicInteger errores = new AtomicInteger();
+        proyectos.forEach(proyecto -> {
+            String query = "INSERT INTO solicitud_proyecto (matricula, proyecto_id) VALUES (?,?)";
+            try{
+                PreparedStatement preparedStatement = conexion.prepareStatement(query);
+                preparedStatement.setString(1, matricula);
+                preparedStatement.setInt(2,proyecto.getId());
+                preparedStatement.execute();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                errores.getAndIncrement();
+            }
+        });
+        try{
+            conexion.close();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        if(errores.get() > 0){
+            AlertBuilder alert = new AlertBuilder();
+            alert.exceptionAlert("Error al solicitar proyecto. Inténtelo más tarde.");
+            return false;
+        }
+        return true;
     }
 }
