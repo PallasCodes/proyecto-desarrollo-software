@@ -1,5 +1,6 @@
 package practicante;
 
+import DataAccess.DAO.PracticanteDAO;
 import DataAccess.DAO.ProyectoDAO;
 import Dominio.Proyecto;
 import Dominio.Usuario;
@@ -23,6 +24,7 @@ public class SolicitarProyectoController implements Initializable {
     // instancias de las clases usadas
     SceneSwitcher sw = new SceneSwitcher();
     ProyectoDAO proyectoDao = new ProyectoDAO();
+    PracticanteDAO pracDao = new PracticanteDAO();
     ArrayList<Proyecto> proyectos;
     ArrayList<Proyecto> proyectosSeleccionados = new ArrayList<>();
     AlertBuilder alert = new AlertBuilder();
@@ -126,10 +128,13 @@ public class SolicitarProyectoController implements Initializable {
     }
 
     @FXML
-    void solicitarProyecto(ActionEvent event) {
+    void solicitarProyecto(ActionEvent event) throws IOException{
         if(validarSelecciones()){
             if(proyectoDao.solicitarProyecto(proyectosSeleccionados, Usuario.usuarioActual.getMatricula())){
-                alert.successAlert("Solicitud enviada con éxito");
+                if(pracDao.cambiarEstado("solicitado",Usuario.usuarioActual.getMatricula())){
+                    alert.successAlert("Solicitud enviada con éxito");
+                    sw.switchScene(event, stage, scene, "/practicante/PracticanteInicio.fxml");
+                }
             }
         } else {
             alert.errorAlert("Solo puedes seleccionar 1 a 3 proyectos");

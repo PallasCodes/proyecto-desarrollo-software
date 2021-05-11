@@ -107,4 +107,40 @@ public class PracticanteDAO implements IPracticante {
         }
         return practicantes;
     }
+
+    @Override
+    public boolean cambiarEstado(String estado, String matricula) {
+        Connection conexion = Conexion.conectar();
+        String query = "UPDATE practicante SET estado=? WHERE matricula=?";
+        try{
+            PreparedStatement preparedStatement = conexion.prepareStatement(query);
+            preparedStatement.setString(1,estado);
+            preparedStatement.setString(2,matricula);
+            preparedStatement.execute();
+            conexion.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String obtenerEstadoPracticante(String matricula) {
+        Connection conexion = Conexion.conectar();
+
+        String query = "SELECT estado FROM practicante WHERE matricula='"+matricula+"'";
+        try {
+            Statement st = conexion.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            if(rs.next()){
+                return rs.getString("estado");
+            }
+            conexion.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
 }

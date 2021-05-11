@@ -1,5 +1,6 @@
 package DataAccess.Interfaces;
 
+import DataAccess.DAO.PracticanteDAO;
 import Dominio.Practicante;
 import java.util.ArrayList;
 
@@ -11,4 +12,8 @@ public interface IPracticante {
     boolean eliminarPracticante(String matricula);
 
     ArrayList<Practicante> obtenerPracticantesConSolicitud();
+
+    boolean cambiarEstado(String estado, String matricula);
+
+    String obtenerEstadoPracticante(String matricula);
 }

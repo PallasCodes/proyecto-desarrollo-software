@@ -1,5 +1,6 @@
 package practicante;
 
+import DataAccess.DAO.PracticanteDAO;
 import DataAccess.DAO.UsuarioDAO;
 import Dominio.Practicante;
 import Dominio.Usuario;
@@ -7,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -19,6 +21,7 @@ public class PracticanteInicioController implements Initializable {
     // instancias de las clases usadas
     SceneSwitcher sw = new SceneSwitcher();
     UsuarioDAO usuarioDao = new UsuarioDAO();
+    PracticanteDAO pracDao = new PracticanteDAO();
 
     // componentes de la UI
     @FXML
@@ -33,6 +36,8 @@ public class PracticanteInicioController implements Initializable {
     private Label lbCorreo;
     @FXML
     private Label inicio;
+    @FXML
+    private Button btnSolicitarProyecto;
     private Stage stage;
     private Scene scene;
 
@@ -47,6 +52,11 @@ public class PracticanteInicioController implements Initializable {
         lbFacultad.setText(usuario.getFacultad());
         lbCorreo.setText(usuario.getCorreo());
         lbTelefono.setText(usuario.getTelefono());
+
+        if(!pracDao.obtenerEstadoPracticante(usuario.getMatricula()).equals("sin asignar")){
+            btnSolicitarProyecto.setDisable(true);
+            btnSolicitarProyecto.setVisible(false);
+        }
     }
 
 
