@@ -8,6 +8,25 @@ public class ReporteParcial {
     private String evaluacion;
     private String fecha;
 
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public int getHoras() {
+        return horas;
+    }
+
+    public void setHoras(int horas) {
+        this.horas = horas;
+    }
+
+    private String tipo;
+    private int horas;
+
     public static ReporteParcial reporteSeleccionado;
 
     public ReporteParcial() {

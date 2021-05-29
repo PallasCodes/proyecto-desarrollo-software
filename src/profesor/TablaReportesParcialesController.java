@@ -31,8 +31,6 @@ public class TablaReportesParcialesController implements Initializable {
     @FXML
     private TableColumn<ReporteParcial, String> colFecha;
     @FXML
-    private TableColumn<ReporteParcial, String> colEstado;
-    @FXML
     private TableColumn<ReporteParcial, String> colEvaluacion;
     Stage stage;
     Scene scene;
@@ -56,7 +54,6 @@ public class TablaReportesParcialesController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         colMatricula.setCellValueFactory(new PropertyValueFactory<ReporteParcial, String>("matricula"));
         colFecha.setCellValueFactory(new PropertyValueFactory<ReporteParcial, String>("fecha"));
-        colEstado.setCellValueFactory(new PropertyValueFactory<ReporteParcial, String>("estado"));
         colEvaluacion.setCellValueFactory(new PropertyValueFactory<ReporteParcial, String>("evaluacion"));
 
         popularTabla();

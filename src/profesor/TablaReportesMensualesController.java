@@ -34,8 +34,6 @@ public class TablaReportesMensualesController implements Initializable {
     @FXML
     private TableColumn<ReporteMensual, String> colFecha;
     @FXML
-    private TableColumn<ReporteMensual, String> colEstado;
-    @FXML
     private TableColumn<ReporteMensual, Integer> colHoras;
     @FXML
     private TableColumn<ReporteMensual, String> colEvaluacion;
@@ -57,7 +55,6 @@ public class TablaReportesMensualesController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         colMatricula.setCellValueFactory(new PropertyValueFactory<ReporteMensual, String>("matricula"));
         colFecha.setCellValueFactory(new PropertyValueFactory<ReporteMensual, String>("fecha"));
-        colEstado.setCellValueFactory(new PropertyValueFactory<ReporteMensual, String>("estado"));
         colHoras.setCellValueFactory(new PropertyValueFactory<ReporteMensual, Integer>("horas"));
         colEvaluacion.setCellValueFactory(new PropertyValueFactory<ReporteMensual, String>("evaluacion"));
 

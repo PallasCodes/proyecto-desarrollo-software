@@ -9,7 +9,9 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="675.0" minWidth="1080.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="practicante.PracticanteInicioController">
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<AnchorPane minHeight="675.0" minWidth="1080.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="practicante.TablaReportesController">
     <stylesheets>
         <URL value="@../login/style.css" />
     </stylesheets>
@@ -21,7 +23,7 @@
                 <Image url="@../assets/img/logo.png" />
             </image>
         </ImageView>
-        <Label fx:id="inicio" layoutX="40.0" layoutY="100.0" styleClass="handCursor, activeNavItem" text="Perfil" textFill="WHITE">
+        <Label fx:id="inicio" layoutX="40.0" layoutY="100.0" styleClass="handCursor" text="Perfil" textFill="WHITE" onMouseClicked="#irInicio">
             <font>
                 <Font name="Century Gothic Bold" size="17.0" />
             </font>
@@ -36,7 +38,7 @@
                 <Font name="Century Gothic Bold" size="17.0" />
             </font>
         </Label>
-        <Label layoutX="40.0" layoutY="208.0" styleClass="handCursor" text="Reportes" textFill="WHITE" onMouseClicked="#irTablaReportes">
+        <Label layoutX="40.0" layoutY="208.0" styleClass="handCursor, activeNavItem" text="Reportes" textFill="WHITE">
             <font>
                 <Font name="Century Gothic Bold" size="17.0" />
             </font>
@@ -52,19 +54,9 @@
             </image>
         </ImageView>
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="592.0" layoutX="221.0" layoutY="62.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="839.0" />
-        <Label layoutX="251.0" layoutY="82.0" text="Perfil" textFill="#666666">
+        <Label layoutX="251.0" layoutY="82.0" text="Reportes" textFill="#666666">
             <font>
                 <Font name="Century Gothic Bold" size="36.0" />
-            </font>
-        </Label>
-        <Label fx:id="lbNombre" layoutX="251.0" layoutY="146.0">
-            <font>
-                <Font name="Arial Bold" size="16.0" />
-            </font>
-        </Label>
-        <Label fx:id="lbRol" layoutX="251.0" layoutY="172.0">
-            <font>
-                <Font name="Arial" size="16.0" />
             </font>
         </Label>
         <Label layoutX="906.0" layoutY="13.0" text="Practicante" textFill="#666666">
@@ -72,36 +64,15 @@
                 <Font name="Arial" size="14.0" />
             </font>
         </Label>
-        <Label layoutX="251.0" layoutY="212.0" text="Facultad:">
-            <font>
-                <Font name="Arial Bold" size="16.0" />
-            </font>
-        </Label>
-        <Label layoutX="251.0" layoutY="240.0" text="Teléfono:">
-            <font>
-                <Font name="Arial Bold" size="16.0" />
-            </font>
-        </Label>
-        <Label layoutX="251.0" layoutY="266.0" text="Correo:">
-            <font>
-                <Font name="Arial Bold" size="16.0" />
-            </font>
-        </Label>
-        <Label fx:id="lbFacultad" layoutX="327.0" layoutY="212.0">
-            <font>
-                <Font name="Arial" size="16.0" />
-            </font>
-        </Label>
-        <Label fx:id="lbTelefono" layoutX="327.0" layoutY="240.0">
-            <font>
-                <Font name="Arial" size="16.0" />
-            </font>
-        </Label>
-        <Label fx:id="lbCorreo" layoutX="314.0" layoutY="266.0">
-            <font>
-                <Font name="Arial" size="16.0" />
-            </font>
-        </Label>
-      <Button fx:id="btnSolicitarProyecto" layoutX="879.0" layoutY="92.0" mnemonicParsing="false" onMouseClicked="#irSolicitarProyecto" styleClass="primary" text="Solicitar Proyecto" />
+        <Button styleClass="primary" fx:id="generarReporteMensual" layoutX="250.0" layoutY="150.0" mnemonicParsing="false" onAction="#generarReporteMensual" text="+ Reporte Mensual" />
+        <Button styleClass="primary" fx:id="generarReporteParcial" layoutX="410.0" layoutY="150.0" mnemonicParsing="false" onAction="#generarReporteParcial" text="+ Reporte Parcial" />
+        <TableView onMouseClicked="#modalReporte" fx:id="tablaReportes" layoutX="250.0" layoutY="200.0" prefHeight="444.0" prefWidth="750.0">
+            <columns>
+                <TableColumn fx:id="colTipo" prefWidth="150.0" text="Tipo" />
+                <TableColumn fx:id="colFecha" prefWidth="150.0" text="Fecha entrega" />
+                <TableColumn fx:id="colHoras" prefWidth="150.0" text="Horas Completadas" />
+                <TableColumn fx:id="colEvaluacion" prefWidth="150.0" text="Evaluacion" />
+            </columns>
+        </TableView>
     </children>
 </AnchorPane>

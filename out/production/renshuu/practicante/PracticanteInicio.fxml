@@ -36,7 +36,7 @@
                 <Font name="Century Gothic Bold" size="17.0" />
             </font>
         </Label>
-        <Label layoutX="40.0" layoutY="208.0" styleClass="handCursor" text="Reportes" textFill="WHITE">
+        <Label layoutX="40.0" layoutY="208.0" styleClass="handCursor" text="Reportes" textFill="WHITE" onMouseClicked="#irTablaReportes">
             <font>
                 <Font name="Century Gothic Bold" size="17.0" />
             </font>

@@ -61,7 +61,6 @@
             <columns>
                 <TableColumn fx:id="colMatricula" prefWidth="150.0" text="Matricula" />
                 <TableColumn fx:id="colFecha" prefWidth="150.0" text="Fecha entrega" />
-                <TableColumn fx:id="colEstado" prefWidth="150.0" text="Estado" />
                 <TableColumn fx:id="colHoras" prefWidth="150.0" text="Horas Completadas" />
                 <TableColumn fx:id="colEvaluacion" prefWidth="150.0" text="Evaluacion" />
             </columns>

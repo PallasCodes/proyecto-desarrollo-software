@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="468.0" maxWidth="410.0" minHeight="500.0" minWidth="700.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="practicante.ModalGenerarRepMensualController">
+    <stylesheets>
+        <URL value="@../login/style.css" />
+    </stylesheets>
+    <children>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" layoutY="-2.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="700.0" />
+        <Label layoutX="247.0" layoutY="20.0" text="Generar Reporte Mensual" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Label>
+        <Button fx:id="btnCancelar" layoutX="231.0" layoutY="345.0" minWidth="120.0" mnemonicParsing="false" onAction="#cancelarRegistro" prefHeight="32.0" prefWidth="115.0" text="Cancelar" />
+        <Button fx:id="btnGenerar" layoutX="355.0" layoutY="345.0" mnemonicParsing="false" onAction="#generarReporte" prefHeight="32.0" prefWidth="115.0" styleClass="primary" text="Generar" />
+      <Label layoutX="219.0" layoutY="116.0" text="Horas completadas:" textFill="#333333">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfHoras" layoutX="219.0" layoutY="138.0" prefWidth="272.0" />
+      <Label layoutX="219.0" layoutY="183.0" text="Actividades realizadas:" textFill="#333333">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="taActividades" layoutX="219.0" layoutY="205.0" prefHeight="118.0" prefWidth="272.0" />
+      <Label fx:id="lbError" layoutX="231.0" layoutY="411.0" textFill="RED" />
+    </children>
+</AnchorPane>

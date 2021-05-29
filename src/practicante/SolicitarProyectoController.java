@@ -88,6 +88,10 @@ public class SolicitarProyectoController implements Initializable {
         }
     }
 
+    public void irTablaReportes(MouseEvent event) throws IOException {
+        sw.switchSceneMouse(event, stage, scene, "/practicante/TablaReportes.fxml");
+    }
+
 
     // métodos
     public void popularTabla() {

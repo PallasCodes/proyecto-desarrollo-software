@@ -79,4 +79,8 @@ public class PracticanteInicioController implements Initializable {
     public void irSolicitarProyecto(MouseEvent event) throws IOException{
         sw.switchSceneMouse(event, stage, scene, "/practicante/SolicitarProyecto.fxml");
     }
+
+    public void irTablaReportes(MouseEvent event) throws IOException {
+        sw.switchSceneMouse(event, stage, scene, "/practicante/TablaReportes.fxml");
+    }
 }

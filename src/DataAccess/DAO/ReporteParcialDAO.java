@@ -59,4 +59,55 @@ public class ReporteParcialDAO implements IReporteParcial {
         }
         return true;
     }
+
+    @Override
+    public ArrayList<ReporteParcial> obtenerReportesParcialesPorMat(String matricula) {
+        Connection conexion = Conexion.conectar();
+        ArrayList<ReporteParcial> reportes = new ArrayList<>();
+
+        String query = "SELECT * FROM reporte_parcial WHERE eliminado=0 AND matricula='"+matricula+"'";
+        try {
+            Statement st = conexion.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            while(rs.next()){
+                ReporteParcial reporte = new ReporteParcial();
+                reporte.setId(rs.getInt("reporte_id"));
+                reporte.setMatricula(rs.getString("matricula"));
+                reporte.setActividades(rs.getString("actividades"));
+                reporte.setHoras(100);
+                reporte.setFecha(rs.getString("fecha_entrega"));
+                reporte.setEvaluacion(rs.getString("evaluacion"));
+                reporte.setTipo("Parcial");
+
+                reportes.add(reporte);
+            }
+            conexion.close();
+        } catch (SQLException throwables) {
+            AlertBuilder alert = new AlertBuilder();
+            alert.exceptionAlert("Error al obtener reportes. Inténtelo más tarde.");
+            throwables.printStackTrace();
+        }
+        return reportes;
+    }
+
+    @Override
+    public boolean generarReporteParcial(String matricula, String actividades) {
+        Connection conexion = Conexion.conectar();
+        String query = "INSERT INTO reporte_parcial (matricula,actividades) VALUES(?,?)";
+        try{
+            PreparedStatement preparedStatement = conexion.prepareStatement(query);
+            preparedStatement.setString(1,matricula);
+            preparedStatement.setString(2,actividades);
+
+            preparedStatement.execute();
+            conexion.close();
+        } catch (SQLException ex) {
+            AlertBuilder alert = new AlertBuilder();
+            alert.exceptionAlert("Error al generar el reporte parcial. Inténtelo más tarde.");
+            ex.printStackTrace();
+            return false;
+        }
+        return true;
+    }
 }

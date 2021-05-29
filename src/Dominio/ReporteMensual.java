@@ -8,6 +8,7 @@ public class ReporteMensual {
     private String fecha;
     private String actividades;
     private String evaluacion;
+    private String tipo;
 
     public static ReporteMensual reporteSeleccionado;
 
@@ -69,5 +70,13 @@ public class ReporteMensual {
 
     public void setEvaluacion(String evaluacion) {
         this.evaluacion = evaluacion;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 }

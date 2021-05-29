@@ -22,7 +22,6 @@ public class ReporteMensualDAO implements IReporteMensual {
                 ReporteMensual reporte = new ReporteMensual();
                 reporte.setId(rs.getInt("reporte_id"));
                 reporte.setMatricula(rs.getString("matricula"));
-                reporte.setEstado(rs.getString("estado"));
                 reporte.setActividades(rs.getString("actividades"));
                 reporte.setHoras(rs.getInt("horas"));
                 reporte.setFecha(rs.getString("fecha_entrega"));
@@ -57,5 +56,57 @@ public class ReporteMensualDAO implements IReporteMensual {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public boolean generarReporte(String matricula, int horas, String actividades) {
+        Connection conexion = Conexion.conectar();
+        String query = "INSERT INTO reporte_mensual (matricula,horas,actividades) VALUES(?,?,?)";
+        try{
+            PreparedStatement preparedStatement = conexion.prepareStatement(query);
+            preparedStatement.setString(1,matricula);
+            preparedStatement.setInt(2,horas);
+            preparedStatement.setString(3,actividades);
+
+            preparedStatement.execute();
+            conexion.close();
+        } catch (SQLException ex) {
+            AlertBuilder alert = new AlertBuilder();
+            alert.exceptionAlert("Error al generar el reporte mensual. Inténtelo más tarde.");
+            ex.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public ArrayList<ReporteMensual> obtenerReportesMensualesPorMat(String matricula) {
+        Connection conexion = Conexion.conectar();
+        ArrayList<ReporteMensual> reportes = new ArrayList<>();
+
+        String query = "SELECT * FROM reporte_mensual WHERE eliminado=0 AND matricula='"+matricula+"'";
+        try {
+            Statement st = conexion.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            while(rs.next()){
+                ReporteMensual reporte = new ReporteMensual();
+                reporte.setId(rs.getInt("reporte_id"));
+                reporte.setMatricula(rs.getString("matricula"));
+                reporte.setActividades(rs.getString("actividades"));
+                reporte.setHoras(rs.getInt("horas"));
+                reporte.setFecha(rs.getString("fecha_entrega"));
+                reporte.setEvaluacion(rs.getString("evaluacion"));
+                reporte.setTipo("Mensual");
+
+                reportes.add(reporte);
+            }
+            conexion.close();
+        } catch (SQLException throwables) {
+            AlertBuilder alert = new AlertBuilder();
+            alert.exceptionAlert("Error al obtener reportes. Inténtelo más tarde.");
+            throwables.printStackTrace();
+        }
+        return reportes;
     }
 }
