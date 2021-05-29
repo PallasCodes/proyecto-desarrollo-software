@@ -13,17 +13,18 @@ public class UsuarioDAO implements IUsuario {
     public boolean registrarUsuario(Usuario usuario) {
         Connection conexion = Conexion.conectar();
         String query = "INSERT INTO usuario (contraseña, rol, nombre, primer_apellido, segundo_apellido, telefono, correo"
-                + ", facultad) VALUES (?,?,?,?,?,?,?,?)";
+                + ", facultad, matricula) VALUES (?,?,?,?,?,?,?,?,?)";
         try{
             PreparedStatement preparedStatement = conexion.prepareStatement(query);
             preparedStatement.setString(1,usuario.getContraseña());
             preparedStatement.setString(2, usuario.getRol());
             preparedStatement.setString(3,usuario.getNombre());
-            //preparedStatement.setString(4,usuario.getPrimerApe());
-            //preparedStatement.setString(5,usuario.getSegundoApe());
+            preparedStatement.setString(4,usuario.getPrimerApellido());
+            preparedStatement.setString(5,usuario.getSegundoApellido());
             preparedStatement.setString(6,usuario.getTelefono());
             preparedStatement.setString(7,usuario.getCorreo());
             preparedStatement.setString(8,usuario.getFacultad());
+            preparedStatement.setString(9,usuario.getMatricula());
             preparedStatement.execute();
             conexion.close();
         } catch (Exception ex) {
