@@ -14,6 +14,7 @@ public class Usuario {
 
     public static Usuario coordinadorSeleccionado;
     public static Usuario usuarioActual;
+    public static Usuario docenteSeleccionado;
 
 
     // constructores

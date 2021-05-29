@@ -70,4 +70,8 @@ public class AdminInicioController implements Initializable {
             ioException.printStackTrace();
         }
     }
+
+    public void irTablaDocentes(MouseEvent event) throws IOException{
+        sw.switchSceneMouse(event, stage, scene, "../admin/TablaDocentes.fxml");
+    }
 }
