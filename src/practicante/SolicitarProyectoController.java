@@ -147,4 +147,8 @@ public class SolicitarProyectoController implements Initializable {
         }
         return true;
     }
+
+    public void irPerfil(MouseEvent event) throws IOException{
+        sw.switchSceneMouse(event, stage, scene, "/practicante/PracticanteInicio.fxml");
+    }
 }

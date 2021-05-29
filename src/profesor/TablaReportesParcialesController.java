@@ -65,20 +65,17 @@ public class TablaReportesParcialesController implements Initializable {
     //  métodos de la UI
     @FXML
     public void cerrarSesion(MouseEvent event) throws IOException {
-        sw.switchSceneMouse(event, stage, scene, "../login/Login.fxml");
+        sw.switchSceneMouse(event, stage, scene, "/login/Login.fxml");
     }
 
     @FXML
     public void irOpciones(MouseEvent event) throws IOException {
-        /*
-        Stage stageActual = (Stage) tablaReportesMensuales.getScene().getWindow();
+        Stage stageActual = (Stage) tablaReportesParciales.getScene().getWindow();
         try {
-            sw.createDialog(stageActual, "../login/ModalCambiarContraseña.fxml");
+            sw.createDialog(stageActual, "/login/ModalCambiarContraseña.fxml");
         } catch (IOException ioException) {
             ioException.printStackTrace();
         }
-
-         */
     }
 
     @FXML
@@ -102,5 +99,13 @@ public class TablaReportesParcialesController implements Initializable {
     public void popularTabla() {
         reportes = reporteParcialDao.obtenerReportesParciales();
         tablaReportesParciales.getItems().setAll(reportes);
+    }
+
+    public void irPerfil(MouseEvent event) throws IOException{
+        sw.switchSceneMouse(event, stage, scene, "../profesor/ProfesorInicio.fxml");
+    }
+
+    public void irTablaReportesMensuales(MouseEvent event) throws IOException{
+        sw.switchSceneMouse(event, stage, scene, "../profesor/TablaReportesMensuales.fxml");
     }
 }

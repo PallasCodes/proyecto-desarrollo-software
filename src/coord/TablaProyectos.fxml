@@ -43,7 +43,7 @@
                 <Font name="Century Gothic Bold" size="17.0" />
             </font>
         </Label>
-        <Label layoutX="40.0" layoutY="244.0" styleClass="handCursor" text="Solicitudes" textFill="WHITE">
+        <Label layoutX="40.0" layoutY="244.0" styleClass="handCursor" text="Solicitudes" textFill="WHITE" onMouseClicked="#irTablaSolicitudes">
             <font>
                 <Font name="Century Gothic Bold" size="17.0" />
             </font>
@@ -54,7 +54,7 @@
             </font>
         </Label>
         <Button styleClass="primary" fx:id="agregarProyecto" layoutX="230.0" layoutY="108.0" mnemonicParsing="false" onAction="#modalAgregarProyecto" text="+ Agregar" />
-        <Button styleClass="danger" fx:id="btnEliminar" layoutX="3330.0" layoutY="108.0" mnemonicParsing="false" onAction="#eliminarPro" text="Eliminar" />
+        <Button styleClass="danger" fx:id="btnEliminar" layoutX="330.0" layoutY="108.0" mnemonicParsing="false" onAction="#eliminarPro" text="Eliminar" />
         <Button styleClass="success" fx:id="btnActualizar" layoutX="418.0" layoutY="108.0" mnemonicParsing="false" onAction="#actualizarPro" text="Actualizar" />
         <TableView fx:id="tablaProyectos" layoutX="231.0" layoutY="166.0" prefHeight="444.0" prefWidth="818.0">
             <columns>
@@ -62,7 +62,7 @@
                 <TableColumn fx:id="colOrganizacion" minWidth="0.0" prefWidth="258.0" text="Organización" />
                 <TableColumn fx:id="colEstado" minWidth="0.0" prefWidth="150.0" text="Estado" />
                 <TableColumn fx:id="colId" prefWidth="75.0" text="id" visible="false" />
-                <TableColumn fx:id="colCupo" prefWidth="150.0" text="Cupo" />
+                <TableColumn fx:id="colCupo" prefWidth="150.0" text="Disponibilidad" />
             </columns>
         </TableView>
         <ImageView fitHeight="22.0" fitWidth="23.0" layoutX="1031.0" layoutY="12.0" onMouseClicked="#cerrarSesion" pickOnBounds="true" preserveRatio="true" styleClass="handCursor">

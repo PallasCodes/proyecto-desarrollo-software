@@ -84,7 +84,7 @@ public class TablaOrganizacionesController implements Initializable {
 
     @FXML
     public void cerrarSesion(MouseEvent event) throws IOException {
-        sw.switchSceneMouse(event, stage, scene, "../login/login.fxml");
+        sw.switchSceneMouse(event, stage, scene, "/login/Login.fxml");
     }
 
     @FXML
@@ -143,5 +143,9 @@ public class TablaOrganizacionesController implements Initializable {
     }
 
     public void actualizarOrg(ActionEvent actionEvent) {
+    }
+
+    public void irTablaSolicitudes(MouseEvent event) throws IOException{
+        sw.switchSceneMouse(event, stage, scene, "../coord/TablaSolicitudes.fxml");
     }
 }

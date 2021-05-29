@@ -79,14 +79,14 @@ public class TablaReportesMensualesController implements Initializable {
     //  métodos de la UI
     @FXML
     public void cerrarSesion(MouseEvent event) throws IOException {
-        sw.switchSceneMouse(event, stage, scene, "../login/Login.fxml");
+        sw.switchSceneMouse(event, stage, scene, "/login/Login.fxml");
     }
 
     @FXML
     public void irOpciones(MouseEvent event) throws IOException {
         Stage stageActual = (Stage) tablaReportesMensuales.getScene().getWindow();
         try {
-            sw.createDialog(stageActual, "../login/ModalCambiarContraseña.fxml");
+            sw.createDialog(stageActual, "/login/ModalCambiarContraseña.fxml");
         } catch (IOException ioException) {
             ioException.printStackTrace();
         }
@@ -100,5 +100,13 @@ public class TablaReportesMensualesController implements Initializable {
     public ReporteMensual obtenerReporteSeleccionado(){
         ReporteMensual.reporteSeleccionado = tablaReportesMensuales.getSelectionModel().getSelectedItem();
         return ReporteMensual.reporteSeleccionado;
+    }
+
+    public void irPerfil(MouseEvent event) throws IOException{
+        sw.switchSceneMouse(event, stage, scene, "../profesor/ProfesorInicio.fxml");
+    }
+
+    public void irTablaReportesParciales(MouseEvent event) throws IOException{
+        sw.switchSceneMouse(event, stage, scene, "../profesor/TablaReportesParciales.fxml");
     }
 }

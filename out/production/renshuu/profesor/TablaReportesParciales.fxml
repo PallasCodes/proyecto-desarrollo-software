@@ -22,7 +22,7 @@
                 <Image url="@../assets/img/logo.png" />
             </image>
         </ImageView>
-        <Label styleClass="handCursor" fx:id="inicio" layoutX="40.0" layoutY="100.0" text="Perfil" textFill="WHITE">
+        <Label styleClass="handCursor" fx:id="inicio" layoutX="40.0" layoutY="100.0" text="Perfil" textFill="WHITE" onMouseClicked="#irPerfil">
             <font>
                 <Font name="Century Gothic Bold" size="17.0" />
             </font>
@@ -32,7 +32,7 @@
                 <Font name="Century Gothic Bold" size="17.0" />
             </font>
         </Label>
-        <Label styleClass="handCursor" layoutX="40.0" layoutY="172.0" text="Reportes Mensuales" textFill="WHITE">
+        <Label styleClass="handCursor" layoutX="40.0" layoutY="172.0" text="Reportes Mensuales" textFill="WHITE" onMouseClicked="#irTablaReportesMensuales">
             <font>
                 <Font name="Century Gothic Bold" size="17.0" />
             </font>

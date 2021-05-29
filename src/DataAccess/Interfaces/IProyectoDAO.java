@@ -16,3 +16,12 @@ public interface IProyectoDAO {
 
     boolean solicitarProyecto(ArrayList<Proyecto> proyectos, String matricula);
 }
+
+// TODO: generate monthly report
+// TODO: generate partial report
+// TODO: self-evaluation
+// TODO: host DB online
+// TODO: merge Lira's code
+// TODO: fix second iteration code
+// TODO: fix first iteration code
+// TODO: add extra stuff

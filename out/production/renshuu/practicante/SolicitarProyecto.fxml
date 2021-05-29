@@ -24,12 +24,12 @@
                 <Image url="@../assets/img/logo.png" />
             </image>
         </ImageView>
-        <Label fx:id="inicio" layoutX="40.0" layoutY="100.0" styleClass="handCursor, activeNavItem" text="Perfil" textFill="WHITE">
+        <Label fx:id="inicio" layoutX="40.0" layoutY="100.0" styleClass="handCursor" text="Perfil" textFill="WHITE" onMouseClicked="#irPerfil">
             <font>
                 <Font name="Century Gothic Bold" size="17.0" />
             </font>
         </Label>
-        <Label layoutX="40.0" layoutY="136.0" styleClass="handCursor" text="Proyecto" textFill="WHITE">
+        <Label layoutX="40.0" layoutY="136.0" styleClass="handCursor, activeNavItem" text="Proyecto" textFill="WHITE">
             <font>
                 <Font name="Century Gothic Bold" size="17.0" />
             </font>

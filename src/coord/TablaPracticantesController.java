@@ -101,7 +101,7 @@ public class TablaPracticantesController implements Initializable {
 
     @FXML
     public void cerrarSesion(MouseEvent event) throws IOException {
-        sw.switchSceneMouse(event, stage, scene, "../login/login.fxml");
+        sw.switchSceneMouse(event, stage, scene, "/login/Login.fxml");
     }
 
     @FXML
@@ -141,5 +141,9 @@ public class TablaPracticantesController implements Initializable {
     public Practicante obtenerPracSeleccionado(){
         Practicante.practicanteSeleccionado = tablaPracticantes.getSelectionModel().getSelectedItem();
         return Practicante.practicanteSeleccionado;
+    }
+
+    public void irTablaSolicitudes(MouseEvent event) throws IOException{
+        sw.switchSceneMouse(event, stage, scene, "../coord/TablaSolicitudes.fxml");
     }
 }

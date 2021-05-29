@@ -63,7 +63,7 @@ public class CoordInicioController implements Initializable {
     }
 
     public void cerrarSesion(MouseEvent event) throws IOException {
-        sw.switchSceneMouse(event, stage, scene, "../login/login.fxml");
+        sw.switchSceneMouse(event, stage, scene, "/login/Login.fxml");
     }
 
     public void irOpciones(MouseEvent event) throws IOException {

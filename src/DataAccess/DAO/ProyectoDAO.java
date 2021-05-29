@@ -15,7 +15,7 @@ public class ProyectoDAO implements IProyectoDAO {
         Connection conexion = Conexion.conectar();
         ArrayList<Proyecto> proyectos = new ArrayList<>();
 
-        String query = "SELECT * FROM proyecto WHERE estado='disponible' AND eliminado=0";
+        String query = "SELECT * FROM proyecto WHERE estado='disponible' AND eliminado=0 AND disponibilidad > 0";
         try {
             Statement st = conexion.createStatement();
             ResultSet rs = st.executeQuery(query);
@@ -47,7 +47,6 @@ public class ProyectoDAO implements IProyectoDAO {
                 "VALUES (?,?,?,?,?,?,?)";
         try{
             PreparedStatement preparedStatement = conexion.prepareStatement(query);
-            //System.out.println(proyecto.getOrganizacion());
             preparedStatement.setInt(1,Integer.parseInt(proyecto.getOrganizacion()));
             preparedStatement.setString(2, proyecto.getNombre());
             preparedStatement.setString(3,proyecto.getDescripcion());
@@ -67,19 +66,19 @@ public class ProyectoDAO implements IProyectoDAO {
     }
 
     @Override
-    public boolean eliminarProyecto(int proyectoId) {
+    public boolean eliminarProyecto(int id) {
         Connection conexion = Conexion.conectar();
-        String query = "DELETE FROM proyecto WHERE proyecto_id=?";
-
+        String query = "UPDATE proyecto SET eliminado=1 WHERE proyecto_id=?";
         try{
             PreparedStatement preparedStatement = conexion.prepareStatement(query);
-            preparedStatement.setInt(1,proyectoId);
+            preparedStatement.setInt(1,id);
+
             preparedStatement.execute();
             conexion.close();
-        } catch (SQLException throwables) {
+        } catch (SQLException ex) {
             AlertBuilder alert = new AlertBuilder();
             alert.exceptionAlert("Error al eliminar el proyecto. Inténtelo más tarde.");
-            throwables.printStackTrace();
+            ex.printStackTrace();
             return false;
         }
         return true;
