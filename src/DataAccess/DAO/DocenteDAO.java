@@ -62,7 +62,7 @@ public class DocenteDAO implements IDocenteDAO {
     public boolean actualizarDocente(Usuario docente) {
         Connection conexion = Conexion.conectar();
         String query = "UPDATE usuario SET nombre=?, primer_apellido=?, segundo_apellido=?, facultad=?, telefono=?, " +
-                "correo=? WHERE numeroPersonal LIKE '%" + docente.getMatricula() + "%'";
+                "correo=? WHERE matricula LIKE '%" + docente.getMatricula() + "%'";
         try{
             PreparedStatement preparedStatement = conexion.prepareStatement(query);
             preparedStatement.setString(1, docente.getNombre());

@@ -123,7 +123,7 @@ public class TablaDocenteController implements Initializable {
             SceneSwitcher switcher = new SceneSwitcher();
             Stage stageActual = (Stage) agregarDocente.getScene().getWindow();
             try {
-                switcher.createDialog(stageActual, "../admin/ModalActualizarDocente.fxml");
+                switcher.createDialog(stageActual, "/admin/ModalActualizarDocente.fxml");
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }
