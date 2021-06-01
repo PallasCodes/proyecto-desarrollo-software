@@ -8,7 +8,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import DataAccess.UsuarioData;
 import utils.SceneSwitcher;
 import java.io.IOException;
 

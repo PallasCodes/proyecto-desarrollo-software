@@ -9,7 +9,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="675.0" minWidth="1080.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="practicante.PracticanteInicioController">
+<AnchorPane minHeight="675.0" minWidth="1080.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16" fx:controller="practicante.PracticanteInicioController">
     <stylesheets>
         <URL value="@../login/style.css" />
     </stylesheets>
@@ -31,12 +31,12 @@
                 <Font name="Century Gothic Bold" size="17.0" />
             </font>
         </Label>
-        <Label layoutX="40.0" layoutY="172.0" styleClass="handCursor" text="Archivos" textFill="WHITE">
+        <Label layoutX="40.0" layoutY="172.0" onMouseClicked="#irArchivos" styleClass="handCursor" text="Archivos" textFill="WHITE">
             <font>
                 <Font name="Century Gothic Bold" size="17.0" />
             </font>
         </Label>
-        <Label layoutX="40.0" layoutY="208.0" styleClass="handCursor" text="Reportes" textFill="WHITE" onMouseClicked="#irTablaReportes">
+        <Label layoutX="40.0" layoutY="208.0" onMouseClicked="#irTablaReportes" styleClass="handCursor" text="Reportes" textFill="WHITE">
             <font>
                 <Font name="Century Gothic Bold" size="17.0" />
             </font>
