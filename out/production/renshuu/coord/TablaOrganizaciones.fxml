@@ -55,7 +55,9 @@
          </font>
       </Label>
       <Button styleClass="primary" fx:id="agregarOrg" layoutX="230.0" layoutY="108.0" mnemonicParsing="false" onAction="#modalAgregarOrg" text="+ Agregar" />
-      <TableView onMouseClicked="#abrirModal" fx:id="tablaOrgs" layoutX="231.0" layoutY="166.0" prefHeight="444.0" prefWidth="818.0">
+        <Button styleClass="danger" fx:id="btnEliminar" layoutX="330.0" layoutY="108.0" mnemonicParsing="false" onAction="#eliminarOrg" text="Eliminar" />
+        <Button styleClass="success" fx:id="btnActualizar" layoutX="418.0" layoutY="108.0" mnemonicParsing="false" onAction="#actualizarOrg" text="Actualizar" />
+      <TableView onMouseClicked="#obtenerOrgSeleccionada" fx:id="tablaOrgs" layoutX="231.0" layoutY="166.0" prefHeight="444.0" prefWidth="818.0">
         <columns>
           <TableColumn fx:id="colNombre" prefWidth="171.0" text="Nombre" />
           <TableColumn fx:id="colDireccion" minWidth="0.0" prefWidth="323.0" text="Dirección" />

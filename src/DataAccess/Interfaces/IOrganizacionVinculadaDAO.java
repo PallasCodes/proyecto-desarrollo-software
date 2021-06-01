@@ -9,5 +9,7 @@ public interface IOrganizacionVinculadaDAO {
 
     void registrarOrganizacion(OrganizacionVinculada org);
 
-    void eliminarOrganizacion(int organizacionId);
+    void eliminarOrganizacion(String nombre);
+
+    void actualizarOrganizacion(OrganizacionVinculada org, String nombre);
 }

@@ -26,7 +26,6 @@ public class Main extends Application {
     }
 }
 
-// TODO: crud practicantes
 // TODO: crud organizaciones
 // TODO: arreglar cambiar contraseña
 // TODO: arreglar login

@@ -114,22 +114,14 @@ public class TablaOrganizacionesController implements Initializable {
         if(org == null){
             alert.errorAlert("Error. Seleccione una organización");
         }else if(alert.confirmationAlert("¿Desea eliminar la organización?")){
-            //int organizacionId = Integer.parseInt(org.getOrganizacionId());
-            //orgDao.eliminarOrganizacion(organizacionId);
+            orgDao.eliminarOrganizacion(org.getNombre());
             popularTabla();
         }
     }
 
     @FXML
     public void abrirModal(MouseEvent event) {
-        if(event.getClickCount() >= 2){
-            Stage stageActual = (Stage) agregarOrg.getScene().getWindow();
-            try {
-                sw.createDialog(stageActual, "/coord/ModalRegistrarOrg.fxml");
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            }
-        }
+
     }
 
     // métodos
@@ -139,10 +131,22 @@ public class TablaOrganizacionesController implements Initializable {
     }
 
     public OrganizacionVinculada obtenerOrgSeleccionada(){
+        OrganizacionVinculada.orgSeleccionada = tablaOrgs.getSelectionModel().getSelectedItem();
         return tablaOrgs.getSelectionModel().getSelectedItem();
     }
 
     public void actualizarOrg(ActionEvent actionEvent) {
+        OrganizacionVinculada organizacion = OrganizacionVinculada.orgSeleccionada;
+        if(organizacion == null){
+            alert.errorAlert("*Error. Selecciona una organización.");
+        } else {
+            Stage stageActual = (Stage) agregarOrg.getScene().getWindow();
+            try {
+                sw.createDialog(stageActual, "/coord/ModalActualizarOrg.fxml");
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        }
     }
 
     public void irTablaSolicitudes(MouseEvent event) throws IOException{

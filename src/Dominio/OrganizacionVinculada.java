@@ -6,6 +6,8 @@ public class OrganizacionVinculada {
     private String direccion;
     private String correo;
 
+    public static OrganizacionVinculada orgSeleccionada;
+
 
     // GETS Y SETS
     public String getNombre() {

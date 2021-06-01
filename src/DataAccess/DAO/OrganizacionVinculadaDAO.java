@@ -14,7 +14,7 @@ public class OrganizacionVinculadaDAO implements IOrganizacionVinculadaDAO {
         Connection conexion = Conexion.conectar();
         ArrayList<OrganizacionVinculada> organizaciones = new ArrayList<>();
 
-        String query = "SELECT * FROM organizacion_vinculada";
+        String query = "SELECT * FROM organizacion_vinculada WHERE eliminado=0";
         try {
             Statement st = conexion.createStatement();
             ResultSet rs = st.executeQuery(query);
@@ -30,7 +30,7 @@ public class OrganizacionVinculadaDAO implements IOrganizacionVinculadaDAO {
             conexion.close();
         } catch (SQLException throwables) {
             AlertBuilder alert = new AlertBuilder();
-            alert.errorAlert("Error al conectarse con la BD. Inténtelo más tarde");
+            alert.errorAlert("Error al actualizar la organización. Inténtelo más tarde");
             throwables.printStackTrace();
         }
 
@@ -57,18 +57,38 @@ public class OrganizacionVinculadaDAO implements IOrganizacionVinculadaDAO {
     }
 
     @Override
-    public void eliminarOrganizacion(int organizacionId) {
+    public void eliminarOrganizacion(String nombre) {
         Connection conexion = Conexion.conectar();
-        String query = "DELETE FROM organizacion_vinculada WHERE organizacion_id=?";
+        String query = "UPDATE organizacion_vinculada SET eliminado=1 WHERE nombre=?";
 
         try{
             PreparedStatement preparedStatement = conexion.prepareStatement(query);
-            preparedStatement.setInt(1,organizacionId);
+            preparedStatement.setString(1,nombre);
             preparedStatement.execute();
             conexion.close();
         } catch (SQLException throwables) {
             AlertBuilder alert = new AlertBuilder();
             alert.errorAlert("Error al eliminar la organización. Inténtelo más tarde.");
+            throwables.printStackTrace();
+        }
+    }
+
+    @Override
+    public void actualizarOrganizacion(OrganizacionVinculada org, String nombre) {
+        Connection conexion = Conexion.conectar();
+        String query = "UPDATE organizacion_vinculada SET nombre=?, direccion=?, correo=? WHERE nombre=?";
+
+        try{
+            PreparedStatement preparedStatement = conexion.prepareStatement(query);
+            preparedStatement.setString(1,org.getNombre());
+            preparedStatement.setString(2,org.getDireccion());
+            preparedStatement.setString(3,org.getCorreo());
+            preparedStatement.setString(4,nombre);
+            preparedStatement.execute();
+            conexion.close();
+        } catch (SQLException throwables) {
+            AlertBuilder alert = new AlertBuilder();
+            alert.errorAlert("Error al actualizar la organización. Inténtelo más tarde.");
             throwables.printStackTrace();
         }
     }
