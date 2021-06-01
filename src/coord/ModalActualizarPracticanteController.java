@@ -6,10 +6,14 @@ import Dominio.Practicante;
 import Dominio.Usuario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
-public class ModalRegistrarPracController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class ModalActualizarPracticanteController implements Initializable {
     // instancias de clases usadas
     UsuarioDAO usuarioDAO = new UsuarioDAO();
     PracticanteDAO practicanteDao = new PracticanteDAO();
@@ -51,9 +55,9 @@ public class ModalRegistrarPracController {
         if(camposCompletos()){
             if(datosValidos()){
                 Usuario usuario = generarUsuario();
-                if(usuarioDAO.registrarUsuario(usuario)) {
+                if(usuarioDAO.actualizarUsuario(usuario)) {
                     Practicante practicante = generarPracticante();
-                    if(practicanteDao.registrarPracticante(practicante)){
+                    if(practicanteDao.actualizarPracticante(practicante)){
                         TablaPracticantesController.getInstance().popularTabla();
                     }
                     Stage stage = (Stage) registrarPrac.getScene().getWindow();
@@ -71,8 +75,8 @@ public class ModalRegistrarPracController {
     // métodos
     public boolean camposCompletos(){
         return !tfNombre.getText().equals("") && !tfPrimerApe.getText().equals("") && !tfSegundoApe.getText().equals("")
-                && !tfContraseña.getText().equals("") && !tfTelefono.getText().equals("") && !tfFacultad.getText().equals("")
-                && !tfCorreo.getText().equals("") && !tfMatricula.getText().equals("") && !tfPeriodo.getText().equals("");
+                && !tfTelefono.getText().equals("") && !tfFacultad.getText().equals("")
+                && !tfCorreo.getText().equals("") && !tfPeriodo.getText().equals("");
     }
 
     public boolean datosValidos(){
@@ -84,22 +88,33 @@ public class ModalRegistrarPracController {
         usuario.setNombre(tfNombre.getText());
         usuario.setPrimerApellido(tfPrimerApe.getText());
         usuario.setSegundoApellido(tfSegundoApe.getText());
-        usuario.setContraseña(tfContraseña.getText());
-        usuario.setRol("practicante");
         usuario.setTelefono(tfTelefono.getText());
         usuario.setCorreo(tfCorreo.getText());
         usuario.setFacultad(tfFacultad.getText());
-        usuario.setMatricula(tfMatricula.getText());
+        usuario.setMatricula(Practicante.practicanteSeleccionado.getMatricula());
 
         return usuario;
     }
 
     public Practicante generarPracticante() {
         Practicante practicante = new Practicante();
-        practicante.setMatricula(tfMatricula.getText());
-        practicante.setEstado("Sin asignar");
+        practicante.setMatricula(Practicante.practicanteSeleccionado.getMatricula());
         practicante.setPeriodo(tfPeriodo.getText());
 
         return practicante;
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        Practicante practicante = Practicante.practicanteSeleccionado;
+        Usuario usuario = usuarioDAO.obtenerUsuarioPorMat(practicante.getMatricula());
+
+        tfCorreo.setText(usuario.getCorreo());
+        tfFacultad.setText(usuario.getFacultad());
+        tfNombre.setText(practicante.getNombre());
+        tfPeriodo.setText(practicante.getPeriodo());
+        tfPrimerApe.setText(practicante.getPrimerApellido());
+        tfSegundoApe.setText(practicante.getSegundoApellido());
+        tfTelefono.setText(usuario.getTelefono());
     }
 }
