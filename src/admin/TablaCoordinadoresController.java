@@ -64,8 +64,8 @@ public class TablaCoordinadoresController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         colNombre.setCellValueFactory(new PropertyValueFactory<Usuario, String>("nombre"));
-        colPrimerApe.setCellValueFactory(new PropertyValueFactory<Usuario, String>("PrimerApe"));
-        colSegundoApe.setCellValueFactory(new PropertyValueFactory<Usuario, String>("SegundoApe"));
+        colPrimerApe.setCellValueFactory(new PropertyValueFactory<Usuario, String>("primerApellido"));
+        colSegundoApe.setCellValueFactory(new PropertyValueFactory<Usuario, String>("segundoApellido"));
         colFacultad.setCellValueFactory(new PropertyValueFactory<Usuario, String>("facultad"));
         colId.setCellValueFactory(new PropertyValueFactory<Usuario, String>("usuarioId"));
 

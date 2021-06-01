@@ -42,6 +42,8 @@ public class ModalRegistrarCoordController {
     private TextField tfFacultad;
     @FXML
     private TextField tfCorreo;
+    @FXML
+    private TextField tfNoPersonal;
 
     // métodos de la UI
     @FXML
@@ -82,6 +84,7 @@ public class ModalRegistrarCoordController {
         usuario.setTelefono(tfTelefono.getText());
         usuario.setCorreo(tfCorreo.getText());
         usuario.setFacultad(tfFacultad.getText());
+        usuario.setMatricula(tfNoPersonal.getText());
 
         return usuario;
     }

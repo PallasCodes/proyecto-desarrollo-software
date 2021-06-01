@@ -24,7 +24,6 @@ public class ReporteParcialDAO implements IReporteParcial {
                 ReporteParcial reporte = new ReporteParcial();
                 reporte.setId(rs.getInt("reporte_id"));
                 reporte.setMatricula(rs.getString("matricula"));
-                reporte.setEstado(rs.getString("estado"));
                 reporte.setActividades(rs.getString("actividades"));
                 reporte.setFecha(rs.getString("fecha_entrega"));
                 reporte.setEvaluacion(rs.getString("evaluacion"));
