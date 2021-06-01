@@ -1,5 +1,6 @@
 package practicante;
 
+import DataAccess.DAO.AutoevaluacionDAO;
 import DataAccess.DAO.PracticanteDAO;
 import DataAccess.DAO.UsuarioDAO;
 import Dominio.Practicante;
@@ -22,6 +23,7 @@ public class PracticanteInicioController implements Initializable {
     SceneSwitcher sw = new SceneSwitcher();
     UsuarioDAO usuarioDao = new UsuarioDAO();
     PracticanteDAO pracDao = new PracticanteDAO();
+    AutoevaluacionDAO autoDao = new AutoevaluacionDAO();
 
     // componentes de la UI
     @FXML
@@ -38,6 +40,8 @@ public class PracticanteInicioController implements Initializable {
     private Label inicio;
     @FXML
     private Button btnSolicitarProyecto;
+    @FXML
+    private Button btnAutoevaluacion;
     private Stage stage;
     private Scene scene;
 
@@ -56,6 +60,13 @@ public class PracticanteInicioController implements Initializable {
         if(!pracDao.obtenerEstadoPracticante(usuario.getMatricula()).equals("sin asignar")){
             btnSolicitarProyecto.setDisable(true);
             btnSolicitarProyecto.setVisible(false);
+        }
+
+        boolean realizoAutoevaluacion = autoDao.realizoAutoevaluacion(Usuario.usuarioActual.getMatricula());
+
+        if(pracDao.obtenerHoras(usuario.getMatricula()) < 400 || realizoAutoevaluacion){
+            btnAutoevaluacion.setDisable(true);
+            btnAutoevaluacion.setVisible(false);
         }
     }
 
@@ -82,5 +93,9 @@ public class PracticanteInicioController implements Initializable {
 
     public void irTablaReportes(MouseEvent event) throws IOException {
         sw.switchSceneMouse(event, stage, scene, "/practicante/TablaReportes.fxml");
+    }
+
+    public void irAutoevaluacion(MouseEvent event) throws IOException {
+        sw.switchSceneMouse(event, stage, scene, "/practicante/Autoevaluacion.fxml");
     }
 }

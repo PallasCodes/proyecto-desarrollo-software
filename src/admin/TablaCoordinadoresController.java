@@ -146,4 +146,8 @@ public class TablaCoordinadoresController implements Initializable {
         Usuario.coordinadorSeleccionado = tablaCoordinadores.getSelectionModel().getSelectedItem();
         return Usuario.coordinadorSeleccionado;
     }
+
+    public void irTablaDocentes(MouseEvent event) throws IOException {
+        sw.switchSceneMouse(event, stage, scene, "../admin/TablaDocentes.fxml");
+    }
 }

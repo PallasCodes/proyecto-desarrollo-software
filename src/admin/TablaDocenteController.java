@@ -15,7 +15,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import utils.AlertBuilder;
 import utils.SceneSwitcher;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -95,7 +94,7 @@ public class TablaDocenteController implements Initializable {
 
     @FXML
     public void cerrarSesion(MouseEvent event) throws IOException {
-        sw.switchSceneMouse(event, stage, scene, "../login/login.fxml");
+        sw.switchSceneMouse(event, stage, scene, "/login/Login.fxml");
     }
 
     @FXML

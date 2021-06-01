@@ -16,4 +16,6 @@ public interface IPracticante {
     boolean cambiarEstado(String estado, String matricula);
 
     String obtenerEstadoPracticante(String matricula);
+
+    int obtenerHoras(String matricula);
 }

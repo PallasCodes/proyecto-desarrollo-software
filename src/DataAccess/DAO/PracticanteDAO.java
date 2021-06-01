@@ -143,4 +143,23 @@ public class PracticanteDAO implements IPracticante {
         }
         return null;
     }
+
+    @Override
+    public int obtenerHoras(String matricula) {
+        Connection conexion = Conexion.conectar();
+
+        String query = "SELECT horas FROM practicante WHERE matricula='"+matricula+"'";
+        try {
+            Statement st = conexion.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            if(rs.next()){
+                return rs.getInt("horas");
+            }
+            conexion.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return 0;
+    }
 }
