@@ -58,7 +58,7 @@ public class ModalSubirArchivoController {
         archivo.setNombreArchivo(nombreArchivo.getText());
         archivo.setTipoArchivo(tipoArchivoTextField.getText());
         archivo.setMatricula(Usuario.usuarioActual.getMatricula());
-        archivo.setDireccionArchivo(archivoSubido.getAbsolutePath());
+        archivo.setDireccionArchivo("Files/" + archivoSubido.getName());
         int guardadoExitoso = 0;
         if (archivoSubido != null) {
             if (comprobarCamposVacios()) {
