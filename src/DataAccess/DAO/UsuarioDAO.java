@@ -91,10 +91,11 @@ public class UsuarioDAO implements IUsuario {
     @Override
     public boolean cambiarContraseña(String matricula, String contraseña) {
         Connection conexion = Conexion.conectar();
-        String query = "UPDATE usuario SET contraseña=? WHERE matricula="+matricula;
+        String query = "UPDATE usuario SET contraseña=? WHERE matricula=?";
         try{
             PreparedStatement preparedStatement = conexion.prepareStatement(query);
             preparedStatement.setString(1,contraseña);
+            preparedStatement.setString(2,matricula);
 
             preparedStatement.execute();
             conexion.close();

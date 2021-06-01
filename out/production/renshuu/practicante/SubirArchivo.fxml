@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane minHeight="675.0" minWidth="1080.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="practicante.SubirArchivoController">
+    <stylesheets>
+        <URL value="@../login/style.css" />
+    </stylesheets>
+    <children>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="675.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="42.0" layoutX="200.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="880.0" />
+        <ImageView fitHeight="42.0" fitWidth="159.0" layoutX="24.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../assets/img/logo.png" />
+            </image>
+        </ImageView>
+        <Label fx:id="inicio" layoutX="40.0" layoutY="100.0" styleClass="handCursor" text="Perfil" textFill="WHITE">
+            <font>
+                <Font name="Century Gothic Bold" size="17.0" />
+            </font>
+        </Label>
+        <Label layoutX="40.0" layoutY="136.0" styleClass="handCursor" text="Proyecto" textFill="WHITE">
+            <font>
+                <Font name="Century Gothic Bold" size="17.0" />
+            </font>
+        </Label>
+        <Label layoutX="40.0" layoutY="172.0" styleClass="activeNavItem" text="Archivos" textFill="WHITE">
+            <font>
+                <Font name="Century Gothic Bold" size="17.0" />
+            </font>
+        </Label>
+        <Label layoutX="40.0" layoutY="208.0" styleClass="handCursor" text="Reportes" textFill="WHITE">
+            <font>
+                <Font name="Century Gothic Bold" size="17.0" />
+            </font>
+        </Label>
+        <ImageView fitHeight="22.0" fitWidth="23.0" layoutX="1031.0" layoutY="12.0" onMouseClicked="#cerrarSesion" pickOnBounds="true" preserveRatio="true" styleClass="handCursor">
+            <image>
+                <Image url="@../assets/icons/logout.png" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="20.0" fitWidth="21.0" layoutX="998.0" layoutY="10.0" onMouseClicked="#irOpciones" pickOnBounds="true" preserveRatio="true" styleClass="handCursor">
+            <image>
+                <Image url="@../assets/icons/settings.png" />
+            </image>
+        </ImageView>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="592.0" layoutX="221.0" layoutY="62.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="839.0" />
+      <Label layoutX="579.0" layoutY="91.0" text="ARCHIVOS">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <TableView fx:id="archivosTabla" layoutX="255.0" layoutY="192.0" prefHeight="441.0" prefWidth="775.0">
+        <columns>
+          <TableColumn fx:id="tipoArchivoColumna" prefWidth="196.0" text="Tipo de Archivo" />
+          <TableColumn fx:id="nombreArchivoColumna" prefWidth="578.0" text="Nombre del archivo" />
+        </columns>
+      </TableView>
+      <Button fx:id="subirArchivoBoton" layoutX="929.0" layoutY="146.0" mnemonicParsing="false" onAction="#subirArchivo" text="Subir archivo" />
+    </children>
+</AnchorPane>

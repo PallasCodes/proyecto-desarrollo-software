@@ -43,7 +43,7 @@ public class ModalCambiarContraseñaController {
                     }
                 }
             } else {
-                labelError.setText("Las contraseñas nuevas no coinciden");
+                labelError.setText("Las contraseñas no coinciden");
             }
         } else{
             labelError.setText("Llene todo el formulario");
@@ -51,7 +51,9 @@ public class ModalCambiarContraseñaController {
     }
 
     public boolean formularioValido(){
-        return contraNueva.getText().equals(contraNuevaRepetir.getText());
+
+        return contraNueva.getText().equals(contraNuevaRepetir.getText())
+                && contraActual.getText().equals(Usuario.usuarioActual.getContraseña());
     }
 
     public boolean camposLlenos(){
