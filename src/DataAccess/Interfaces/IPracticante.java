@@ -20,4 +20,6 @@ public interface IPracticante {
     int obtenerHoras(String matricula);
 
     boolean actualizarPracticante(Practicante practicante);
+
+    void aumentarHoras(String matricula, int horas);
 }

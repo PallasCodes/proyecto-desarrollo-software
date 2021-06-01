@@ -1,5 +1,6 @@
 package profesor;
 
+import DataAccess.DAO.PracticanteDAO;
 import DataAccess.DAO.ReporteMensualDAO;
 import Dominio.ReporteMensual;
 import javafx.event.ActionEvent;
@@ -17,6 +18,7 @@ public class ModalReporteMensualController implements Initializable {
     // instancias de clases usadas
     ReporteMensual reporte = ReporteMensual.reporteSeleccionado;
     ReporteMensualDAO reporteDao = new ReporteMensualDAO();
+    PracticanteDAO pracDao = new PracticanteDAO();
 
 
     // componentes de la UI
@@ -67,6 +69,11 @@ public class ModalReporteMensualController implements Initializable {
             labelError.setText("Seleccione una evaluación");
         } else {
             if(reporteDao.evaluarReporteMensual(cbEvaluacion.getValue(),reporte.getId())) {
+                if(cbEvaluacion.getSelectionModel().getSelectedItem().equals("Aceptado")){
+                    String matricula = ReporteMensual.reporteSeleccionado.getMatricula();
+                    int horas = ReporteMensual.reporteSeleccionado.getHoras();
+                    pracDao.aumentarHoras(matricula,horas);
+                }
                 TablaReportesMensualesController.getInstance().popularTabla();
                 ReporteMensual.reporteSeleccionado = null;
             }

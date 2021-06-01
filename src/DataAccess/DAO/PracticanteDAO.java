@@ -178,4 +178,19 @@ public class PracticanteDAO implements IPracticante {
         }
         return true;
     }
+
+    @Override
+    public void aumentarHoras(String matricula, int horas) {
+        Connection conexion = Conexion.conectar();
+        String query = "UPDATE practicante SET horas=horas+? WHERE matricula=?";
+        try{
+            PreparedStatement preparedStatement = conexion.prepareStatement(query);
+            preparedStatement.setInt(1,horas);
+            preparedStatement.setString(2,matricula);
+            preparedStatement.execute();
+            conexion.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
 }

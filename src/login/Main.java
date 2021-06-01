@@ -27,7 +27,6 @@ public class Main extends Application {
 }
 
 
-// TODO: aumentar horas del alumno cuando se valida el reporte
 // TODO: seccion proyecto
 // TODO: seccion ver resultados autoevaluacion
 // TODO: seccion alumnos
