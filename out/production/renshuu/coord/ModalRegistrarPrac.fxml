@@ -46,7 +46,7 @@
         </Label>
         <TextField fx:id="tfSegundoApe" layoutX="92.0" layoutY="256.0" prefHeight="26.0" prefWidth="241.0" />
         <Button layoutX="96.0" layoutY="437.0" minWidth="120.0" mnemonicParsing="false" onAction="#cancelarRegistro" prefHeight="32.0" prefWidth="115.0" text="Cancelar" />
-        <Button styleClass="primary" fx:id="registrarPrac" layoutX="220.0" layoutY="437.0" mnemonicParsing="false" onAction="#registrarPrac" prefHeight="32.0" prefWidth="115.0" text="Registrar" />
+        <Button styleClass="primary" fx:id="registrarPrac" layoutX="220.0" layoutY="437.0" mnemonicParsing="false" onAction="#registrarPrac" prefHeight="32.0" prefWidth="115.0" text="Actualizar" />
         <Label fx:id="labelError" layoutX="371.0" layoutY="445.0" textFill="RED" />
       <Label layoutX="94.0" layoutY="304.0" text="Contraseña">
          <font>

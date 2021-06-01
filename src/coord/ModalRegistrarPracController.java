@@ -89,6 +89,7 @@ public class ModalRegistrarPracController {
         usuario.setTelefono(tfTelefono.getText());
         usuario.setCorreo(tfCorreo.getText());
         usuario.setFacultad(tfFacultad.getText());
+        usuario.setMatricula(tfMatricula.getText());
 
         return usuario;
     }
@@ -97,7 +98,6 @@ public class ModalRegistrarPracController {
         Practicante practicante = new Practicante();
         practicante.setMatricula(tfMatricula.getText());
         practicante.setEstado("Sin asignar");
-        practicante.setUsuarioId(usuarioDAO.obtenerIdUsuario(tfCorreo.getText()));
         practicante.setPeriodo(tfPeriodo.getText());
 
         return practicante;

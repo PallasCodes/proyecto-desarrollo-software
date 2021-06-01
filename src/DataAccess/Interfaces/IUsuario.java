@@ -12,4 +12,6 @@ public interface IUsuario {
     boolean cambiarContraseña(String matricula, String contraseña);
 
     String obtenerContraseña(int usuarioId);
+
+    boolean actualizarUsuario(Usuario usuario);
 }

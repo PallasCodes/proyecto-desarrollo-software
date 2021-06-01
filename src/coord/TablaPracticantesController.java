@@ -124,7 +124,7 @@ public class TablaPracticantesController implements Initializable {
     public void eliminarPracticante(ActionEvent actionEvent) {
         Practicante practicante = obtenerPracSeleccionado();
         if(practicante == null){
-            alert.errorAlert("Error. Seleccione un proyecto");
+            alert.errorAlert("Error. Seleccione un practicante");
         }else if(alert.confirmationAlert("¿Desea eliminar al practicante "+practicante.getNombre()+"?")){
             String matricula = Practicante.practicanteSeleccionado.getMatricula();
             if(pracDao.eliminarPracticante(matricula)) {
@@ -135,7 +135,18 @@ public class TablaPracticantesController implements Initializable {
         }
     }
 
-    public void actualizarPracticante(ActionEvent actionEvent) {
+    public void actualizarPracticante(ActionEvent event) {
+        Practicante practicante = obtenerPracSeleccionado();
+        if(practicante == null) {
+            alert.errorAlert("Error. Seleccione un practicante");
+        } else {
+            Stage stageActual = (Stage) agregarPracticante.getScene().getWindow();
+            try {
+                sw.createDialog(stageActual, "/coord/ModalActualizarPracticante.fxml");
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        }
     }
 
     public Practicante obtenerPracSeleccionado(){

@@ -12,13 +12,12 @@ public class PracticanteDAO implements IPracticante {
     @Override
     public boolean registrarPracticante(Practicante practicante) {
         Connection conexion = Conexion.conectar();
-        String query = "INSERT INTO practicante (matricula, estado, usuario_id, periodo) VALUES (?,?,?,?)";
+        String query = "INSERT INTO practicante (matricula, estado, periodo) VALUES (?,?,?)";
         try{
             PreparedStatement preparedStatement = conexion.prepareStatement(query);
             preparedStatement.setString(1,practicante.getMatricula());
             preparedStatement.setString(2,practicante.getEstado());
-            preparedStatement.setInt(3,practicante.getUsuarioId());
-            preparedStatement.setString(4,practicante.getPeriodo());
+            preparedStatement.setString(3,practicante.getPeriodo());
             preparedStatement.execute();
             conexion.close();
         } catch (Exception ex) {
@@ -161,5 +160,22 @@ public class PracticanteDAO implements IPracticante {
             throwables.printStackTrace();
         }
         return 0;
+    }
+
+    @Override
+    public boolean actualizarPracticante(Practicante practicante) {
+        Connection conexion = Conexion.conectar();
+        String query = "UPDATE practicante SET periodo=? WHERE matricula=?";
+        try{
+            PreparedStatement preparedStatement = conexion.prepareStatement(query);
+            preparedStatement.setInt(1,Integer.parseInt(practicante.getPeriodo()));
+            preparedStatement.setString(2,practicante.getMatricula());
+            preparedStatement.execute();
+            conexion.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
+        }
+        return true;
     }
 }

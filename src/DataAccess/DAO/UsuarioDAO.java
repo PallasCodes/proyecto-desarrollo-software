@@ -128,4 +128,30 @@ public class UsuarioDAO implements IUsuario {
         }
         return contraseñaBd;
     }
+
+    @Override
+    public boolean actualizarUsuario(Usuario usuario) {
+        Connection conexion = Conexion.conectar();
+        String query = "UPDATE usuario SET nombre=?, primer_apellido=?, segundo_apellido=?, facultad=?," +
+                "correo=?, telefono=? WHERE matricula=?";
+        try{
+            PreparedStatement preparedStatement = conexion.prepareStatement(query);
+            preparedStatement.setString(1,usuario.getNombre());
+            preparedStatement.setString(2,usuario.getPrimerApellido());
+            preparedStatement.setString(3,usuario.getSegundoApellido());
+            preparedStatement.setString(4,usuario.getFacultad());
+            preparedStatement.setString(5,usuario.getCorreo());
+            preparedStatement.setString(6,usuario.getTelefono());
+            preparedStatement.setString(7,usuario.getMatricula());
+
+            preparedStatement.execute();
+            conexion.close();
+        } catch (SQLException ex) {
+            AlertBuilder alert = new AlertBuilder();
+            alert.exceptionAlert("Error al actualizar usuario. Inténtelo más tarde.");
+            ex.printStackTrace();
+            return false;
+        }
+        return true;
+    }
 }

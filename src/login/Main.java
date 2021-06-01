@@ -25,3 +25,13 @@ public class Main extends Application {
         launch(args);
     }
 }
+
+// TODO: crud practicantes
+// TODO: crud organizaciones
+// TODO: arreglar cambiar contraseña
+// TODO: arreglar login
+// TODO: aumentar horas del alumno cuando se valida el reporte
+// TODO: seccion proyecto
+// TODO: seccion ver resultados autoevaluacion
+// TODO: seccion alumnos
+// TODO: detalles esteticos

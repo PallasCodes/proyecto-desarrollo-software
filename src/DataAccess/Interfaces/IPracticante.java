@@ -18,4 +18,6 @@ public interface IPracticante {
     String obtenerEstadoPracticante(String matricula);
 
     int obtenerHoras(String matricula);
+
+    boolean actualizarPracticante(Practicante practicante);
 }

@@ -62,7 +62,7 @@ public class CoordinadorDAO implements ICoordinador {
     public boolean actualizarCoord(Usuario coordinador) {
         Connection conexion = Conexion.conectar();
         String query = "UPDATE usuario SET nombre=?, primer_apellido=?, segundo_apellido=?, facultad=?, telefono=?, " +
-                "correo=? WHERE matricula="+coordinador.getMatricula();
+                "correo=? WHERE matricula='"+coordinador.getMatricula()+"'";
         try{
             PreparedStatement preparedStatement = conexion.prepareStatement(query);
             preparedStatement.setString(1,coordinador.getNombre());
