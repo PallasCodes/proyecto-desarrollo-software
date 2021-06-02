@@ -25,7 +25,7 @@
                 <Font name="Century Gothic Bold" size="17.0" />
             </font>
         </Label>
-        <Label styleClass="handCursor" layoutX="40.0" layoutY="136.0" text="Alumnos" textFill="WHITE">
+        <Label styleClass="handCursor" layoutX="40.0" layoutY="136.0" text="Alumnos" textFill="WHITE" onMouseClicked="#irTablaAlumnos">
             <font>
                 <Font name="Century Gothic Bold" size="17.0" />
             </font>

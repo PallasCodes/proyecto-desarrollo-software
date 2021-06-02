@@ -40,7 +40,6 @@ public class PracticanteDAO implements IPracticante {
             Statement st = conexion.createStatement();
             ResultSet rs = st.executeQuery(query);
 
-
             while(rs.next()){
                 Practicante practicante = new Practicante();
                 practicante.setNombre(rs.getString("nombre"));
@@ -192,5 +191,37 @@ public class PracticanteDAO implements IPracticante {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+    }
+
+    @Override
+    public ArrayList<Practicante> obtenerAlumnos(String matricula) {
+        Connection conexion = Conexion.conectar();
+        ArrayList<Practicante> practicantes = new ArrayList<>();
+
+        String query = "SELECT pra.*, u.*, pro.nombre AS nombre_proyecto FROM practicante pra LEFT JOIN usuario u ON "
+                + "u.matricula = pra.matricula LEFT JOIN proyecto pro ON pro.proyecto_id = pra.proyecto_id WHERE pra.eliminado=0" +
+                " AND pra.matricula_profesor='"+matricula+"';";
+        try {
+            Statement st = conexion.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            while(rs.next()){
+                Practicante practicante = new Practicante();
+                practicante.setNombre(rs.getString("nombre"));
+                practicante.setPrimerApellido(rs.getString("primer_apellido"));
+                practicante.setSegundoApellido(rs.getString("segundo_apellido"));
+                practicante.setProyecto(rs.getString("nombre_proyecto"));
+                practicante.setPeriodo(rs.getString("periodo"));
+                practicante.setMatricula(rs.getString("matricula"));
+
+                practicantes.add(practicante);
+            }
+            conexion.close();
+        } catch (SQLException throwables) {
+            AlertBuilder alert = new AlertBuilder();
+            alert.exceptionAlert("Error al conectarse con la BD. Inténtelo más tarde.");
+            throwables.printStackTrace();
+        }
+        return practicantes;
     }
 }

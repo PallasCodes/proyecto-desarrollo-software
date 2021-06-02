@@ -22,4 +22,6 @@ public interface IPracticante {
     boolean actualizarPracticante(Practicante practicante);
 
     void aumentarHoras(String matricula, int horas);
+
+    ArrayList<Practicante> obtenerAlumnos(String matricula);
 }
