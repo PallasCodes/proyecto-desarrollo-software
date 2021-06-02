@@ -29,5 +29,4 @@ public class Main extends Application {
 
 // TODO: seccion proyecto
 // TODO: seccion ver resultados autoevaluacion
-// TODO: seccion alumnos
 // TODO: detalles esteticos

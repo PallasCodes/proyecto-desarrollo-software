@@ -43,7 +43,7 @@ public class ModalRegistrarProController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         ArrayList<OrganizacionVinculada> organizaciones = orgDao.obtenerOrganizaciones();
         organizaciones.forEach(org -> {
-           // cbOrg.getItems().add(org.getNombre()+" ("+org.getOrganizacionId()+")");
+           cbOrg.getItems().add(org.getNombre());
         });
     }
 
@@ -78,8 +78,8 @@ public class ModalRegistrarProController implements Initializable {
     // genera el objeto Proyecto con los datos del formulario
     public Proyecto generarProyecto() {
         Proyecto proyecto = new Proyecto();
-        proyecto.setNombre(tfNombre.getText());
 
+        /*
         // expresión regular para obtener el id de la organización seleccionada
         String regex = "^.*?\\([^\\d]*(\\d+)[^\\d]*\\).*$";
         Pattern p = Pattern.compile(regex);
@@ -88,6 +88,8 @@ public class ModalRegistrarProController implements Initializable {
             proyecto.setOrganizacion(m.group(1));
         }
 
+         */
+        proyecto.setOrganizacion(cbOrg.getValue());
         proyecto.setNombre(tfNombre.getText());
         proyecto.setCupo(tfCupo.getText());
         proyecto.setDescripcion(taDescripcion.getText());

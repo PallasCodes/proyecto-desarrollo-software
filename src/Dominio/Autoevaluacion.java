@@ -10,6 +10,10 @@ public class Autoevaluacion {
     private int respuesta7;
     private int respuesta8;
     private int respuesta9;
+    private String matricula;
+    private String fecha;
+
+    public static Autoevaluacion autoevaluacionSeleccionada;
 
     public Autoevaluacion() {
     }
@@ -84,5 +88,21 @@ public class Autoevaluacion {
 
     public void setRespuesta9(int respuesta9) {
         this.respuesta9 = respuesta9;
+    }
+
+    public String getMatricula() {
+        return matricula;
+    }
+
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
+    }
+
+    public String getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
     }
 }

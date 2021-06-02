@@ -5,10 +5,8 @@ import DataAccess.Interfaces.IAutoevaluacion;
 import Dominio.Autoevaluacion;
 import utils.AlertBuilder;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
 
 public class AutoevaluacionDAO implements IAutoevaluacion {
     @Override
@@ -55,5 +53,39 @@ public class AutoevaluacionDAO implements IAutoevaluacion {
             ex.printStackTrace();
         }
         return false;
+    }
+
+    @Override
+    public ArrayList<Autoevaluacion> obtenerAutoevaluaciones(String matricula) {
+        Connection conexion = Conexion.conectar();
+        ArrayList<Autoevaluacion> autoevaluaciones = new ArrayList<>();
+        String query = "SELECT * FROM autoevaluacion a LEFT JOIN practicante pra ON pra.matricula=a.matricula LEFT JOIN " +
+                " usuario u ON u.matricula=pra.matricula_profesor WHERE pra.matricula_profesor='"+matricula+"'";
+        try{
+            Statement st = conexion.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            while(rs.next()){
+                Autoevaluacion autoevaluacion = new Autoevaluacion();
+
+                autoevaluacion.setRespuesta1(rs.getInt("respuesta1"));
+                autoevaluacion.setRespuesta2(rs.getInt("respuesta2"));
+                autoevaluacion.setRespuesta3(rs.getInt("respuesta3"));
+                autoevaluacion.setRespuesta4(rs.getInt("respuesta4"));
+                autoevaluacion.setRespuesta5(rs.getInt("respuesta5"));
+                autoevaluacion.setRespuesta6(rs.getInt("respuesta6"));
+                autoevaluacion.setRespuesta7(rs.getInt("respuesta7"));
+                autoevaluacion.setRespuesta8(rs.getInt("respuesta8"));
+                autoevaluacion.setRespuesta9(rs.getInt("respuesta9"));
+                autoevaluacion.setMatricula(rs.getString("matricula"));
+                autoevaluacion.setFecha(rs.getString("fecha"));
+
+                autoevaluaciones.add(autoevaluacion);
+            }
+            conexion.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return autoevaluaciones;
     }
 }

@@ -27,7 +27,7 @@
                 <Font name="Century Gothic Bold" size="17.0" />
             </font>
         </Label>
-        <Label styleClass="handCursor" layoutX="40.0" layoutY="136.0" text="Alumnos" textFill="WHITE">
+        <Label styleClass="handCursor" layoutX="40.0" layoutY="136.0" text="Alumnos" textFill="WHITE" onMouseClicked="#irTablaAlumnos">
             <font>
                 <Font name="Century Gothic Bold" size="17.0" />
             </font>
@@ -52,7 +52,7 @@
                 <Image url="@../assets/icons/settings.png" />
             </image>
         </ImageView>
-        <Label layoutX="251.0" layoutY="82.0" text="Reportes Parciales" textFill="#666666">
+        <Label layoutX="251.0" layoutY="82.0" text="Autoevaluaciones" textFill="#666666">
             <font>
                 <Font name="Century Gothic Bold" size="36.0" />
             </font>

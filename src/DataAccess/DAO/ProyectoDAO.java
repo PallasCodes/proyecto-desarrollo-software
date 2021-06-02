@@ -43,17 +43,17 @@ public class ProyectoDAO implements IProyectoDAO {
     @Override
     public boolean registrarProyecto(Proyecto proyecto) {
         Connection conexion = Conexion.conectar();
-        String query = "INSERT INTO proyecto (organizacion_id, nombre, descripcion, actividades, cupo, disponibilidad, estado) " +
+        String query = "INSERT INTO proyecto (organizacion, nombre, descripcion, actividades, cupo, disponibilidad, estado) " +
                 "VALUES (?,?,?,?,?,?,?)";
         try{
             PreparedStatement preparedStatement = conexion.prepareStatement(query);
-            preparedStatement.setInt(1,Integer.parseInt(proyecto.getOrganizacion()));
+            preparedStatement.setString(1,proyecto.getOrganizacion());
             preparedStatement.setString(2, proyecto.getNombre());
             preparedStatement.setString(3,proyecto.getDescripcion());
             preparedStatement.setString(4,proyecto.getActividades());
             preparedStatement.setInt(5,Integer.parseInt(proyecto.getCupo()));
             preparedStatement.setInt(6,Integer.parseInt(proyecto.getCupo()));
-            preparedStatement.setString(7,"Disponible");
+            preparedStatement.setString(7,"disponible");
             preparedStatement.execute();
             conexion.close();
         } catch (Exception ex) {
