@@ -97,7 +97,7 @@ public class ModalRegistrarPracController {
     public Practicante generarPracticante() {
         Practicante practicante = new Practicante();
         practicante.setMatricula(tfMatricula.getText());
-        practicante.setEstado("Sin asignar");
+        practicante.setEstado("sin asignar");
         practicante.setPeriodo(tfPeriodo.getText());
 
         return practicante;
