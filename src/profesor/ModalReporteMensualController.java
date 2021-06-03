@@ -47,9 +47,12 @@ public class ModalReporteMensualController implements Initializable {
     // inicialización de la vista
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        /*
         organizacion.setText("uwu");
         proyecto.setText("uwu");
         practicante.setText("owo");
+        */
+
         fecha.setText(reporte.getFecha());
         horas.setText(Integer.toString(reporte.getHoras()));
         actividades.setText(reporte.getActividades());
@@ -60,7 +63,8 @@ public class ModalReporteMensualController implements Initializable {
     // métodos de la UI
     @FXML
     void cancelar(ActionEvent event) {
-
+        Stage stage = (Stage) btnEvaluar.getScene().getWindow();
+        stage.close();
     }
 
     @FXML

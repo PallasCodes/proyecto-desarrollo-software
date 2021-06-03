@@ -45,9 +45,12 @@ public class ModalReporteParcialController implements Initializable {
     // inicialización de la vista
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        /*
         organizacion.setText("uwu");
         proyecto.setText("uwu");
         practicante.setText("owo");
+
+         */
         fecha.setText(reporte.getFecha());
         actividades.setText(reporte.getActividades());
         cbEvaluacion.getItems().setAll("Aceptado","Rechazado");
@@ -56,7 +59,8 @@ public class ModalReporteParcialController implements Initializable {
     // métodos de la UI
     @FXML
     void cancelar(ActionEvent event) {
-
+        Stage stage = (Stage) btnCancelar.getScene().getWindow();
+        stage.close();
     }
 
     @FXML

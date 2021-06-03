@@ -141,7 +141,8 @@ public class ModalSolicitudController implements Initializable {
 
     @FXML
     void cancelar(ActionEvent event) {
-
+        Stage stage = (Stage) tablaProyectos.getScene().getWindow();
+        stage.close();
     }
 
     void asignarProyecto(int proyectoId){

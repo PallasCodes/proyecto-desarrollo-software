@@ -10,7 +10,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="468.0" maxWidth="700.0" minHeight="393.0" minWidth="700.0" prefHeight="393.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="admin.ModalActualizarDocenteController">
+<AnchorPane maxHeight="468.0" maxWidth="700.0" minHeight="393.0" minWidth="700.0" prefHeight="393.0" prefWidth="700.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="admin.ModalActualizarDocenteController">
     <stylesheets>
         <URL value="@../login/style.css" />
     </stylesheets>

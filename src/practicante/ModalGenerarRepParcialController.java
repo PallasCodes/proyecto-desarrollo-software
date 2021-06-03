@@ -28,6 +28,8 @@ public class ModalGenerarRepParcialController implements Initializable {
     }
 
     public void cancelarRegistro(ActionEvent event) {
+        Stage stage = (Stage) lbError.getScene().getWindow();
+        stage.close();
     }
 
     public void generarReporte(ActionEvent event) {

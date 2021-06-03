@@ -15,7 +15,7 @@ public class CoordinadorDAO implements ICoordinador {
         Connection conexion = Conexion.conectar();
         ArrayList<Usuario> coordinadores = new ArrayList<>();
 
-        String query = "SELECT * FROM usuario WHERE rol='coord'";
+        String query = "SELECT * FROM usuario WHERE rol='coord' AND eliminado=0";
         try {
             Statement st = conexion.createStatement();
             ResultSet rs = st.executeQuery(query);
@@ -42,7 +42,7 @@ public class CoordinadorDAO implements ICoordinador {
     @Override
     public boolean eliminarCoordinador(String matricula) {
         Connection conexion = Conexion.conectar();
-        String query = "DELETE FROM usuario WHERE matricula=?";
+        String query = "UPDATE usuario SET eliminado=1 WHERE matricula=?";
 
         try{
             PreparedStatement preparedStatement = conexion.prepareStatement(query);

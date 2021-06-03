@@ -82,9 +82,4 @@ public class ModalSubirArchivoController {
             alertBuilder.errorAlert("Seleccione un archivo.");
         }
     }
-
-
-
-
-
 }

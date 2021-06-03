@@ -52,6 +52,8 @@ public class ModalActualizarCoordController implements Initializable {
     }
 
     public void cancelarRegistro(ActionEvent actionEvent) {
+        Stage stage = (Stage) registrarPrac.getScene().getWindow();
+        stage.close();
     }
 
     public void actualizarCoord(ActionEvent actionEvent) {

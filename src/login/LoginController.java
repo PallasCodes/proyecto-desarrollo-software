@@ -31,8 +31,12 @@ public class LoginController {
     void entrar(ActionEvent event) {
         if (camposValidos()) {
             Usuario usuario = usuarioDao.obtenerUsuarioPorMat(tfUsuario.getText());
+            if (usuario.getContraseña().equals(tfContraseña.getText())) {
+                Usuario.usuarioActual = usuario;
+            } else {
+                labelErrores.setText("*Usuario y/o contraseña \n incorrectos");
+            }
             try {
-                String rol = usuario.getRol();
                 switch (usuario.getRol()) {
                     case "admin":
                         switcher.switchScene(event, stage, scene, "../admin/AdminInicio.fxml");
@@ -50,12 +54,6 @@ public class LoginController {
                         break;
                 }
             } catch (IOException ex) {
-                labelErrores.setText("*Usuario y/o contraseña \n incorrectos");
-            }
-            if (usuario.getContraseña().equals(tfContraseña.getText())) {
-                Usuario.usuarioActual = usuario;
-            } else {
-                labelErrores.setText("*Usuario y/o contraseña \n incorrectos");
             }
         }
     }

@@ -9,7 +9,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="468.0" maxWidth="410.0" minHeight="500.0" minWidth="700.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="practicante.ModalGenerarRepMensualController">
+<AnchorPane maxHeight="468.0" maxWidth="410.0" minHeight="500.0" minWidth="700.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="practicante.ModalGenerarRepMensualController">
     <stylesheets>
         <URL value="@../login/style.css" />
     </stylesheets>

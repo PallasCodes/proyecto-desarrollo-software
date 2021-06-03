@@ -89,7 +89,8 @@ public class AutoevaluacionController implements Initializable {
         sw.switchSceneMouse(event, stage, scene, "/practicante/PracticanteInicio.fxml");
     }
 
-    public void cancelar(ActionEvent event) {
+    public void cancelar(ActionEvent event) throws IOException{
+        sw.switchScene(event, stage, scene, "../practicante/PracticanteInicio.fxml");
     }
 
     public void enviar(ActionEvent event) throws IOException{

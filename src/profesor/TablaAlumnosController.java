@@ -86,4 +86,8 @@ public class TablaAlumnosController implements Initializable {
     public void irTablaReportesMensuales(MouseEvent event) throws IOException{
         sw.switchSceneMouse(event, stage, scene, "../profesor/TablaReportesMensuales.fxml");
     }
+
+    public void irTablaAutoevaluaciones(MouseEvent event) throws IOException{
+        sw.switchSceneMouse(event, stage, scene, "../profesor/TablaAutoevaluaciones.fxml");
+    }
 }
