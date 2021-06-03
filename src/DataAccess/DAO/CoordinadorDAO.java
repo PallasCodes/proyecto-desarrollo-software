@@ -42,7 +42,7 @@ public class CoordinadorDAO implements ICoordinador {
     @Override
     public boolean eliminarCoordinador(String matricula) {
         Connection conexion = Conexion.conectar();
-        String query = "UPDATE usuario SET eliminado=1 WHERE matricula=?";
+        String query = "UPDATE usuario SET eliminado = 1 WHERE matricula=?";
 
         try{
             PreparedStatement preparedStatement = conexion.prepareStatement(query);

@@ -11,6 +11,7 @@ public class Usuario {
     private String telefono;
     private String facultad;
     private String correo;
+    private int eliminado;
 
     public static Usuario coordinadorSeleccionado;
     public static Usuario usuarioActual;
@@ -94,5 +95,13 @@ public class Usuario {
 
     public void setContraseña(String contraseña) {
         this.contraseña = contraseña;
+    }
+
+    public int getEliminado() {
+        return eliminado;
+    }
+
+    public void setEliminado(int eliminado) {
+        this.eliminado = eliminado;
     }
 }
