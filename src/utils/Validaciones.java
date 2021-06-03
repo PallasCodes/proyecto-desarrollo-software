@@ -20,4 +20,11 @@ public class Validaciones {
         boolean numeroValido = numeroPersonal.matches(regexNumeroPer);
         return numeroValido;
     }
+
+    public boolean validacionMatricula(String matricula) {
+        String regexMatricula = "^s[0-9\\(\\})]{8}";
+        boolean matriculaValida = matricula.matches(regexMatricula);
+        return matriculaValida;
+    }
+
 }

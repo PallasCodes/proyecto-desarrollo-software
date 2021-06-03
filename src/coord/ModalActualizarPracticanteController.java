@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import utils.Validaciones;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -17,6 +18,7 @@ public class ModalActualizarPracticanteController implements Initializable {
     // instancias de clases usadas
     UsuarioDAO usuarioDAO = new UsuarioDAO();
     PracticanteDAO practicanteDao = new PracticanteDAO();
+    Validaciones validaciones = new Validaciones();
 
 
     // componentes de UI
@@ -53,7 +55,7 @@ public class ModalActualizarPracticanteController implements Initializable {
     @FXML
     void registrarPrac(ActionEvent event) {
         if(camposCompletos()){
-            if(datosValidos()){
+            if(validaciones.validacionTelefono(tfTelefono.getText())){
                 Usuario usuario = generarUsuario();
                 if(usuarioDAO.actualizarUsuario(usuario)) {
                     Practicante practicante = generarPracticante();
@@ -64,7 +66,7 @@ public class ModalActualizarPracticanteController implements Initializable {
                     stage.close();
                 }
             } else {
-                labelError.setText("*Ingrese datos validos");
+                labelError.setText("Formato del teléfono erróneo.");
             }
         } else {
             labelError.setText("*Llene todos los campos del formulario");
@@ -79,9 +81,6 @@ public class ModalActualizarPracticanteController implements Initializable {
                 && !tfCorreo.getText().equals("") && !tfPeriodo.getText().equals("");
     }
 
-    public boolean datosValidos(){
-        return true;
-    }
 
     public Usuario generarUsuario(){
         Usuario usuario = new Usuario();
