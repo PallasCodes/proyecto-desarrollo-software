@@ -24,7 +24,6 @@ public class TablaCoordinadoresController implements Initializable {
     // instancias de clases usadas
     SceneSwitcher sw = new SceneSwitcher();
     ArrayList<Usuario> coordinadores;
-    PracticanteDAO pracDao = new PracticanteDAO();
     CoordinadorDAO coordDao = new CoordinadorDAO();
     AlertBuilder alert = new AlertBuilder();
 
@@ -109,8 +108,14 @@ public class TablaCoordinadoresController implements Initializable {
 
     // métodos
     public void popularTabla(){
+        ArrayList<Usuario> coordinadoresActivos = new ArrayList<>();
         coordinadores = coordDao.obtenerCoordinadores();
-        tablaCoordinadores.getItems().setAll(coordinadores);
+        for (int i=0; i < coordinadores.size(); i++) {
+            if (coordinadores.get(i).getEliminado() == 0) {
+                coordinadoresActivos.add(coordinadores.get(i));
+            }
+        }
+        tablaCoordinadores.getItems().setAll(coordinadoresActivos);
     }
 
     public void actualizarCoord(ActionEvent actionEvent) {
