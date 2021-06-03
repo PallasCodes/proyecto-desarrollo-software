@@ -41,6 +41,36 @@ public class ProyectoDAO implements IProyectoDAO {
     }
 
     @Override
+    public ArrayList<Proyecto> obtenerProyectosCoord() {
+        Connection conexion = Conexion.conectar();
+        ArrayList<Proyecto> proyectos = new ArrayList<>();
+
+        String query = "SELECT * FROM proyecto WHERE eliminado=0";
+        try {
+            Statement st = conexion.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            while(rs.next()){
+                Proyecto proyecto = new Proyecto();
+                proyecto.setId(rs.getInt("proyecto_id"));
+                proyecto.setNombre(rs.getString("nombre"));
+                proyecto.setCupo(Integer.toString(rs.getInt("cupo")));
+                proyecto.setEstado(rs.getString("estado"));
+                proyecto.setOrganizacion(rs.getString("organizacion"));
+                proyecto.setDisponibilidad(rs.getInt("disponibilidad"));
+
+                proyectos.add(proyecto);
+            }
+            conexion.close();
+        } catch (SQLException throwables) {
+            AlertBuilder alert = new AlertBuilder();
+            alert.exceptionAlert("Error al conectarse con la BD. Inténtelo más tarde.");
+            throwables.printStackTrace();
+        }
+        return proyectos;
+    }
+
+    @Override
     public boolean registrarProyecto(Proyecto proyecto) {
         Connection conexion = Conexion.conectar();
         String query = "INSERT INTO proyecto (organizacion, nombre, descripcion, actividades, cupo, disponibilidad, estado) " +
@@ -87,13 +117,12 @@ public class ProyectoDAO implements IProyectoDAO {
     @Override
     public boolean actualizarProyecto(Proyecto proyecto) {
         Connection conexion = Conexion.conectar();
-        String query = "UPDATE proyecto SET organizacion_id=?, nombre=?, descripcion=?, actividades=?, cupo=?, " +
+        String query = "UPDATE proyecto SET organizacion=?, nombre=?, descripcion=?, actividades=?, cupo=?, " +
                 "estado=? WHERE proyecto_id="+proyecto.getId();
         try{
             PreparedStatement preparedStatement = conexion.prepareStatement(query);
-            preparedStatement.setInt(1,1);
+            preparedStatement.setString(1,proyecto.getOrganizacion());
             preparedStatement.setString(2, proyecto.getNombre());
-            System.out.println(proyecto.getNombre());
             preparedStatement.setString(3,proyecto.getDescripcion());
             preparedStatement.setString(4,proyecto.getActividades());
             preparedStatement.setInt(5, Integer.parseInt(proyecto.getCupo()));
@@ -125,7 +154,7 @@ public class ProyectoDAO implements IProyectoDAO {
                 proyecto.setNombre(rs.getString("nombre"));
                 proyecto.setCupo(Integer.toString(rs.getInt("cupo")));
                 proyecto.setEstado(rs.getString("estado"));
-                proyecto.setOrganizacion(rs.getString("organizacion_id"));
+                proyecto.setOrganizacion(rs.getString("organizacion"));
                 proyecto.setActividades(rs.getString("actividades"));
                 proyecto.setDescripcion(rs.getString("descripcion"));
             }

@@ -147,7 +147,7 @@ public class TablaProyectosController implements Initializable {
 
     // métodos
     public void popularTabla() {
-        proyectos = proyectoDAO.obtenerProyectos();
+        proyectos = proyectoDAO.obtenerProyectosCoord();
         tablaProyectos.getItems().setAll(proyectos);
     }
 

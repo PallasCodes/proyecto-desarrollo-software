@@ -78,17 +78,6 @@ public class ModalRegistrarProController implements Initializable {
     // genera el objeto Proyecto con los datos del formulario
     public Proyecto generarProyecto() {
         Proyecto proyecto = new Proyecto();
-
-        /*
-        // expresión regular para obtener el id de la organización seleccionada
-        String regex = "^.*?\\([^\\d]*(\\d+)[^\\d]*\\).*$";
-        Pattern p = Pattern.compile(regex);
-        Matcher m = p.matcher(cbOrg.getValue());
-        if(m.find()){
-            proyecto.setOrganizacion(m.group(1));
-        }
-
-         */
         proyecto.setOrganizacion(cbOrg.getValue());
         proyecto.setNombre(tfNombre.getText());
         proyecto.setCupo(tfCupo.getText());
@@ -105,11 +94,12 @@ public class ModalRegistrarProController implements Initializable {
     }
 
     public boolean datosValidos(){
+        int cupo = 0;
         try{
-            Integer.parseInt(tfCupo.getText());
+             cupo = Integer.parseInt(tfCupo.getText());
         } catch(Exception ex){
             return false;
         }
-        return true;
+        return cupo >= 1 && cupo <= 5;
     }
 }
