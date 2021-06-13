@@ -1,14 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="profesor.ModalAutoevaluacionController"
-            prefHeight="400.0" prefWidth="600.0">
+<AnchorPane prefHeight="442.0" prefWidth="778.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="profesor.ModalAutoevaluacionController">
+    <Label layoutX="29.0" layoutY="76.0" text="1. Mi participación en la Organización Vinculada fue productiva" />
+    <Label fx:id="respuesta1" layoutX="679.0" layoutY="70.0" />
 
+    <Label layoutX="29.0" layoutY="116.0" text="2. Logré la aplicación de los conocimientos teórico-prácticos adquiridos en la carrera" />
+    <Label fx:id="respuesta2" layoutX="679.0" layoutY="110.0" />
+
+    <Label layoutX="29.0" layoutY="156.0" text="3. Me sentí seguro al realizar las actividades encomendadas" />
+    <Label fx:id="respuesta3" layoutX="679.0" layoutY="150.0" />
+
+    <Label layoutX="29.0" layoutY="196.0" text="4. Las actividades encomendadas despertaron mi interés." />
+    <Label fx:id="respuesta4" layoutX="679.0" layoutY="190.0" />
+
+    <Label layoutX="29.0" layoutY="236.0" text="5. La Organización Vinculada me proporcionó la información y facilidades adecuados" />
+    <Label fx:id="respuesta5" layoutX="679.0" layoutY="230.0" />
+
+    <Label layoutX="29.0" layoutY="276.0" text="6. La Organización Vinculada me dio a conocer las reglas internas" />
+    <Label fx:id="respuesta6" layoutX="679.0" layoutY="270.0" />
+
+    <Label layoutX="29.0" layoutY="316.0" text="7. El Responsable del Proyecto me orientó correctamente para el desarrollo de mis actividades" />
+    <Label fx:id="respuesta7" layoutX="679.0" layoutY="310.0" />
+
+    <Label layoutX="29.0" layoutY="356.0" text="8. El proyecto es congruente con la formación de mi carrera" />
+    <Label fx:id="respuesta8" layoutX="679.0" layoutY="350.0" />
+
+    <Label layoutX="29.0" layoutY="396.0" text="9. Considero que las prácticas son importantes para mi formación profesional" />
+    <Label fx:id="respuesta9" layoutX="679.0" layoutY="390.0" />
+   <Label layoutX="156.0" layoutY="28.0" text="Practicante: ">
+      <font>
+         <Font name="System Bold" size="16.0" />
+      </font>
+   </Label>
+   <Label fx:id="practicante" layoutX="257.0" layoutY="28.0" text="Label">
+      <font>
+         <Font size="16.0" />
+      </font>
+   </Label>
 </AnchorPane>
