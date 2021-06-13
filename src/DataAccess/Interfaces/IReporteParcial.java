@@ -12,4 +12,6 @@ public interface IReporteParcial {
     ArrayList<ReporteParcial> obtenerReportesParcialesPorMat(String matricula);
 
     boolean generarReporteParcial(String matricula, String actividades);
+
+    ReporteParcial obtenerDetalles(int id);
 }

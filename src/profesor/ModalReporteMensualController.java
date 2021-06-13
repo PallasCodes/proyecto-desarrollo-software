@@ -47,12 +47,12 @@ public class ModalReporteMensualController implements Initializable {
     // inicialización de la vista
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        /*
-        organizacion.setText("uwu");
-        proyecto.setText("uwu");
-        practicante.setText("owo");
-        */
+        int id = ReporteMensual.reporteSeleccionado.getId();
+        ReporteMensual detalles = reporteDao.obtenerDetalles(id);
 
+        organizacion.setText(detalles.getOrganizacion());
+        proyecto.setText(detalles.getProyecto());
+        practicante.setText(detalles.getMatricula());
         fecha.setText(reporte.getFecha());
         horas.setText(Integer.toString(reporte.getHoras()));
         actividades.setText(reporte.getActividades());

@@ -12,4 +12,6 @@ public interface IReporteMensual {
     boolean generarReporte(String matricula, int horas, String actividades);
 
     ArrayList<ReporteMensual> obtenerReportesMensualesPorMat(String matricula);
+
+    ReporteMensual obtenerDetalles(int id);
 }

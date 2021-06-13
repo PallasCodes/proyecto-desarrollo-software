@@ -7,6 +7,8 @@ public class ReporteParcial {
     private String estado;
     private String evaluacion;
     private String fecha;
+    private String organizacion;
+    private String proyecto;
 
     public String getTipo() {
         return tipo;
@@ -86,5 +88,21 @@ public class ReporteParcial {
 
     public static void setReporteSeleccionado(ReporteParcial reporteSeleccionado) {
         ReporteParcial.reporteSeleccionado = reporteSeleccionado;
+    }
+
+    public String getOrganizacion() {
+        return organizacion;
+    }
+
+    public void setOrganizacion(String organizacion) {
+        this.organizacion = organizacion;
+    }
+
+    public String getProyecto() {
+        return proyecto;
+    }
+
+    public void setProyecto(String proyecto) {
+        this.proyecto = proyecto;
     }
 }

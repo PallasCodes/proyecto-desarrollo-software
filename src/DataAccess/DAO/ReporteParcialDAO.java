@@ -109,4 +109,33 @@ public class ReporteParcialDAO implements IReporteParcial {
         }
         return true;
     }
+
+    @Override
+    public ReporteParcial obtenerDetalles(int id) {
+        Connection conexion = Conexion.conectar();
+        ReporteParcial reporte = new ReporteParcial();
+
+        String query = "SELECT * FROM reporte_parcial rep INNER JOIN practicante prac ON rep.matricula=prac.matricula INNER JOIN proyecto proy " +
+                "ON proy.proyecto_id=prac.proyecto_id WHERE rep.reporte_id="+id;
+        try {
+            Statement st = conexion.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            if(rs.next()){
+                reporte.setId(rs.getInt("reporte_id"));
+                reporte.setMatricula(rs.getString("matricula"));
+                reporte.setActividades(rs.getString("actividades"));
+                reporte.setHoras(rs.getInt("horas"));
+                reporte.setFecha(rs.getString("fecha_entrega"));
+                reporte.setEvaluacion(rs.getString("evaluacion"));
+                reporte.setTipo("Parcial");
+                reporte.setProyecto(rs.getString("nombre"));
+                reporte.setOrganizacion(rs.getString("organizacion"));
+            }
+            conexion.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return reporte;
+    }
 }

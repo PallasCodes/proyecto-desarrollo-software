@@ -9,6 +9,9 @@ public class ReporteMensual {
     private String actividades;
     private String evaluacion;
     private String tipo;
+    private String organizacion;
+    private String proyecto;
+    private String practicante;
 
     public static ReporteMensual reporteSeleccionado;
 
@@ -78,5 +81,37 @@ public class ReporteMensual {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    public String getOrganizacion() {
+        return organizacion;
+    }
+
+    public void setOrganizacion(String organizacion) {
+        this.organizacion = organizacion;
+    }
+
+    public String getProyecto() {
+        return proyecto;
+    }
+
+    public void setProyecto(String proyecto) {
+        this.proyecto = proyecto;
+    }
+
+    public String getPracticante() {
+        return practicante;
+    }
+
+    public void setPracticante(String practicante) {
+        this.practicante = practicante;
+    }
+
+    public static ReporteMensual getReporteSeleccionado() {
+        return reporteSeleccionado;
+    }
+
+    public static void setReporteSeleccionado(ReporteMensual reporteSeleccionado) {
+        ReporteMensual.reporteSeleccionado = reporteSeleccionado;
     }
 }

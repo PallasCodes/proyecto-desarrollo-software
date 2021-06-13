@@ -109,4 +109,35 @@ public class ReporteMensualDAO implements IReporteMensual {
         }
         return reportes;
     }
+
+    @Override
+    public ReporteMensual obtenerDetalles(int id) {
+        Connection conexion = Conexion.conectar();
+        ReporteMensual reporte = new ReporteMensual();
+
+        String query = "SELECT * FROM reporte_mensual rep INNER JOIN practicante prac ON rep.matricula=prac.matricula INNER JOIN proyecto proy " +
+                "ON proy.proyecto_id=prac.proyecto_id WHERE rep.reporte_id="+id;
+        try {
+            Statement st = conexion.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            if(rs.next()){
+                reporte.setId(rs.getInt("reporte_id"));
+                reporte.setMatricula(rs.getString("matricula"));
+                reporte.setActividades(rs.getString("actividades"));
+                reporte.setHoras(rs.getInt("horas"));
+                reporte.setFecha(rs.getString("fecha_entrega"));
+                reporte.setEvaluacion(rs.getString("evaluacion"));
+                reporte.setTipo("Mensual");
+                reporte.setProyecto(rs.getString("nombre"));
+                reporte.setOrganizacion(rs.getString("organizacion"));
+            }
+            conexion.close();
+        } catch (SQLException throwables) {
+            AlertBuilder alert = new AlertBuilder();
+            alert.exceptionAlert("Error al obtener reportes. Inténtelo más tarde.");
+            throwables.printStackTrace();
+        }
+        return reporte;
+    }
 }

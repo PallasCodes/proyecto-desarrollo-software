@@ -1,6 +1,7 @@
 package profesor;
 
 import DataAccess.DAO.ReporteParcialDAO;
+import Dominio.ReporteMensual;
 import Dominio.ReporteParcial;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -45,12 +46,12 @@ public class ModalReporteParcialController implements Initializable {
     // inicialización de la vista
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        /*
-        organizacion.setText("uwu");
-        proyecto.setText("uwu");
-        practicante.setText("owo");
+        int id = ReporteParcial.reporteSeleccionado.getId();
+        ReporteParcial detalles = reporteDao.obtenerDetalles(id);
 
-         */
+        organizacion.setText(detalles.getOrganizacion());
+        proyecto.setText(detalles.getProyecto());
+        practicante.setText(detalles.getMatricula());
         fecha.setText(reporte.getFecha());
         actividades.setText(reporte.getActividades());
         cbEvaluacion.getItems().setAll("Aceptado","Rechazado");
