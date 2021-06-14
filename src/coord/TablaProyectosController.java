@@ -63,7 +63,7 @@ public class TablaProyectosController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         colNombre.setCellValueFactory(new PropertyValueFactory<Proyecto, String>("nombre"));
         colOrganizacion.setCellValueFactory(new PropertyValueFactory<Proyecto, String>("organizacion"));
-        colCupo.setCellValueFactory(new PropertyValueFactory<Proyecto, String>("cupo"));
+        colCupo.setCellValueFactory(new PropertyValueFactory<Proyecto, String>("disponibilidad"));
         colEstado.setCellValueFactory(new PropertyValueFactory<Proyecto, String>("estado"));
         colId.setCellValueFactory(new PropertyValueFactory<Proyecto, String>("proyecto_id"));
 
@@ -89,8 +89,8 @@ public class TablaProyectosController implements Initializable {
         if(proyecto == null){
             alert.errorAlert("Error. Seleccione un proyecto");
         }else if(alert.confirmationAlert("¿Desea eliminar el proyecto?")){
-            int proyectoId = Integer.parseInt(Proyecto.proyectoSeleccionado.getProyectoId());
-            if(proyectoDAO.eliminarProyecto(proyectoId)) {
+            int id = Proyecto.proyectoSeleccionado.getId();
+            if(proyectoDAO.eliminarProyecto(id)) {
                 Proyecto.proyectoSeleccionado = null;
                 popularTabla();
                 // si sucede una excepción, no se actualiza la tabla
@@ -131,7 +131,7 @@ public class TablaProyectosController implements Initializable {
 
     @FXML
     public void cerrarSesion(MouseEvent event) throws IOException {
-        sw.switchSceneMouse(event, stage, scene, "../login/login.fxml");
+        sw.switchSceneMouse(event, stage, scene, "/login/Login.fxml");
     }
 
     @FXML
@@ -147,12 +147,16 @@ public class TablaProyectosController implements Initializable {
 
     // métodos
     public void popularTabla() {
-        proyectos = proyectoDAO.obtenerProyectos();
+        proyectos = proyectoDAO.obtenerProyectosCoord();
         tablaProyectos.getItems().setAll(proyectos);
     }
 
     public Proyecto obtenerProSeleccionado(){
         Proyecto.proyectoSeleccionado = tablaProyectos.getSelectionModel().getSelectedItem();
         return Proyecto.proyectoSeleccionado;
+    }
+
+    public void irTablaSolicitudes(MouseEvent event) throws IOException{
+        sw.switchSceneMouse(event, stage, scene, "../coord/TablaSolicitudes.fxml");
     }
 }

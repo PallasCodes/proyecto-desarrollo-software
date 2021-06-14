@@ -7,9 +7,11 @@ public interface IUsuario {
 
     int obtenerIdUsuario(String correo);
 
-    Usuario obtenerUsuario(int usuarioId);
+    Usuario obtenerUsuarioPorMat(String matricula);
 
-    boolean cambiarContraseña(int usuarioId, String contraseña);
+    boolean cambiarContraseña(String matricula, String contraseña);
 
     String obtenerContraseña(int usuarioId);
+
+    boolean actualizarUsuario(Usuario usuario);
 }

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import java.net.URL?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<AnchorPane minHeight="675.0" minWidth="1080.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="profesor.TablaAlumnosController">
+    <stylesheets>
+        <URL value="@../login/style.css" />
+    </stylesheets>
+    <children>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="675.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="42.0" layoutX="200.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="880.0" />
+        <ImageView fitHeight="42.0" fitWidth="159.0" layoutX="24.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../assets/img/logo.png" />
+            </image>
+        </ImageView>
+        <Label styleClass="handCursor" fx:id="inicio" layoutX="40.0" layoutY="100.0" text="Perfil" textFill="WHITE" onMouseClicked="#irPerfil">
+            <font>
+                <Font name="Century Gothic Bold" size="17.0" />
+            </font>
+        </Label>
+        <Label styleClass="activeNavItem, handCursor" layoutX="40.0" layoutY="136.0" text="Alumnos" textFill="WHITE">
+            <font>
+                <Font name="Century Gothic Bold" size="17.0" />
+            </font>
+        </Label>
+        <Label styleClass="handCursor" layoutX="40.0" layoutY="172.0" text="Reportes Mensuales" textFill="WHITE" onMouseClicked="#irTablaReportesMensuales">
+            <font>
+                <Font name="Century Gothic Bold" size="17.0" />
+            </font>
+        </Label>
+        <Label styleClass="handCursor" layoutX="40.0" layoutY="208.0" text="Reportes Parciales" textFill="WHITE">
+            <font>
+                <Font name="Century Gothic Bold" size="17.0" />
+            </font>
+        </Label>
+        <Label onMouseClicked="#irTablaAutoevaluaciones" styleClass="handCursor" layoutX="40.0" layoutY="244.0" text="Autoevaluaciones" textFill="WHITE" >
+            <font>
+                <Font name="Century Gothic Bold" size="17.0" />
+            </font>
+        </Label>
+        <ImageView styleClass="handCursor" fitHeight="22.0" fitWidth="23.0" layoutX="1031.0" layoutY="12.0" onMouseClicked="#cerrarSesion" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../assets/icons/logout.png" />
+            </image>
+        </ImageView>
+        <ImageView styleClass="handCursor" fitHeight="20.0" fitWidth="21.0" layoutX="998.0" layoutY="10.0" onMouseClicked="#irOpciones" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../assets/icons/settings.png" />
+            </image>
+        </ImageView>
+        <Label layoutX="251.0" layoutY="82.0" text="Alumnos" textFill="#666666">
+            <font>
+                <Font name="Century Gothic Bold" size="36.0" />
+            </font>
+        </Label>
+        <TableView fx:id="tablaPracticantes" layoutX="231.0" layoutY="166.0" prefHeight="444.0" prefWidth="818.0">
+            <columns>
+                <TableColumn fx:id="colNombre" prefWidth="190.0" text="Nombre (s)" />
+                <TableColumn fx:id="colPrimerApe" minWidth="0.0" prefWidth="190.0" text="Primer Apellido" />
+                <TableColumn fx:id="colSegundoApe" minWidth="0.0" prefWidth="190.0" text="Segundo Apellido" />
+                <TableColumn fx:id="colId" prefWidth="75.0" text="id" visible="false" />
+                <TableColumn fx:id="colProyecto" prefWidth="146.0" text="Proyecto" />
+                <TableColumn fx:id="colPeriodo" prefWidth="100.0" text="Periodo" />
+            </columns>
+        </TableView>
+    </children>
+</AnchorPane>

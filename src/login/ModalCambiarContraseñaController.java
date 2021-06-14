@@ -31,18 +31,19 @@ public class ModalCambiarContraseñaController {
     public void cambiarContraseña(ActionEvent actionEvent) {
         if(camposLlenos()){
             if(formularioValido()){
-                String contraseña = usuarioDao.obtenerContraseña(Usuario.usuarioActual);
+                String contraseña = Usuario.usuarioActual.getContraseña();
+                String matricula = Usuario.usuarioActual.getMatricula();
                 if(contraseña == ""){
                     labelError.setText("La contraseña actual no coincide");
                 } else {
-                    if(usuarioDao.cambiarContraseña(Usuario.usuarioActual,contraNueva.getText())){
+                    if(usuarioDao.cambiarContraseña(matricula,contraNueva.getText())){
                         alert.successAlert("Contraseña cambiada con éxito");
                         Stage stage = (Stage) btnCambiar.getScene().getWindow();
                         stage.close();
                     }
                 }
             } else {
-                labelError.setText("Las contraseñas nuevas no coinciden");
+                labelError.setText("Las contraseñas no coinciden");
             }
         } else{
             labelError.setText("Llene todo el formulario");
@@ -50,7 +51,9 @@ public class ModalCambiarContraseñaController {
     }
 
     public boolean formularioValido(){
-        return contraNueva.getText().equals(contraNuevaRepetir.getText());
+
+        return contraNueva.getText().equals(contraNuevaRepetir.getText())
+                && contraActual.getText().equals(Usuario.usuarioActual.getContraseña());
     }
 
     public boolean camposLlenos(){

@@ -25,3 +25,8 @@ public class Main extends Application {
         launch(args);
     }
 }
+
+
+// TODO: seccion proyecto
+// TODO: seccion ver resultados autoevaluacion
+// TODO: detalles esteticos

@@ -40,18 +40,20 @@ public class ModalActualizarCoordController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        int id = Usuario.coordinadorSeleccionado.getUsuarioId();
-        Usuario coord = usuarioDao.obtenerUsuario(id);
+        String matricula = Usuario.coordinadorSeleccionado.getMatricula();
+        Usuario coord = usuarioDao.obtenerUsuarioPorMat(matricula);
 
         tfNombre.setText(coord.getNombre());
-        tfPrimerApe.setText(coord.getPrimerApe());
-        tfSegundoApe.setText(coord.getSegundoApe());
+        tfPrimerApe.setText(coord.getPrimerApellido());
+        tfSegundoApe.setText(coord.getSegundoApellido());
         tfTelefono.setText(coord.getTelefono());
         tfFacultad.setText(coord.getFacultad());
         tfCorreo.setText(coord.getCorreo());
     }
 
     public void cancelarRegistro(ActionEvent actionEvent) {
+        Stage stage = (Stage) registrarPrac.getScene().getWindow();
+        stage.close();
     }
 
     public void actualizarCoord(ActionEvent actionEvent) {
@@ -77,12 +79,12 @@ public class ModalActualizarCoordController implements Initializable {
     public Usuario generarUsuario(){
         Usuario usuario = new Usuario();
         usuario.setNombre(tfNombre.getText());
-        usuario.setPrimerApe(tfPrimerApe.getText());
-        usuario.setSegundoApe(tfSegundoApe.getText());
+        usuario.setPrimerApellido(tfPrimerApe.getText());
+        usuario.setSegundoApellido(tfSegundoApe.getText());
         usuario.setTelefono(tfTelefono.getText());
         usuario.setCorreo(tfCorreo.getText());
         usuario.setFacultad(tfFacultad.getText());
-        usuario.setUsuarioId(Usuario.coordinadorSeleccionado.getUsuarioId());
+        usuario.setMatricula(Usuario.coordinadorSeleccionado.getMatricula());
 
         return usuario;
     }

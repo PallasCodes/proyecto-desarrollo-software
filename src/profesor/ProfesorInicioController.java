@@ -39,9 +39,9 @@ public class ProfesorInicioController implements Initializable {
     // inicializaicón de la vista
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Usuario usuario = usuarioDao.obtenerUsuario(Usuario.usuarioActual);
+        Usuario usuario = Usuario.usuarioActual;
 
-        lbNombre.setText(usuario.getNombre()+ " " + usuario.getPrimerApe() + " " + usuario.getSegundoApe());
+        lbNombre.setText(usuario.getNombre()+ " " + usuario.getPrimerApellido() + " " + usuario.getSegundoApellido());
         lbRol.setText(usuario.getRol());
         lbFacultad.setText(usuario.getFacultad());
         lbCorreo.setText(usuario.getCorreo());
@@ -52,7 +52,7 @@ public class ProfesorInicioController implements Initializable {
     //  métodos de la UI
     @FXML
     public void cerrarSesion(MouseEvent event) throws IOException {
-        sw.switchSceneMouse(event, stage, scene, "../login/login.fxml");
+        sw.switchSceneMouse(event, stage, scene, "/login/Login.fxml");
     }
 
     @FXML
@@ -63,5 +63,21 @@ public class ProfesorInicioController implements Initializable {
         } catch (IOException ioException) {
             ioException.printStackTrace();
         }
+    }
+
+    public void irTablaReportesMensuales(MouseEvent event) throws IOException{
+        sw.switchSceneMouse(event, stage, scene, "../profesor/TablaReportesMensuales.fxml");
+    }
+
+    public void irTablaReportesParciales(MouseEvent event) throws IOException{
+        sw.switchSceneMouse(event, stage, scene, "../profesor/TablaReportesParciales.fxml");
+    }
+
+    public void irTablaAlumnos(MouseEvent event) throws IOException {
+        sw.switchSceneMouse(event, stage, scene, "../profesor/TablaAlumnos.fxml");
+    }
+
+    public void irTablaAutoevaluaciones(MouseEvent event) throws IOException{
+        sw.switchSceneMouse(event, stage, scene, "../profesor/TablaAutoevaluaciones.fxml");
     }
 }

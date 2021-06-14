@@ -13,17 +13,18 @@ public class UsuarioDAO implements IUsuario {
     public boolean registrarUsuario(Usuario usuario) {
         Connection conexion = Conexion.conectar();
         String query = "INSERT INTO usuario (contraseña, rol, nombre, primer_apellido, segundo_apellido, telefono, correo"
-                + ", facultad) VALUES (?,?,?,?,?,?,?,?)";
+                + ", facultad, matricula) VALUES (?,?,?,?,?,?,?,?,?)";
         try{
             PreparedStatement preparedStatement = conexion.prepareStatement(query);
             preparedStatement.setString(1,usuario.getContraseña());
             preparedStatement.setString(2, usuario.getRol());
             preparedStatement.setString(3,usuario.getNombre());
-            preparedStatement.setString(4,usuario.getPrimerApe());
-            preparedStatement.setString(5,usuario.getSegundoApe());
+            preparedStatement.setString(4,usuario.getPrimerApellido());
+            preparedStatement.setString(5,usuario.getSegundoApellido());
             preparedStatement.setString(6,usuario.getTelefono());
             preparedStatement.setString(7,usuario.getCorreo());
             preparedStatement.setString(8,usuario.getFacultad());
+            preparedStatement.setString(9,usuario.getMatricula());
             preparedStatement.execute();
             conexion.close();
         } catch (Exception ex) {
@@ -58,23 +59,25 @@ public class UsuarioDAO implements IUsuario {
     }
 
     @Override
-    public Usuario obtenerUsuario(int usuarioId) {
+    public Usuario obtenerUsuarioPorMat(String matricula) {
         Connection conexion = Conexion.conectar();
         Usuario usuario = new Usuario();
 
-        String query = "SELECT * FROM usuario WHERE usuario_id="+usuarioId;
+        String query = "SELECT * FROM usuario WHERE matricula = ?";
         try {
-            Statement st = conexion.createStatement();
-            ResultSet rs = st.executeQuery(query);
-
+            PreparedStatement preparedStatement = conexion.prepareStatement(query);
+            preparedStatement.setString(1, matricula);
+            ResultSet rs = preparedStatement.executeQuery();
             if(rs.next()){
-                usuario.setFacultad(rs.getString("facultad"));
+                usuario.setMatricula(matricula);
                 usuario.setNombre(rs.getString("nombre"));
-                usuario.setPrimerApe(rs.getString("primer_apellido"));
-                usuario.setSegundoApe(rs.getString("segundo_apellido"));
-                usuario.setTelefono(rs.getString("telefono"));
-                usuario.setCorreo(rs.getString("correo"));
                 usuario.setRol(rs.getString("rol"));
+                usuario.setPrimerApellido(rs.getString("primer_apellido"));
+                usuario.setSegundoApellido(rs.getString("segundo_apellido"));
+                usuario.setTelefono(rs.getString("telefono"));
+                usuario.setFacultad(rs.getString("facultad"));
+                usuario.setCorreo(rs.getString("correo"));
+                usuario.setContraseña(rs.getString("contraseña"));
             }
             conexion.close();
         } catch (SQLException throwables) {
@@ -86,12 +89,13 @@ public class UsuarioDAO implements IUsuario {
     }
 
     @Override
-    public boolean cambiarContraseña(int usuarioId, String contraseña) {
+    public boolean cambiarContraseña(String matricula, String contraseña) {
         Connection conexion = Conexion.conectar();
-        String query = "UPDATE usuario SET contraseña=? WHERE usuario_id="+usuarioId;
+        String query = "UPDATE usuario SET contraseña=? WHERE matricula=?";
         try{
             PreparedStatement preparedStatement = conexion.prepareStatement(query);
             preparedStatement.setString(1,contraseña);
+            preparedStatement.setString(2,matricula);
 
             preparedStatement.execute();
             conexion.close();
@@ -124,5 +128,31 @@ public class UsuarioDAO implements IUsuario {
             throwables.printStackTrace();
         }
         return contraseñaBd;
+    }
+
+    @Override
+    public boolean actualizarUsuario(Usuario usuario) {
+        Connection conexion = Conexion.conectar();
+        String query = "UPDATE usuario SET nombre=?, primer_apellido=?, segundo_apellido=?, facultad=?," +
+                "correo=?, telefono=? WHERE matricula=?";
+        try{
+            PreparedStatement preparedStatement = conexion.prepareStatement(query);
+            preparedStatement.setString(1,usuario.getNombre());
+            preparedStatement.setString(2,usuario.getPrimerApellido());
+            preparedStatement.setString(3,usuario.getSegundoApellido());
+            preparedStatement.setString(4,usuario.getFacultad());
+            preparedStatement.setString(5,usuario.getCorreo());
+            preparedStatement.setString(6,usuario.getTelefono());
+            preparedStatement.setString(7,usuario.getMatricula());
+
+            preparedStatement.execute();
+            conexion.close();
+        } catch (SQLException ex) {
+            AlertBuilder alert = new AlertBuilder();
+            alert.exceptionAlert("Error al actualizar usuario. Inténtelo más tarde.");
+            ex.printStackTrace();
+            return false;
+        }
+        return true;
     }
 }

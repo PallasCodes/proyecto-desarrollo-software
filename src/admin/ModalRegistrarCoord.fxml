@@ -72,5 +72,11 @@
             </font>
         </Label>
         <TextField fx:id="tfCorreo" layoutX="381.0" layoutY="193.0" prefHeight="26.0" prefWidth="241.0" />
+        <Label layoutX="380.0" layoutY="238.0" text="No. Personal">
+            <font>
+                <Font name="Arial" size="14.0" />
+            </font>
+        </Label>
+        <TextField fx:id="tfNoPersonal" layoutX="381.0" layoutY="256.0" prefHeight="26.0" prefWidth="241.0" />
     </children>
 </AnchorPane>

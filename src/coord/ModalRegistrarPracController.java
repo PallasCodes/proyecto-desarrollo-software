@@ -8,11 +8,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import utils.Validaciones;
 
 public class ModalRegistrarPracController {
     // instancias de clases usadas
     UsuarioDAO usuarioDAO = new UsuarioDAO();
     PracticanteDAO practicanteDao = new PracticanteDAO();
+    Validaciones validaciones = new Validaciones();
 
 
     // componentes de UI
@@ -50,17 +52,21 @@ public class ModalRegistrarPracController {
     void registrarPrac(ActionEvent event) {
         if(camposCompletos()){
             if(datosValidos()){
-                Usuario usuario = generarUsuario();
-                if(usuarioDAO.registrarUsuario(usuario)) {
-                    Practicante practicante = generarPracticante();
-                    if(practicanteDao.registrarPracticante(practicante)){
-                        TablaPracticantesController.getInstance().popularTabla();
+                if (validaciones.validacionMatricula(tfMatricula.getText())) {
+                    Usuario usuario = generarUsuario();
+                    if (usuarioDAO.registrarUsuario(usuario)) {
+                        Practicante practicante = generarPracticante();
+                        if (practicanteDao.registrarPracticante(practicante)) {
+                            TablaPracticantesController.getInstance().popularTabla();
+                        }
+                        Stage stage = (Stage) registrarPrac.getScene().getWindow();
+                        stage.close();
                     }
-                    Stage stage = (Stage) registrarPrac.getScene().getWindow();
-                    stage.close();
+                } else {
+                    labelError.setText("Formato de matrícula erróneo.");
                 }
             } else {
-                labelError.setText("*Ingrese datos validos");
+                labelError.setText("Formato del teléfono erróneo.");
             }
         } else {
             labelError.setText("*Llene todos los campos del formulario");
@@ -76,19 +82,21 @@ public class ModalRegistrarPracController {
     }
 
     public boolean datosValidos(){
-        return true;
+        boolean telefonoValido = validaciones.validacionTelefono(tfTelefono.getText());
+        return telefonoValido;
     }
 
     public Usuario generarUsuario(){
         Usuario usuario = new Usuario();
         usuario.setNombre(tfNombre.getText());
-        usuario.setPrimerApe(tfPrimerApe.getText());
-        usuario.setSegundoApe(tfSegundoApe.getText());
+        usuario.setPrimerApellido(tfPrimerApe.getText());
+        usuario.setSegundoApellido(tfSegundoApe.getText());
         usuario.setContraseña(tfContraseña.getText());
         usuario.setRol("practicante");
         usuario.setTelefono(tfTelefono.getText());
         usuario.setCorreo(tfCorreo.getText());
         usuario.setFacultad(tfFacultad.getText());
+        usuario.setMatricula(tfMatricula.getText());
 
         return usuario;
     }
@@ -96,8 +104,7 @@ public class ModalRegistrarPracController {
     public Practicante generarPracticante() {
         Practicante practicante = new Practicante();
         practicante.setMatricula(tfMatricula.getText());
-        practicante.setEstado("Sin asignar");
-        practicante.setUsuarioId(usuarioDAO.obtenerIdUsuario(tfCorreo.getText()));
+        practicante.setEstado("sin asignar");
         practicante.setPeriodo(tfPeriodo.getText());
 
         return practicante;

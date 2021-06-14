@@ -1,46 +1,36 @@
 package Dominio;
 
 public class Usuario {
-    // atributos
-    private String contraseña;
+    // atributo
+    private String matricula;
     private String rol;
     private String nombre;
-    private String primerApe;
-    private String segundoApe;
+    private String contraseña;
+    private String primerApellido;
+    private String segundoApellido;
     private String telefono;
-    private String correo;
     private String facultad;
-    private int usuarioId;
+    private String correo;
+    private int eliminado;
 
     public static Usuario coordinadorSeleccionado;
-    public static int usuarioActual;
+    public static Usuario usuarioActual;
+    public static Usuario docenteSeleccionado;
 
 
     // constructores
     public Usuario() {
-    }
 
-    public Usuario(String contraseña, String rol, String nombre, String primerApe, String segundoApe, String telefono,
-                   String correo, String facultad, int usuarioId) {
-        this.contraseña = contraseña;
-        this.rol = rol;
-        this.nombre = nombre;
-        this.primerApe = primerApe;
-        this.segundoApe = segundoApe;
-        this.telefono = telefono;
-        this.correo = correo;
-        this.facultad = facultad;
-        this.usuarioId = usuarioId;
     }
 
 
-    // sets y gets
-    public String getContraseña() {
-        return contraseña;
+    // gets y sets
+    public String getMatricula() {
+        return matricula;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
     }
 
     public String getRol() {
@@ -51,28 +41,20 @@ public class Usuario {
         this.rol = rol;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getPrimerApellido() {
+        return primerApellido;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setPrimerApellido(String primerApellido) {
+        this.primerApellido = primerApellido;
     }
 
-    public String getPrimerApe() {
-        return primerApe;
+    public String getSegundoApellido() {
+        return segundoApellido;
     }
 
-    public void setPrimerApe(String primerApe) {
-        this.primerApe = primerApe;
-    }
-
-    public String getSegundoApe() {
-        return segundoApe;
-    }
-
-    public void setSegundoApe(String segundoApe) {
-        this.segundoApe = segundoApe;
+    public void setSegundoApellido(String segundoApellido) {
+        this.segundoApellido = segundoApellido;
     }
 
     public String getTelefono() {
@@ -83,14 +65,6 @@ public class Usuario {
         this.telefono = telefono;
     }
 
-    public String getCorreo() {
-        return correo;
-    }
-
-    public void setCorreo(String correo) {
-        this.correo = correo;
-    }
-
     public String getFacultad() {
         return facultad;
     }
@@ -99,7 +73,35 @@ public class Usuario {
         this.facultad = facultad;
     }
 
-    public int getUsuarioId() { return usuarioId; }
+    public String getCorreo() {
+        return correo;
+    }
 
-    public void setUsuarioId(int usuarioId) { this.usuarioId = usuarioId; }
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getContraseña() {
+        return contraseña;
+    }
+
+    public void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
+    }
+
+    public int getEliminado() {
+        return eliminado;
+    }
+
+    public void setEliminado(int eliminado) {
+        this.eliminado = eliminado;
+    }
 }

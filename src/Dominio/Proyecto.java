@@ -2,13 +2,14 @@ package Dominio;
 
 public class Proyecto {
     // atributos
-    private String proyectoId;
+    private int id;
     private String nombre;
     private String organizacion;
     private String cupo;
     private String estado;
     private String descripcion;
     private String actividades;
+    private int disponibilidad;
 
     public static Proyecto proyectoSeleccionado = null;
 
@@ -17,22 +18,15 @@ public class Proyecto {
     public Proyecto() {
     }
 
-    public Proyecto(String proyectoId, String nombre, String organizacion, String cupo, String estado) {
-        this.proyectoId = proyectoId;
-        this.nombre = nombre;
-        this.organizacion = organizacion;
-        this.cupo = cupo;
-        this.estado = estado;
-    }
 
 
     // geters y seters
-    public String getProyectoId() {
-        return proyectoId;
+    public int getId() {
+        return id;
     }
 
-    public void setProyectoId(String proyectoId) {
-        this.proyectoId = proyectoId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -81,5 +75,13 @@ public class Proyecto {
 
     public void setActividades(String actividades) {
         this.actividades = actividades;
+    }
+
+    public int getDisponibilidad() {
+        return disponibilidad;
+    }
+
+    public void setDisponibilidad(int disponibilidad) {
+        this.disponibilidad = disponibilidad;
     }
 }

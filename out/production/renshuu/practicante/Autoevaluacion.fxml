@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane minHeight="675.0" minWidth="1080.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="practicante.AutoevaluacionController">
+    <stylesheets>
+        <URL value="@../login/style.css" />
+    </stylesheets>
+    <children>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="675.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="42.0" layoutX="200.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="880.0" />
+        <ImageView fitHeight="42.0" fitWidth="159.0" layoutX="24.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../assets/img/logo.png" />
+            </image>
+        </ImageView>
+        <Label fx:id="inicio" layoutX="40.0" layoutY="100.0" onMouseClicked="#irPerfil" styleClass="handCursor" text="Perfil" textFill="WHITE">
+            <font>
+                <Font name="Century Gothic Bold" size="17.0" />
+            </font>
+        </Label>
+        <Label layoutX="40.0" layoutY="136.0" styleClass="handCursor, activeNavItem" text="Proyecto" textFill="WHITE">
+            <font>
+                <Font name="Century Gothic Bold" size="17.0" />
+            </font>
+        </Label>
+        <Label layoutX="40.0" layoutY="172.0" styleClass="handCursor" text="Archivos" textFill="WHITE">
+            <font>
+                <Font name="Century Gothic Bold" size="17.0" />
+            </font>
+        </Label>
+        <Label layoutX="40.0" layoutY="208.0" onMouseClicked="#irTablaReportes" styleClass="handCursor" text="Reportes" textFill="WHITE">
+            <font>
+                <Font name="Century Gothic Bold" size="17.0" />
+            </font>
+        </Label>
+        <ImageView fitHeight="22.0" fitWidth="23.0" layoutX="1031.0" layoutY="12.0" onMouseClicked="#cerrarSesion" pickOnBounds="true" preserveRatio="true" styleClass="handCursor">
+            <image>
+                <Image url="@../assets/icons/logout.png" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="20.0" fitWidth="21.0" layoutX="998.0" layoutY="10.0" onMouseClicked="#irOpciones" pickOnBounds="true" preserveRatio="true" styleClass="handCursor">
+            <image>
+                <Image url="@../assets/icons/settings.png" />
+            </image>
+        </ImageView>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="592.0" layoutX="221.0" layoutY="62.0" stroke="BLACK" strokeLineJoin="ROUND" strokeType="INSIDE" strokeWidth="0.0" width="839.0" />
+        <Label layoutX="251.0" layoutY="82.0" text="Autoevaluación" textFill="#666666">
+            <font>
+                <Font name="Century Gothic Bold" size="36.0" />
+            </font>
+        </Label>
+
+        <Label fx:id="lbError" layoutX="251.0" layoutY="600.0" textFill="RED" />
+
+        <Label layoutX="250.0" layoutY="146.0" text="1. Mi participación en la Organización Vinculada fue productiva" />
+        <TextField fx:id="respuesta1" layoutX="900.0" layoutY="140.0" prefHeight="20.0" prefWidth="70.0" />
+
+        <Label layoutX="250.0" layoutY="186.0" text="2. Logré la aplicación de los conocimientos teórico-prácticos adquiridos en la carrera" />
+        <TextField fx:id="respuesta2" layoutX="900.0" layoutY="180.0" prefHeight="20.0" prefWidth="70.0" />
+
+        <Label layoutX="250.0" layoutY="226.0" text="3. Me sentí seguro al realizar las actividades encomendadas" />
+        <TextField fx:id="respuesta3" layoutX="900.0" layoutY="220.0" prefHeight="20.0" prefWidth="70.0" />
+
+        <Label layoutX="250.0" layoutY="266.0" text="4. Las actividades encomendadas despertaron mi interés." />
+        <TextField fx:id="respuesta4" layoutX="900.0" layoutY="260.0" prefHeight="20.0" prefWidth="70.0" />
+
+        <Label layoutX="250.0" layoutY="306.0" text="5. La Organización Vinculada me proporcionó la información y facilidades adecuados" />
+        <TextField fx:id="respuesta5" layoutX="900.0" layoutY="300.0" prefHeight="20.0" prefWidth="70.0" />
+
+        <Label layoutX="250.0" layoutY="346.0" text="6. La Organización Vinculada me dio a conocer las reglas internas" />
+        <TextField fx:id="respuesta6" layoutX="900.0" layoutY="340.0" prefHeight="20.0" prefWidth="70.0" />
+
+        <Label layoutX="250.0" layoutY="386.0" text="7. El Responsable del Proyecto me orientó correctamente para el desarrollo de mis actividades" />
+        <TextField fx:id="respuesta7" layoutX="900.0" layoutY="380.0" prefHeight="20.0" prefWidth="70.0" />
+
+        <Label layoutX="250.0" layoutY="426.0" text="8. El proyecto es congruente con la formación de mi carrera" />
+        <TextField fx:id="respuesta8" layoutX="900.0" layoutY="420.0" prefHeight="20.0" prefWidth="70.0" />
+
+        <Label layoutX="250.0" layoutY="466.0" text="9. Considero que las prácticas son importantes para mi formación profesional" />
+        <TextField fx:id="respuesta9" layoutX="900.0" layoutY="460.0" prefHeight="20.0" prefWidth="70.0" />
+      <Button layoutX="250.0" layoutY="522.0" mnemonicParsing="false" onAction="#cancelar" text="Cancelar" />
+      <Button layoutX="342.0" layoutY="522.0" mnemonicParsing="false" onAction="#enviar" styleClass="primary" text="Enviar" />
+    </children>
+</AnchorPane>

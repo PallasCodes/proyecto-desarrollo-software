@@ -24,7 +24,6 @@ public class TablaCoordinadoresController implements Initializable {
     // instancias de clases usadas
     SceneSwitcher sw = new SceneSwitcher();
     ArrayList<Usuario> coordinadores;
-    PracticanteDAO pracDao = new PracticanteDAO();
     CoordinadorDAO coordDao = new CoordinadorDAO();
     AlertBuilder alert = new AlertBuilder();
 
@@ -64,8 +63,8 @@ public class TablaCoordinadoresController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         colNombre.setCellValueFactory(new PropertyValueFactory<Usuario, String>("nombre"));
-        colPrimerApe.setCellValueFactory(new PropertyValueFactory<Usuario, String>("PrimerApe"));
-        colSegundoApe.setCellValueFactory(new PropertyValueFactory<Usuario, String>("SegundoApe"));
+        colPrimerApe.setCellValueFactory(new PropertyValueFactory<Usuario, String>("primerApellido"));
+        colSegundoApe.setCellValueFactory(new PropertyValueFactory<Usuario, String>("segundoApellido"));
         colFacultad.setCellValueFactory(new PropertyValueFactory<Usuario, String>("facultad"));
         colId.setCellValueFactory(new PropertyValueFactory<Usuario, String>("usuarioId"));
 
@@ -92,7 +91,8 @@ public class TablaCoordinadoresController implements Initializable {
 
     @FXML
     public void cerrarSesion(MouseEvent event) throws IOException {
-        sw.switchSceneMouse(event, stage, scene, "../login/login.fxml");
+        sw.switchSceneMouse(event, stage, scene, "/login/Login.fxml");
+        Usuario.usuarioActual = null;
     }
 
     @FXML
@@ -108,8 +108,14 @@ public class TablaCoordinadoresController implements Initializable {
 
     // métodos
     public void popularTabla(){
+        ArrayList<Usuario> coordinadoresActivos = new ArrayList<>();
         coordinadores = coordDao.obtenerCoordinadores();
-        tablaCoordinadores.getItems().setAll(coordinadores);
+        for (int i=0; i < coordinadores.size(); i++) {
+            if (coordinadores.get(i).getEliminado() == 0) {
+                coordinadoresActivos.add(coordinadores.get(i));
+            }
+        }
+        tablaCoordinadores.getItems().setAll(coordinadoresActivos);
     }
 
     public void actualizarCoord(ActionEvent actionEvent) {
@@ -132,8 +138,8 @@ public class TablaCoordinadoresController implements Initializable {
         if(coordinador == null){
             alert.errorAlert("Error. Seleccione un coordinador");
         }else if(alert.confirmationAlert("¿Desea eliminar el coordinador?")){
-            int coordId = Usuario.coordinadorSeleccionado.getUsuarioId();
-            if(coordDao.eliminarCoordinador(coordId)) {
+            String matricula = Usuario.coordinadorSeleccionado.getMatricula();
+            if(coordDao.eliminarCoordinador(matricula)) {
                 Proyecto.proyectoSeleccionado = null;
                 popularTabla();
                 // si sucede una excepción, no se actualiza la tabla
@@ -144,5 +150,9 @@ public class TablaCoordinadoresController implements Initializable {
     public Usuario obtenerCoordSeleccionado(){
         Usuario.coordinadorSeleccionado = tablaCoordinadores.getSelectionModel().getSelectedItem();
         return Usuario.coordinadorSeleccionado;
+    }
+
+    public void irTablaDocentes(MouseEvent event) throws IOException {
+        sw.switchSceneMouse(event, stage, scene, "../admin/TablaDocentes.fxml");
     }
 }

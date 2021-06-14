@@ -4,6 +4,8 @@ import DataAccess.Conexion;
 import utils.AlertBuilder;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicInteger;
+
 import DataAccess.Interfaces.IProyectoDAO;
 import Dominio.Proyecto;
 
@@ -13,20 +15,49 @@ public class ProyectoDAO implements IProyectoDAO {
         Connection conexion = Conexion.conectar();
         ArrayList<Proyecto> proyectos = new ArrayList<>();
 
-        String query = "SELECT `proyecto`.*, `organizacion_vinculada`.nombre AS org_nombre " +
-                "FROM `proyecto` " +
-                "LEFT JOIN `organizacion_vinculada` ON `proyecto`.`organizacion_id` = `organizacion_vinculada`.`organizacion_id`;";
+        String query = "SELECT * FROM proyecto WHERE estado='disponible' AND eliminado=0 AND disponibilidad > 0";
         try {
             Statement st = conexion.createStatement();
             ResultSet rs = st.executeQuery(query);
 
             while(rs.next()){
                 Proyecto proyecto = new Proyecto();
-                proyecto.setProyectoId(Integer.toString(rs.getInt("proyecto_id")));
+                proyecto.setId(rs.getInt("proyecto_id"));
                 proyecto.setNombre(rs.getString("nombre"));
                 proyecto.setCupo(Integer.toString(rs.getInt("cupo")));
                 proyecto.setEstado(rs.getString("estado"));
-                proyecto.setOrganizacion(rs.getString("org_nombre"));
+                proyecto.setOrganizacion(rs.getString("organizacion"));
+                proyecto.setDisponibilidad(rs.getInt("disponibilidad"));
+
+                proyectos.add(proyecto);
+            }
+            conexion.close();
+        } catch (SQLException throwables) {
+            AlertBuilder alert = new AlertBuilder();
+            alert.exceptionAlert("Error al conectarse con la BD. Inténtelo más tarde.");
+            throwables.printStackTrace();
+        }
+        return proyectos;
+    }
+
+    @Override
+    public ArrayList<Proyecto> obtenerProyectosCoord() {
+        Connection conexion = Conexion.conectar();
+        ArrayList<Proyecto> proyectos = new ArrayList<>();
+
+        String query = "SELECT * FROM proyecto WHERE eliminado=0";
+        try {
+            Statement st = conexion.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            while(rs.next()){
+                Proyecto proyecto = new Proyecto();
+                proyecto.setId(rs.getInt("proyecto_id"));
+                proyecto.setNombre(rs.getString("nombre"));
+                proyecto.setCupo(Integer.toString(rs.getInt("cupo")));
+                proyecto.setEstado(rs.getString("estado"));
+                proyecto.setOrganizacion(rs.getString("organizacion"));
+                proyecto.setDisponibilidad(rs.getInt("disponibilidad"));
 
                 proyectos.add(proyecto);
             }
@@ -42,18 +73,17 @@ public class ProyectoDAO implements IProyectoDAO {
     @Override
     public boolean registrarProyecto(Proyecto proyecto) {
         Connection conexion = Conexion.conectar();
-        String query = "INSERT INTO proyecto (organizacion_id, nombre, descripcion, actividades, cupo, disponibilidad, estado) " +
+        String query = "INSERT INTO proyecto (organizacion, nombre, descripcion, actividades, cupo, disponibilidad, estado) " +
                 "VALUES (?,?,?,?,?,?,?)";
         try{
             PreparedStatement preparedStatement = conexion.prepareStatement(query);
-            //System.out.println(proyecto.getOrganizacion());
-            preparedStatement.setInt(1,Integer.parseInt(proyecto.getOrganizacion()));
+            preparedStatement.setString(1,proyecto.getOrganizacion());
             preparedStatement.setString(2, proyecto.getNombre());
             preparedStatement.setString(3,proyecto.getDescripcion());
             preparedStatement.setString(4,proyecto.getActividades());
             preparedStatement.setInt(5,Integer.parseInt(proyecto.getCupo()));
             preparedStatement.setInt(6,Integer.parseInt(proyecto.getCupo()));
-            preparedStatement.setString(7,"Disponible");
+            preparedStatement.setString(7,"disponible");
             preparedStatement.execute();
             conexion.close();
         } catch (Exception ex) {
@@ -66,19 +96,19 @@ public class ProyectoDAO implements IProyectoDAO {
     }
 
     @Override
-    public boolean eliminarProyecto(int proyectoId) {
+    public boolean eliminarProyecto(int id) {
         Connection conexion = Conexion.conectar();
-        String query = "DELETE FROM proyecto WHERE proyecto_id=?";
-
+        String query = "UPDATE proyecto SET eliminado=1 WHERE proyecto_id=?";
         try{
             PreparedStatement preparedStatement = conexion.prepareStatement(query);
-            preparedStatement.setInt(1,proyectoId);
+            preparedStatement.setInt(1,id);
+
             preparedStatement.execute();
             conexion.close();
-        } catch (SQLException throwables) {
+        } catch (SQLException ex) {
             AlertBuilder alert = new AlertBuilder();
             alert.exceptionAlert("Error al eliminar el proyecto. Inténtelo más tarde.");
-            throwables.printStackTrace();
+            ex.printStackTrace();
             return false;
         }
         return true;
@@ -87,14 +117,12 @@ public class ProyectoDAO implements IProyectoDAO {
     @Override
     public boolean actualizarProyecto(Proyecto proyecto) {
         Connection conexion = Conexion.conectar();
-        String query = "UPDATE proyecto SET organizacion_id=?, nombre=?, descripcion=?, actividades=?, cupo=?, " +
-                "estado=? WHERE proyecto_id="+proyecto.getProyectoId();
+        String query = "UPDATE proyecto SET organizacion=?, nombre=?, descripcion=?, actividades=?, cupo=?, " +
+                "estado=? WHERE proyecto_id="+proyecto.getId();
         try{
             PreparedStatement preparedStatement = conexion.prepareStatement(query);
-            //System.out.println(proyecto.getOrganizacion());
-            preparedStatement.setInt(1,1);
+            preparedStatement.setString(1,proyecto.getOrganizacion());
             preparedStatement.setString(2, proyecto.getNombre());
-            System.out.println(proyecto.getNombre());
             preparedStatement.setString(3,proyecto.getDescripcion());
             preparedStatement.setString(4,proyecto.getActividades());
             preparedStatement.setInt(5, Integer.parseInt(proyecto.getCupo()));
@@ -122,11 +150,11 @@ public class ProyectoDAO implements IProyectoDAO {
             ResultSet rs = st.executeQuery(query);
 
             while(rs.next()){
-                proyecto.setProyectoId(Integer.toString(rs.getInt("proyecto_id")));
+                proyecto.setId(rs.getInt("proyecto_id"));
                 proyecto.setNombre(rs.getString("nombre"));
                 proyecto.setCupo(Integer.toString(rs.getInt("cupo")));
                 proyecto.setEstado(rs.getString("estado"));
-                proyecto.setOrganizacion(rs.getString("organizacion_id"));
+                proyecto.setOrganizacion(rs.getString("organizacion"));
                 proyecto.setActividades(rs.getString("actividades"));
                 proyecto.setDescripcion(rs.getString("descripcion"));
             }
@@ -137,5 +165,34 @@ public class ProyectoDAO implements IProyectoDAO {
             throwables.printStackTrace();
         }
         return proyecto;
+    }
+
+    @Override
+    public boolean solicitarProyecto(ArrayList<Proyecto> proyectos, String matricula) {
+        Connection conexion = Conexion.conectar();
+        AtomicInteger errores = new AtomicInteger();
+        proyectos.forEach(proyecto -> {
+            String query = "INSERT INTO solicitud_proyecto (matricula, proyecto_id) VALUES (?,?)";
+            try{
+                PreparedStatement preparedStatement = conexion.prepareStatement(query);
+                preparedStatement.setString(1, matricula);
+                preparedStatement.setInt(2,proyecto.getId());
+                preparedStatement.execute();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                errores.getAndIncrement();
+            }
+        });
+        try{
+            conexion.close();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        if(errores.get() > 0){
+            AlertBuilder alert = new AlertBuilder();
+            alert.exceptionAlert("Error al solicitar proyecto. Inténtelo más tarde.");
+            return false;
+        }
+        return true;
     }
 }

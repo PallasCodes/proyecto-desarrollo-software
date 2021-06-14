@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<AnchorPane maxHeight="600.0" maxWidth="410.0" minHeight="600.0" minWidth="410.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coord.ModalSolicitudController">
+    <stylesheets>
+        <URL value="@../login/style.css" />
+    </stylesheets>
+    <children>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" layoutY="-2.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="410.0" />
+        <Label layoutX="154.0" layoutY="17.0" text="Solicitudes" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="19.0" />
+            </font>
+        </Label>
+        <Label layoutX="65.0" layoutY="87.0" text="Nombre">
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+        </Label>
+        <Label layoutX="65.0" layoutY="127.0" text="Matricula">
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+        </Label>
+        <Label fx:id="labelError" layoutX="96.0" layoutY="563.0" textFill="RED" />
+      <Text fx:id="matricula" layoutX="65.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="nombre" layoutX="65.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Accordion fx:id="opciones" layoutX="65.0" layoutY="202.0" prefHeight="307.0" prefWidth="277.0">
+        <panes>
+          <TitledPane animated="false" text="Opcion 1">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Text fx:id="opcion1" layoutX="14.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                        <Button fx:id="btnAsignar1" layoutX="14.0" layoutY="140.0" mnemonicParsing="false" onAction="#asignar1" styleClass="primary" text="Asignar" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </TitledPane>
+          <TitledPane animated="false" text="Opcion 2">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Text fx:id="opcion2" layoutX="14.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="No disponible" />
+                        <Button fx:id="btnAsignar2" disable="true" layoutX="14.0" layoutY="140.0" mnemonicParsing="false" onAction="#asignar2" styleClass="primary" text="Asignar" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </TitledPane>
+          <TitledPane animated="false" text="Opcion 3">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Text fx:id="opcion3" layoutX="14.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="No disponible" />
+                        <Button fx:id="btnAsignar3" disable="true" layoutX="14.0" layoutY="140.0" mnemonicParsing="false" onAction="#asignar3" styleClass="primary" text="Asignar" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </TitledPane>
+        </panes>
+      </Accordion>
+      <Button fx:id="btnAsignarOtro" layoutX="149.0" layoutY="543.0" mnemonicParsing="false" onAction="#asignarOtro" styleClass="success" text="Asignar otro" />
+      <Button fx:id="btnCancelar" layoutX="64.0" layoutY="543.0" mnemonicParsing="false" onAction="#cancelar" text="Cancelar" />
+      <Label layoutX="65.0" layoutY="173.0" text="Opciones">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+        <TableView disable="true" visible="false" fx:id="tablaProyectos" layoutX="35.0" layoutY="202.0" prefHeight="310.0" prefWidth="335.0">
+            <columns>
+                <TableColumn fx:id="colNombre" prefWidth="135.0" text="Nombre" />
+                <TableColumn fx:id="colOrganizacion" minWidth="0.0" prefWidth="135.0" text="Organización" />
+                <TableColumn fx:id="colDisponibilidad" prefWidth="68.0" text="Disponibilidad" />
+            </columns>
+        </TableView>
+    </children>
+</AnchorPane>

@@ -45,7 +45,7 @@ public class ModalActualizarProController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // obtener proyecto de la BD y llenar el formulario con los datos del proyecto
-        int id = Integer.parseInt(Proyecto.proyectoSeleccionado.getProyectoId());
+        int id = Proyecto.proyectoSeleccionado.getId();
         Proyecto proyecto = proDao.obtenerProyecto(id);
 
         tfNombre.setText(proyecto.getNombre());
@@ -57,11 +57,12 @@ public class ModalActualizarProController implements Initializable {
         OrganizacionVinculadaDAO orgDao = new OrganizacionVinculadaDAO();
         ArrayList<OrganizacionVinculada> organizaciones = orgDao.obtenerOrganizaciones();
         organizaciones.forEach(org -> {
-            cbOrg.getItems().add(org.getNombre()+" ("+org.getOrganizacionId()+")");
+            cbOrg.getItems().add(org.getNombre());
         });
+        cbOrg.setValue(proyecto.getOrganizacion());
 
         // inicializar ComboBox de estado del proyecto
-        cbEstado.getItems().setAll("Disponible", "No disponible");
+        cbEstado.getItems().setAll("disponible", "no disponible");
     }
 
     // métodos de la UI
@@ -77,7 +78,7 @@ public class ModalActualizarProController implements Initializable {
             Proyecto proyecto = generarProyecto();
             if(proDao.actualizarProyecto(proyecto)){
                 TablaProyectosController.getInstance().popularTabla();
-                // si ocurré una excepción al actualizar el proyecto, no se actualiza la tabla
+                // si ocurre una excepción al actualizar el proyecto, no se actualiza la tabla
             }
             Stage stage = (Stage) btnActualizarPro.getScene().getWindow();
             stage.close();
@@ -97,18 +98,13 @@ public class ModalActualizarProController implements Initializable {
     public Proyecto generarProyecto(){
         Proyecto proyecto = Proyecto.proyectoSeleccionado;
         // expresión regular para obtener el id de la organización seleccionada
-        String regex = "^.*?\\([^\\d]*(\\d+)[^\\d]*\\).*$";
-        Pattern p = Pattern.compile(regex);
-        Matcher m = p.matcher(cbOrg.getValue());
-        if(m.find()){
-            proyecto.setOrganizacion(m.group(1));
-        }
 
         proyecto.setNombre(tfNombre.getText());
         proyecto.setCupo(tfCupo.getText());
         proyecto.setDescripcion(taDescripcion.getText());
         proyecto.setActividades(taActividades.getText());
         proyecto.setEstado(cbEstado.getValue());
+        proyecto.setOrganizacion(cbOrg.getValue());
 
         return proyecto;
     }
