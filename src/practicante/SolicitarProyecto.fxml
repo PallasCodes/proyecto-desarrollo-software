@@ -28,12 +28,7 @@
             <font>
                 <Font name="Century Gothic Bold" size="17.0" />
             </font>
-        </Label>
-        <Label layoutX="40.0" layoutY="136.0" styleClass="handCursor, activeNavItem" text="Proyecto" textFill="WHITE">
-            <font>
-                <Font name="Century Gothic Bold" size="17.0" />
-            </font>
-        </Label>
+        </Label
         <Label layoutX="40.0" layoutY="172.0" styleClass="handCursor" text="Archivos" textFill="WHITE">
             <font>
                 <Font name="Century Gothic Bold" size="17.0" />
